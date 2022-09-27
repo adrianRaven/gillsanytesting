@@ -1,38 +1,70 @@
-.App {
-  text-align: center;
+/*Variables*/
+:root {
+  --primary: #143066;
+  --secondary: #ffcf06;
+  --third: #ffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Reset */
+body,
+p,
+a,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  text-decoration: 0;
+}
+li {
+  list-style-type: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Base Styles */
+body {
+  background: var(--third);
+  overflow-x: hidden;
+  font-family: "Montserrat";
+  font-size: 16px;
+}
+
+.button {
+  background: none;
+}
+
+input,
+textarea {
+  background: rgba(255, 255, 255, 1);
+}
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,900&display=swap");
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,900&display=swap");
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: rgb(50, 48, 54);
+}
+
+/*Mobile Styles */
+
+/*Small Tables Styles*/
+@media screen and (min-width: 620px) {
+}
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 18px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/*Desktop Styles*/
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 20px;
   }
 }

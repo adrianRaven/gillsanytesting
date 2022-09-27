@@ -1,0 +1,63 @@
+/*Variables*/
+:root {
+  --primary: #143066;
+  --secondary: #ffcf06;
+  --third: #ffff;
+  --textColor: rgb(50, 49, 50);
+}
+
+.navbar-contenedor {
+  background: var(--primary);
+  height: 4em;
+  padding-bottom: 0.4em;
+  margin-bottom: 1em;
+}
+
+.navbar-contenedor,
+a {
+  color: aliceblue;
+}
+
+.nav-bar {
+  background: --third;
+  padding: 1.25em;
+  display: block;
+  font-size: 1.25em;
+  width: 85%;
+}
+
+.menu {
+  background: var(--third);
+  color: var(--textColor);
+  width: 80%;
+  margin-left: -100%;
+}
+
+.navbar-cuenta {
+  background: var(--third);
+  color: var(--textColor);
+  width: 80%;
+}
+
+.menu__link {
+  display: block;
+  padding: 1.1em;
+  color: var(--textColor);
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.submenu {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.submenu .menu__link {
+  background: rgb(238, 237, 241);
+  padding-left: 3.5em;
+}
+
+.navbar-top-section {
+  display: none;
+}
