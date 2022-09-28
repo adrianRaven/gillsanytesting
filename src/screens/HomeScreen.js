@@ -48,21 +48,19 @@ function HomeScreen() {
 
         <div className="ofertas-contenedor">
           <div className="section-header">
-            <div className="section-header title-section">
-              Recomendaciones
-              <div className="contenedor-producto">
-                <div>
-                  {" "}
-                  {loading ? (
-                    <LoadingBox></LoadingBox>
-                  ) : error ? (
-                    <MessageBox variant="danger">{error} </MessageBox>
-                  ) : (
-                    <div>
-                      <Product products={products.slice(0, 1)} />
-                    </div>
-                  )}{" "}
-                </div>
+            <div className="contenedor-producto">
+              <div className="title-section">Ofertas</div>
+              <div>
+                {" "}
+                {loading ? (
+                  <LoadingBox></LoadingBox>
+                ) : error ? (
+                  <MessageBox variant="danger">{error} </MessageBox>
+                ) : (
+                  <div>
+                    <Product products={products.slice(0, 5)} />
+                  </div>
+                )}{" "}
               </div>
             </div>
           </div>
@@ -71,7 +69,7 @@ function HomeScreen() {
 
         <div className="recomendaciones">
           <div className="section-header">
-            <div className="section-header title-section">Ofertas</div>
+            <div className="section-header title-section">Recomendaciones</div>
           </div>
           <div className="contenedor-producto"></div>
         </div>
