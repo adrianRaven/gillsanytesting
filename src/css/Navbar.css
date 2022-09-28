@@ -7,57 +7,79 @@
 }
 
 .navbar-contenedor {
-  background: var(--primary);
-  height: 4em;
-  padding-bottom: 0.4em;
-  margin-bottom: 1em;
-}
-
-.navbar-contenedor,
-a {
-  color: aliceblue;
-}
-
-.nav-bar {
-  background: --third;
-  padding: 1.25em;
-  display: block;
-  font-size: 1.25em;
-  width: 85%;
-}
-
-.menu {
-  background: var(--third);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 2rem;
+  background-color: var(--primary);
   color: var(--textColor);
-  width: 80%;
-  margin-left: -100%;
 }
 
-.navbar-cuenta {
-  background: var(--third);
-  color: var(--textColor);
-  width: 80%;
+.h3-nav {
+  color: var(--third);
+}
+.navbar-contenedor a {
+  margin: 0 1rem;
+  color: var(--third);
+  text-decoration: none;
 }
 
-.menu__link {
-  display: block;
-  padding: 1.1em;
-  color: var(--textColor);
-  font-weight: 500;
-  font-size: 0.8em;
+.navbar-contenedor a:hover {
+  margin: 0 1rem;
+  color: var(--secondary);
+  text-decoration: none;
 }
 
-.submenu {
-  height: 0;
-  overflow: hidden;
-  transition: all 0.3s;
+.navbar-contenedor .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--third);
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
 }
 
-.submenu .menu__link {
-  background: rgb(238, 237, 241);
-  padding-left: 3.5em;
+.navbar-contenedor div,
+nav {
+  display: flex;
+  align-items: center;
 }
 
-.navbar-top-section {
-  display: none;
+.navbar-contenedor .nav-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navbar-contenedor nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  background-color: var(--primary);
+  transition: 1s;
+  transform: translateX(-250vh);
+  z-index: 99999;
+}
+
+.navbar-contenedor .responsive_nav {
+  transform: none;
+}
+
+.navbar-contenedor .nav-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.navbar-contenedor a {
+  font-size: 1.5rem;
 }
