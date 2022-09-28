@@ -3,6 +3,8 @@ import Product from "../components/Product";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import logger from "use-reducer-logger";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,12 +46,23 @@ function HomeScreen() {
       <div className="home">
         <div className="banner-pagos">PAGINA EN MANTENIMIENTO</div>
 
-        <div className="recomendaciones">
+        <div className="ofertas-contenedor">
           <div className="section-header">
             <div className="section-header title-section">
               Recomendaciones
               <div className="contenedor-producto">
-                <Product products={products.slice(0, 5)} />
+                <div>
+                  {" "}
+                  {loading ? (
+                    <LoadingBox></LoadingBox>
+                  ) : error ? (
+                    <MessageBox variant="danger">{error} </MessageBox>
+                  ) : (
+                    <div>
+                      <Product products={products.slice(0, 1)} />
+                    </div>
+                  )}{" "}
+                </div>
               </div>
             </div>
           </div>
