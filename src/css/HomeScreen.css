@@ -13,12 +13,6 @@
   justify-content: center;
 }
 
-.title-section {
-  font-weight: 500;
-  font-size: 1.2em;
-  color: rgb(50, 48, 54);
-  padding-top: 1em;
-}
 .banner-pagos {
   text-align: center;
   font-size: 2em;
@@ -30,12 +24,13 @@
   font-weight: 500;
   font-size: 1.2em;
   color: rgb(50, 48, 54);
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.4em;
 }
 
 .ofertas-contenedor {
   background-color: var(--third);
-  display: flex;
-  padding: 0.5em;
   box-shadow: 2px 6px 8px 0 rgba(0, 0, 0, 0.3);
   transition: 0.3s;
   margin-bottom: 2em;
@@ -43,9 +38,13 @@
   margin-right: 1.2em;
   margin-left: 1.2em;
   border-radius: 5px;
-  width: 100;
 }
 
 .ofertas-contenedor:hover {
   box-shadow: 3px 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+.flex__container {
+  display: flex;
+  flex-flow: wrap;
 }

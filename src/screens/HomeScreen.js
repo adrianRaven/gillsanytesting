@@ -47,30 +47,22 @@ function HomeScreen() {
         <div className="banner-pagos">PAGINA EN MANTENIMIENTO</div>
 
         <div className="ofertas-contenedor">
-          <div className="section-header">
-            <div className="contenedor-producto">
-              <div className="title-section">Ofertas</div>
-              <div>
-                {" "}
-                {loading ? (
-                  <LoadingBox></LoadingBox>
-                ) : error ? (
-                  <MessageBox variant="danger">{error} </MessageBox>
-                ) : (
-                  <div>
-                    <Product products={products.slice(0, 5)} />
-                  </div>
-                )}{" "}
-              </div>
+          <div className="contenedor-producto">
+            <div className="title-section">Ofertas</div>
+            <div>
+              {" "}
+              {loading ? (
+                <LoadingBox></LoadingBox>
+              ) : error ? (
+                <MessageBox variant="danger">{error} </MessageBox>
+              ) : (
+                <div className="flex__container">
+                  <Product products={products.slice(0, 4)} />
+                </div>
+              )}{" "}
             </div>
           </div>
-          <div className="contenedor-producto"></div>
-        </div>
 
-        <div className="recomendaciones">
-          <div className="section-header">
-            <div className="section-header title-section">Recomendaciones</div>
-          </div>
           <div className="contenedor-producto"></div>
         </div>
       </div>

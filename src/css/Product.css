@@ -1,4 +1,30 @@
-.contenedor-producto {
-  padding: 1em;
-  color: yellow;
+.tarjeta-producto {
+  background-color: rgb(255, 255, 255);
+  width: 49%;
+  border-radius: 4px;
+  transition: 0.3s;
+  text-decoration: none;
+  color: rgb(22, 22, 22);
+  border: 1px solid rgb(90, 89, 89, 0.2);
+}
+
+.tarjeta-producto:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.tarjeta-link img {
+  width: 100%;
+}
+
+.item-cantidad {
+  padding-top: 0.2em;
+  padding-left: 0.4em;
+  font-weight: 500;
+}
+
+.producto__info__nombre {
+  font-size: 0.85em;
+  padding-top: 0.2em;
+  padding-left: 0.4em;
+  padding-bottom: 0.6em;
 }
