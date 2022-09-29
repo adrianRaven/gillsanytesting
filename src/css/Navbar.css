@@ -10,12 +10,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
-  padding: 0 2rem;
   background-color: var(--primary);
   color: var(--textColor);
+  padding: 0 1em;
 }
 
+.navbar__menu__main {
+  text-align: center;
+}
+/* ------------------------------ */
+.navbar__menu__account {
+}
+
+.li__carrito {
+  text-align: center;
+}
 .h3-nav {
   color: var(--third);
 }
@@ -40,7 +49,7 @@
   color: var(--third);
   visibility: hidden;
   opacity: 0;
-  font-size: 1.8rem;
+  font-size: 2em;
 }
 
 .navbar-contenedor div,
@@ -77,10 +86,19 @@ nav {
 
 .navbar-contenedor .nav-close-btn {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 0.6rem;
+  right: 1.6rem;
 }
 
 .navbar-contenedor a {
-  font-size: 1.5rem;
+  font-size: 1.5em;
+}
+
+.navbar-contenedor li {
+  margin-bottom: 0.8em;
+}
+
+hr.division__menu {
+  width: 9em;
+  border-bottom: 0.1em solid var(--secondary);
 }
