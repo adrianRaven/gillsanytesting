@@ -9,7 +9,8 @@ import CartScreen from "./screens/CartScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ProductsCategoriesScreen from "./screens/ProductsCategoriesScreen";
 import SignupScreen from "./screens/SignupScreen";
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import ProfileScreen from "./screens/ProfileScreen";
 function App() {
   return (
     <div>
@@ -74,6 +75,19 @@ function App() {
               <>
                 {" "}
                 <Navbar /> <SignupScreen /> <Footer />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {" "}
+                <Navbar />{" "}
+                <ProtectedRoute>
+                  <ProfileScreen />
+                </ProtectedRoute>{" "}
+                <Footer />{" "}
               </>
             }
           />
