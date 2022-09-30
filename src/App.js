@@ -68,16 +68,16 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/signup"
+            element={
+              <>
+                {" "}
+                <Navbar /> <SignupScreen /> <Footer />{" "}
+              </>
+            }
+          />
         </Routes>
-        <Route
-          path="/signup"
-          element={
-            <>
-              {" "}
-              <Navbar /> <SignupScreen /> <Footer />{" "}
-            </>
-          }
-        />
       </Router>
     </div>
   );
