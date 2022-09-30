@@ -52,13 +52,13 @@ function Navbar() {
             <a href="/">Inicio</a>
           </li>
           <li>
-            <a href="/">Prouctos</a>
+            <a href="/productos">Prouctos</a>
           </li>
           <li>
             <a href="/">Ofertas</a>
           </li>
           <li>
-            <a href="/">Acerca de</a>
+            <a href="/acercade">Acerca de</a>
           </li>
         </ul>
         <hr className="division__menu" />
