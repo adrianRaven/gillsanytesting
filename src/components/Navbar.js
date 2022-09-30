@@ -65,7 +65,11 @@ function Navbar() {
         <ul className="navbar__menu__account">
           <li className="li__carrito">
             <a href="/cart">
-              <FontAwesomeIcon icon={faCartShopping} />
+              <div>
+                {" "}
+                <FontAwesomeIcon icon={faCartShopping} />
+              </div>
+
               {cart.cartItems.length > 0 && (
                 <div bg="danger" className="badgeCarrito">
                   {cart.cartItems.reduce((a, c) => a + c.product.quantity, 0)}
@@ -105,6 +109,11 @@ function Navbar() {
       </nav>
       <button className="nav-btn" onClick={showNavbar}>
         <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+        {cart.cartItems.length > 0 && (
+          <div bg="danger" className="items-cart-bars">
+            {cart.cartItems.reduce((a, c) => a + c.product.quantity, 0)}
+          </div>
+        )}
       </button>
     </div>
   );

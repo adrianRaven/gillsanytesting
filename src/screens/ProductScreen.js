@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useReducer } from "react";
+import { Store } from "../Store";
+import { useParams, useNavigate } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
+import "../css/ProductScreen.css";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +21,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -42,14 +45,71 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x.id === product.id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(
+      `https://gillsanyback.herokuapp.com/api/product/${product.id}`
+    );
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...product, quantity },
+    });
+    navigate("/cart");
+  };
+
+  const addToCartCheckoutHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x.id === product.id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(
+      `https://gillsanyback.herokuapp.com/api/product/${product.id}`
+    );
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...product, quantity },
+    });
+    navigate("/signin?redirect=/shipping");
+  };
+
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
     <MessageBox variant="danger"></MessageBox>
   ) : (
-    <div>
-      {slug}
-      <div>{product.name} </div>
+    <div className="contenedor__product_screen">
+      <div className="contenedor__product__name">{product.name} </div>
+      <div className="contenedor__prodict__image">
+        <img
+          className="img"
+          src={
+            "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+            product.images[0].uri
+          }
+          alt={product.name}
+        />
+      </div>
+      <div className="contenedor__product__precio">$ {product.price} </div>
+      <div className="contenedor__product__oferta">$ {product.discount} </div>
+      <div>IVA Incluido </div>
+
+      <div className="contenedor-botones">
+        <button className="boton-compra-one">
+          <span onClick={addToCartCheckoutHandler}>Comprar ahora</span>
+        </button>
+        <button className="boton-compra-two">
+          <span onClick={addToCartHandler}>Agregar al carrito</span>
+        </button>
+      </div>
     </div>
   );
 }
