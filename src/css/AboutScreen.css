@@ -1,0 +1,20 @@
+.contenedor__aboutus {
+  padding: 1em;
+  text-align: center;
+}
+
+.aboutus_img img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.4em;
+  border-radius: 0.6em;
+}
+
+.aboutus_info_text {
+  padding-bottom: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.aboutus_info_text p {
+  color: rgb(49, 49, 49);
+}

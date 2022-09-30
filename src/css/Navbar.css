@@ -1,0 +1,131 @@
+/*Variables*/
+:root {
+  --primary: #143066;
+  --secondary: #ffcf06;
+  --third: #ffff;
+  --textColor: rgb(50, 49, 50);
+}
+
+.navbar-contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary);
+  color: var(--textColor);
+  padding: 0 1em;
+}
+
+.navbar__menu__main {
+  text-align: center;
+}
+/* ------------------------------ */
+
+.li__carrito a {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.h3-nav {
+  color: var(--third);
+}
+.navbar-contenedor a {
+  margin: 0 1rem;
+  color: var(--third);
+  text-decoration: none;
+}
+
+.navbar-contenedor a:hover {
+  margin: 0 1rem;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.navbar-contenedor .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--third);
+  visibility: hidden;
+  opacity: 0;
+  font-size: 2em;
+}
+
+.navbar-contenedor div,
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-contenedor .nav-btn {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+}
+
+.navbar-contenedor nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  background-color: var(--primary);
+  transition: 1s;
+  transform: translateX(-250vh);
+  z-index: 99999;
+}
+
+.navbar-contenedor .responsive_nav {
+  transform: none;
+}
+
+.navbar-contenedor .nav-close-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 1.6rem;
+}
+
+.navbar-contenedor a {
+  font-size: 1.5em;
+}
+
+.navbar-contenedor li {
+  margin-bottom: 0.8em;
+}
+
+hr.division__menu {
+  width: 9em;
+  border-bottom: 0.1em solid var(--secondary);
+}
+
+.badgeCarrito {
+  background-color: red;
+  width: 0.5em;
+  font-weight: 500;
+  font-size: 0.8em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  color: var(--third);
+  border-radius: 1em;
+}
+
+.items-cart-bars {
+  background-color: red;
+  width: 0.2em;
+  font-weight: 400;
+  font-size: 0.6em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  color: var(--third);
+  border-radius: 0.6em;
+  justify-content: center;
+  position: absolute;
+  margin-left: 1em;
+}

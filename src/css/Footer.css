@@ -1,0 +1,64 @@
+/*Variables*/
+:root {
+  --primary: #143066;
+  --secondary: #ffcf06;
+  --third: #ffff;
+  --textColor: rgb(50, 49, 50);
+}
+
+.footer-contenedor {
+  margin-top: 4em;
+  height: auto;
+  background-color: var(--primary);
+  color: var(--third);
+  text-align: center;
+  padding-top: 1em;
+}
+
+.footer-section-social {
+  margin: auto;
+  padding-bottom: 2em;
+}
+
+.footer-section-social a {
+  margin: auto;
+  padding-bottom: 2em;
+  color: var(--third);
+}
+.footer-section-social a {
+  color: var(--third);
+}
+
+.icons-socialMedia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+}
+
+.facebook-icon,
+.twitter-icon,
+.tiktok-icon,
+.instagram-icon,
+.youtube-icon {
+  margin-right: 1em;
+}
+
+.facebook-icon a:hover,
+.twitter-icon a:hover,
+.youtube-icon a:hover,
+.instagram-icon a:hover,
+.tiktok-icon a:hover,
+.info-sec1-text a {
+  color: rgb(255, 200, 0);
+  cursor: pointer;
+}
+
+.text-legend {
+  margin-top: 1em;
+  color: aliceblue;
+  font-size: 0.8em;
+  text-align: center;
+}
