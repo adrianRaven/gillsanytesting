@@ -1,0 +1,117 @@
+.contenedor-principal-signin {
+  width: 100%;
+  display: flex;
+  background: rgb(236, 236, 236);
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor-detalle-signin {
+  width: 80%;
+  background: white;
+  justify-self: center;
+  text-align: center;
+  border-radius: 0 0 4px 4px;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 1em;
+  border-radius: 1em;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+}
+
+.contenedor-detalle-signin .signin-titulo {
+  text-align: center;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+}
+
+.titulo-signin {
+  font-size: 1.2em;
+  font-weight: 600;
+  vertical-align: top;
+  color: rgb(53, 49, 70);
+}
+
+.form-control-signin {
+  display: flex;
+}
+
+.nav-search-input-signin {
+  background-color: rgb(224, 223, 219);
+  border: none;
+  padding: 12px 15px;
+  color: #33296a;
+  font-weight: 500;
+  margin: 8px 0;
+  border-radius: 0.6em;
+  height: 2.2em;
+  width: 100%;
+}
+
+.contenedor-botones-signin {
+  padding-top: 1em;
+}
+.boton-continuar-signin {
+  border-radius: 20px;
+  border: 1px solid #33296a;
+  background-color: #33296a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.boton-create-signin {
+  width: 12em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  background-color: #fdfdfd;
+  border-color: transparent;
+  color: rgb(40, 43, 218);
+  box-shadow: 0 0 0 0 #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 500;
+  height: 3em;
+  line-height: 48px;
+  padding: 0 24px;
+  text-align: center;
+  -webkit-transition: 0.18s ease-out;
+  transition: 0.18s ease-out;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+button:focus {
+  outline: none;
+}
+button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.form-login {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.link-login-form {
+  text-decoration: none;
+  font-weight: 700;
+  color: #2e096a; /* For Example */
+}
+
+.signin-correo {
+  width: 80%;
+}
