@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-
 export const Store = createContext();
 
 const initialState = {
@@ -18,6 +17,7 @@ const initialState = {
       : [],
   },
 };
+
 function reducer(state, action) {
   switch (action.type) {
     case "CART_ADD_ITEM":

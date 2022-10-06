@@ -77,7 +77,6 @@ function CartScreen() {
                     </div>
 
                     <div className="item-panel-options">
-                      {" "}
                       <div className="item-panelAdd">
                         <button
                           disabled={item.product.quantity === 1}

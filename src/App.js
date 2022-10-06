@@ -11,6 +11,7 @@ import ProductsCategoriesScreen from "./screens/ProductsCategoriesScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileScreen from "./screens/ProfileScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 function App() {
   return (
     <div>
@@ -88,6 +89,15 @@ function App() {
                   <ProfileScreen />
                 </ProtectedRoute>{" "}
                 <Footer />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/shipping"
+            element={
+              <>
+                {" "}
+                <Navbar /> <ShippingAddressScreen /> <Footer />{" "}
               </>
             }
           />

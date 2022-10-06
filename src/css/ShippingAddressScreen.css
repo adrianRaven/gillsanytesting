@@ -1,0 +1,135 @@
+.contenedor-detalle-shipping {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.detalle-shipping-title {
+  width: 100%;
+  margin: 1em;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.form-shipping-address {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-shipping-address input {
+  width: 100%;
+  margin-right: 2em;
+  margin-left: 2em;
+  border-radius: 1.4em;
+}
+
+.form-shipping-text-name {
+  width: 100%;
+  text-align: start;
+  margin-left: 2em;
+  margin-bottom: 0.6em;
+  margin-top: 0.6em;
+}
+
+.form-shipping-address select {
+  width: 100%;
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
+.form-shipping-address .select-box {
+  width: 100%;
+  margin-right: 2em;
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-box .options-container {
+  background: rgb(59, 47, 84);
+  color: aliceblue;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 0.5em;
+  overflow: hidden;
+  margin-bottom: 1em;
+
+  order: 1;
+}
+
+.selected {
+  background: #2f3640;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #f5f6fa;
+  position: relative;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background: url("../img/arrow-down.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  top: 5px;
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 0.5em;
+  background: #0d141f;
+  border-radius: 0 8px 0 8px;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -0.3em;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #525861;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: rgb(59, 64, 86);
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+
+.contenedor-botones-signin {
+  width: 100%;
+
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+}
+
+.boton-continuar-signin {
+  width: 100%;
+}
