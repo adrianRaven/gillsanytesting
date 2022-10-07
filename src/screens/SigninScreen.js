@@ -78,12 +78,10 @@ function SigninScreen() {
             autoComplete="off"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="signin-botones">
-            <div className="contenedor-botones-signin">
-              <button type="submit" className="boton-continuar-signin">
-                <span>Continuar</span>
-              </button>
-            </div>
+          <div className="signin-botones-signin">
+            <button type="submit" className="boton-continuar-signin">
+              <span>Continuar</span>
+            </button>
           </div>
           <br></br>
           <a href="/signup" className="link-login-form">

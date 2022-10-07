@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileScreen from "./screens/ProfileScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
 function App() {
   return (
     <div>
@@ -108,6 +109,14 @@ function App() {
               <>
                 {" "}
                 <Navbar /> <PlaceOrderScreen /> <Footer />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <>
+                <Navbar /> <OrderScreen /> <Footer />
               </>
             }
           />

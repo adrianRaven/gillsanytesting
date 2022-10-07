@@ -55,7 +55,7 @@
 .boton-continuar-signin {
   border-radius: 20px;
   border: 1px solid #33296a;
-  background-color: #33296a;
+  background-color: #082a65;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -113,5 +113,11 @@ button.ghost {
 }
 
 .signin-correo {
-  width: 80%;
+  width: 100%;
+}
+
+.signin-botones-signin {
+  margin-top: 1em;
+  padding-left: 0;
+  width: 100%;
 }

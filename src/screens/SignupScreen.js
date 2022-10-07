@@ -58,19 +58,15 @@ function SignupScreen() {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <div className="contenedor-principal-signin">
-      <div className="contenedor-detalle-signin">
-        <div className="signin-titulo">
-          <div className="titulo-signin">Tus datos</div>
-        </div>
-        <form action="" method="GET" role="search" onSubmit={submitHandler}>
-          {" "}
-          <div className="signin-correo">
-            <div className="form-control-signin">
+    <div className="contenedor-signup-base">
+      <div className="contenedoor-signup-main">
+        <div className="singup-titulo">Registrate</div>
+        <div className="contenedor-signup-form">
+          <form action="" method="GET" role="search" onSubmit={submitHandler}>
+            <div className="signup-form-input">
               <input
                 type="text"
                 required
-                className="nav-search-input-signin"
                 placeholder="Nombre"
                 maxLength="120"
                 autoFocus
@@ -79,12 +75,11 @@ function SignupScreen() {
                 autoComplete="off"
                 onChange={(e) => setFirstName(e.target.value)}
               />
-            </div>
-            <div className="form-control-signin">
+
               <input
                 type="text"
                 required
-                className="nav-search-input-signin"
+                className=""
                 placeholder="Apellido"
                 maxLength="120"
                 autoFocus
@@ -93,12 +88,11 @@ function SignupScreen() {
                 autoComplete="off"
                 onChange={(e) => setLastName(e.target.value)}
               />
-            </div>
-            <div className="form-control-signin">
+
               <input
                 type="text"
                 required
-                className="nav-search-input-signin"
+                className=""
                 placeholder="Dirección"
                 maxLength="120"
                 autoFocus
@@ -107,12 +101,11 @@ function SignupScreen() {
                 autoComplete="off"
                 onChange={(e) => setAddress(e.target.value)}
               />
-            </div>
-            <div className="form-control-signin">
+
               <input
                 type="text"
                 required
-                className="nav-search-input-signin"
+                className=""
                 placeholder="Código Postal"
                 maxLength="120"
                 autoFocus
@@ -121,14 +114,10 @@ function SignupScreen() {
                 autoComplete="off"
                 onChange={(e) => setPostalCode(e.target.value)}
               />
-            </div>
-          </div>
-          <div className="signin-correo">
-            <div className="form-control-signin">
               <input
                 type="email"
                 required
-                className="nav-search-input-signin"
+                className=""
                 placeholder="Correo electrónico"
                 maxLength="120"
                 autoFocus
@@ -137,73 +126,65 @@ function SignupScreen() {
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-          </div>
-          <div className="form-control-signin">
-            <input
-              type="text"
-              required
-              className="nav-search-input-signin"
-              placeholder="Número de Telefono"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-          </div>
-          <div className="signin-password">
-            <div>Contraseña</div>
-            <div
-              className="form-control-signin"
-              placeholder="Contraseña"
-              action=""
-              method="GET"
-              role="search"
-            >
               <input
-                type="password"
+                type="text"
                 required
-                className="nav-search-input-signin"
+                className=""
+                placeholder="Número de Telefono"
                 maxLength="120"
                 autoFocus
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-          </div>
-          <div className="signin-password">
-            <div>Confirmar contraseña</div>
-            <div
-              className="form-control-signin"
-              action=""
-              method="GET"
-              role="search"
-            >
-              <input
-                type="password"
-                required
-                className="nav-search-input-signin"
-                maxLength="120"
-                autoFocus
-                autoCapitalize="off"
-                spellCheck="false"
-                autoComplete="off"
-                onChange={(e) => setconfirmPassword(e.target.value)}
-              />
+            <div className="signup-form-input">
+              <div
+                className=""
+                placeholder="Contraseña"
+                action=""
+                method="GET"
+                role="search"
+              >
+                <input
+                  type="password"
+                  required
+                  className=""
+                  maxLength="120"
+                  autoFocus
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  autoComplete="off"
+                  placeholder="Contraseña"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-          <div className="signin-botones">
-            <div className="contenedor-botones-signin">
+            <div className="signup-form-input">
+              <div className="" action="" method="GET" role="search">
+                <input
+                  type="password"
+                  required
+                  className=""
+                  maxLength="120"
+                  autoFocus
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  autoComplete="off"
+                  placeholder="Confirmar contraseñas"
+                  onChange={(e) => setconfirmPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="contenedor-btn-signup">
               <button type="submit" className="boton-continuar-signin">
                 <span>Crear cuenta</span>
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
 
         <div className="signup-info">
           <div>¿Ya tienes una cuenta?</div>
