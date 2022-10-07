@@ -45,7 +45,7 @@ function ShippingAddressScreen() {
         country,
       })
     );
-    navigate("/payment");
+    navigate("/placeorder");
   };
 
   const handleClick = (e) => {
@@ -102,7 +102,6 @@ function ShippingAddressScreen() {
               autoComplete="off"
             />
 
-            <div className="form-shipping-text-name">Ciudad</div>
             <div className="select-box">
               <div className="options-container">
                 <div className="option">
@@ -230,19 +229,118 @@ function ShippingAddressScreen() {
               autoComplete="off"
             />
 
-            <input
-              type="text"
-              placeholder="País"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-              className="nav-search-input-signin"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-            />
+            <div className="select-box">
+              <div className="options-container">
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="mexico"
+                    name="category"
+                  ></input>
+
+                  <label for="mexico">México</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="us"
+                    name="category"
+                  ></input>
+                  <label for="us">Estados Unidos</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="guatemala"
+                    name="category"
+                  ></input>
+                  <label for="guatemala">Guatemala</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="colombia"
+                    name="category"
+                  ></input>
+                  <label for="colombia">Colombia</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="ecuador"
+                    name="category"
+                  ></input>
+                  <label for="ecuador">Ecuador</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="honduras"
+                    name="category"
+                  ></input>
+                  <label for="honduras">Honduras</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="peru"
+                    name="category"
+                  ></input>
+                  <label for="peru">Perú</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="chile"
+                    name="category"
+                  ></input>
+                  <label for="chile">Chile</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="oaxaca"
+                    name="canada"
+                  ></input>
+                  <label for="canada">Canada</label>
+                </div>
+
+                <div className="option">
+                  <input
+                    type="radio"
+                    className="radio"
+                    id="uruguay"
+                    name="category"
+                  ></input>
+                  <label for="uruguay">Uruguay</label>
+                </div>
+              </div>
+              <div
+                className="selected"
+                onClick={handleClick}
+                value={city}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                País
+              </div>
+            </div>
 
             <div className="contenedor-botones-signin">
               <button type="submit" className="boton-continuar-signin">
