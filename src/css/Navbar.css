@@ -116,6 +116,10 @@ hr.division__menu {
   border-radius: 1em;
 }
 
+.navbar__menu__account {
+  width: 100%;
+  text-align: center;
+}
 .items-cart-bars {
   background-color: red;
   width: 0.2em;
@@ -128,4 +132,28 @@ hr.division__menu {
   justify-content: center;
   position: absolute;
   margin-left: 1em;
+}
+.arrow-down {
+  color: #ffcf06;
+}
+
+.btn-Salir {
+  color: white;
+}
+
+.submenu {
+  border: #ffcf06;
+  background: #162746;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  margin-top: 1em;
+  padding-top: 0.5em;
+}
+
+.dropbtn {
+  color: var(--third);
+  font-weight: 500;
+  font-size: 1.4em;
+  margin-top: 0.2em;
 }

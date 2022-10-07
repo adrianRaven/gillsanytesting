@@ -6,6 +6,7 @@ import {
   faBars,
   faXmark,
   faCartShopping,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { Store } from "../Store";
 import axios from "axios";
@@ -43,6 +44,22 @@ function Navbar() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
+  const subMenuClick = () => {
+    const subMenuBtn = document.querySelectorAll(".dropbtn");
+    for (let i = 0; i < 1; i++) {
+      subMenuBtn[i].addEventListener("click", function () {
+        const subMenu = this.nextElementSibling;
+        if (subMenu.classList.contains("desplegar")) {
+          subMenu.classList.remove("desplegar");
+          subMenu.removeAttribute("style");
+        } else {
+          subMenu.classList.add("desplegar");
+          subMenu.style.height = 5 + "em";
+        }
+      });
+    }
+  };
+
   return (
     <div className="navbar-contenedor">
       <h3 className="h3-nav">GILLSANY</h3>
@@ -77,18 +94,27 @@ function Navbar() {
               )}
             </a>
           </li>
-          <li>
+          <li className="container-submenu">
             {" "}
             {userInfo ? (
-              <div className="dropdown">
-                <button onClick={window["functionUserNav"]} className="dropbtn">
-                  {userInfo.data.user.FirstName}
+              <>
+                {" "}
+                <button onClick={subMenuClick} className="dropbtn">
+                  {userInfo.data.user.FirstName}&nbsp;
+                  <FontAwesomeIcon
+                    icon={faChevronDown}
+                    className="arrow-down"
+                  />
                 </button>
-                <div id="myDropdown" className="dropdown-content">
-                  <a href="/profile">Perfil</a>
-                  <a href="/orderhistory">Historial</a>
-                </div>
-              </div>
+                <ul className="submenu">
+                  <li>
+                    <a href="/profile">Perfil</a>
+                  </li>
+                  <li>
+                    <a href="/orderhistory">Historial</a>
+                  </li>
+                </ul>
+              </>
             ) : (
               <a href="/signin">Ingresar</a>
             )}{" "}
@@ -96,7 +122,7 @@ function Navbar() {
 
           {userInfo && (
             <li>
-              <button className="btn-Salir" onClick={signoutHandler}>
+              <button className="dropbtn" onClick={signoutHandler}>
                 Salir
               </button>
             </li>
@@ -115,9 +141,7 @@ function Navbar() {
           </div>
         )}
       </button>
-      
     </div>
-    
   );
 }
 

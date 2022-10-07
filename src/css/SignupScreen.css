@@ -35,7 +35,7 @@
   border: 0;
   background: rgb(234, 235, 238);
   border-radius: 1em;
-  box-shadow: 4px 4px 2px 4px rgba(16, 16, 16, 0.06);
+  box-shadow: 4px 4px 2px 4px rgba(16, 16, 16, 0.02);
 }
 
 .signup-info {
