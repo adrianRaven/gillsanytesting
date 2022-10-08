@@ -44,25 +44,27 @@ function Navbar() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  const subMenuClick = () => {
-    const subMenuBtn = document.querySelectorAll(".dropbtn");
-    for (let i = 0; i < 1; i++) {
-      subMenuBtn[i].addEventListener("click", function () {
-        const subMenu = this.nextElementSibling;
-        if (subMenu.classList.contains("desplegar")) {
-          subMenu.classList.remove("desplegar");
-          subMenu.removeAttribute("style");
-        } else {
-          subMenu.classList.add("desplegar");
-          subMenu.style.height = 5 + "em";
+  function subMenuClick() {
+    document.getElementById("subMenu").classList.toggle("show");
+  }
+
+  window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+      var dropdowns = document.getElementsByClassName("submenu");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
         }
-      });
+      }
     }
   };
-
   return (
     <div className="navbar-contenedor">
-      <h3 className="h3-nav">GILLSANY</h3>
+      <a href="/">
+        <h3 className="h3-nav">GILLSANY</h3>
+      </a>
       <nav ref={navRef}>
         <ul className="navbar__menu__main">
           <li>
@@ -99,14 +101,18 @@ function Navbar() {
             {userInfo ? (
               <>
                 {" "}
-                <button onClick={subMenuClick} className="dropbtn">
+                <button
+                  type="button"
+                  className="dropbtn"
+                  onClick={subMenuClick}
+                >
                   {userInfo.data.user.FirstName}&nbsp;
                   <FontAwesomeIcon
                     icon={faChevronDown}
                     className="arrow-down"
                   />
                 </button>
-                <ul className="submenu">
+                <ul className="submenu" id="subMenu">
                   <li>
                     <a href="/profile">Perfil</a>
                   </li>
