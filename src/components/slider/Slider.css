@@ -1,9 +1,12 @@
 .container-slider {
-  width: 100%;
-  height: 5em;
+  height: 8em;
   position: relative;
   overflow: hidden;
+  display: flex;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 .slide {
   width: 100%;
