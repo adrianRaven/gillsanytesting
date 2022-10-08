@@ -12,7 +12,9 @@
   justify-content: space-between;
   background-color: var(--primary);
   color: var(--textColor);
-  padding: 0 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-height: 3.2em;
 }
 
 .navbar__menu__main {
@@ -30,7 +32,6 @@
   color: var(--third);
 }
 .navbar-contenedor a {
-  margin: 0 1rem;
   color: var(--third);
   text-decoration: none;
 }
@@ -88,8 +89,9 @@ nav {
 
 .navbar-contenedor .nav-close-btn {
   position: absolute;
-  top: 0.6rem;
-  right: 1.6rem;
+  top: 0.3em;
+  right: 1rem;
+  color: var(--secondary);
 }
 
 .navbar-contenedor a {
@@ -149,6 +151,7 @@ hr.division__menu {
   transition: all 0.3s;
   margin-top: 1em;
   padding-top: 0.5em;
+  font-size: 0.85em;
 }
 
 .dropbtn {

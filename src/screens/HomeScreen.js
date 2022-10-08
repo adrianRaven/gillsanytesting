@@ -5,7 +5,7 @@ import axios from "axios";
 import logger from "use-reducer-logger";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-
+import Slider from "../components/slider/Slider";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -44,8 +44,7 @@ function HomeScreen() {
   return (
     <main className="main">
       <div className="home">
-        <div className="banner-pagos">PAGINA EN MANTENIMIENTO</div>
-
+        <Slider></Slider>
         <div className="ofertas-contenedor">
           <div className="contenedor-producto">
             <div className="title-section">Ofertas</div>
