@@ -1,9 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SigninScreen from "./screens/SigninScreen";
+import CartScreen from "./screens/CartScreen";
 import AboutScreen from "./screens/AboutScreen";
 import ProductsCategoriesScreen from "./screens/ProductsCategoriesScreen";
 import SignupScreen from "./screens/SignupScreen";
@@ -12,13 +15,10 @@ import ProfileScreen from "./screens/ProfileScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 
-const CartScreen = lazy(() => import("./screens/CartScreen"));
-const SigninScreen = lazy(() => import("./screens/SigninScreen"));
-const ProductScreen = lazy(() => import("./screens/ProductScreen"));
-
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
+
 function App() {
   return (
     <div>
@@ -104,7 +104,11 @@ function App() {
             element={
               <>
                 {" "}
-                <Navbar /> <ShippingAddressScreen /> <Footer />{" "}
+                <Navbar />{" "}
+                <Suspense fallback={<div>cargando...</div>}>
+                  <ShippingAddressScreen></ShippingAddressScreen>{" "}
+                </Suspense>{" "}
+                <Footer />{" "}
               </>
             }
           />
