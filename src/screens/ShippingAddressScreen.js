@@ -9,7 +9,7 @@ import Select from "react-select";
 function ShippingAddressScreen() {
   const addressFromik = useFormik({
     initialValues: {
-      country: "India",
+      country: "Mexico",
       state: null,
       city: null,
     },

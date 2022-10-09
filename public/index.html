@@ -43,22 +43,5 @@
   <script type="text/javascript">
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
-
-    const optionsList = document.querySelectorAll(".option");
-    function subMenuClick () {
-    const subMenuBtn = document.querySelectorAll(".dropbtn");
-    for (let i = 0; i < 1; i++) {
-      subMenuBtn[i].addEventListener("click", function () {
-        const subMenu = this.nextElementSibling;
-        if (subMenu.classList.contains("desplegar")) {
-          subMenu.classList.remove("desplegar");
-          subMenu.removeAttribute("style");
-        } else {
-          subMenu.classList.add("desplegar");
-          subMenu.style.height = 5 + "em";
-        }
-      });
-    }
-  };
   </script>
 </html>
