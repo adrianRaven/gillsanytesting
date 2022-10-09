@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import "../css/ShippingAddressScreen.css";
-import { Country, State, City } from "country-state-city";
+//import { Country, State, City } from "country-state-city";
 import { useFormik } from "formik";
 import Select from "react-select";
 
