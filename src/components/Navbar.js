@@ -25,6 +25,7 @@ function Navbar() {
   };
 
   const [categories, setCategories] = useState([]);
+  console.log(categories.data);
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -39,7 +40,6 @@ function Navbar() {
     fetchCategories();
   }, []);
 
-  console.log(categories);
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };

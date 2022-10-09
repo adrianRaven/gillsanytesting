@@ -2,8 +2,46 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import "../css/ShippingAddressScreen.css";
+import { Country, State, City } from "country-state-city";
+import { useFormik } from "formik";
+import Select from "react-select";
 
 function ShippingAddressScreen() {
+  const addressFromik = useFormik({
+    initialValues: {
+      country: "India",
+      state: null,
+      city: null,
+    },
+    onSubmit: (values) => console.log(JSON.stringify(values)),
+  });
+
+  const countries = Country.getAllCountries();
+
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+    ...country,
+  }));
+
+  const updatedStates = (countryId) =>
+    State.getStatesOfCountry(countryId).map((state) => ({
+      label: state.name,
+      value: state.isoCode,
+      ...state,
+    }));
+
+  const updatedCities = (countryId, stateId) =>
+    City.getCitiesOfState(countryId, stateId).map((city) => ({
+      label: city.name,
+      value: city.stateCode,
+      ...city,
+    }));
+  const { values, setFieldValue, setValues } = addressFromik;
+
+  useEffect(() => {}, [values]);
+
+  /**/
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -12,7 +50,6 @@ function ShippingAddressScreen() {
   } = state;
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
-  const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
@@ -22,17 +59,19 @@ function ShippingAddressScreen() {
       navigate("/signin?redirect=/shipping");
     }
   }, [userInfo, navigate]);
-  const [country, setCountry] = useState(shippingAddress.country || "");
+
   const submitHandler = (e) => {
+    console.log(values);
     e.preventDefault();
     ctxDispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: {
         fullName,
         address,
-        city,
+        city: values.city.label,
+        state: values.state.label,
         postalCode,
-        country,
+        country: values.country.label,
       },
     });
     localStorage.setItem(
@@ -40,30 +79,13 @@ function ShippingAddressScreen() {
       JSON.stringify({
         fullName,
         address,
-        city,
+        city: values.city.label,
+        state: values.state.label,
         postalCode,
-        country,
+        country: values.country.label,
       })
     );
     navigate("/placeorder");
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    const selected = document.querySelector(".selected");
-    const optionsContainer = document.querySelector(".options-container");
-
-    const optionsList = document.querySelectorAll(".option");
-
-    selected.addEventListener("click", () => {
-      optionsContainer.classList.toggle("active");
-    });
-    optionsList.forEach((o) => {
-      o.addEventListener("click", () => {
-        selected.innerHTML = o.querySelector("label").innerHTML;
-        optionsContainer.classList.remove("active");
-      });
-    });
   };
 
   return (
@@ -101,119 +123,50 @@ function ShippingAddressScreen() {
               spellCheck="false"
               autoComplete="off"
             />
-
-            <div className="select-box">
-              <div className="options-container">
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="coahuila"
-                    name="category"
-                  ></input>
-
-                  <label for="coahuila">Coahuila</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="nuevoLeon"
-                    name="category"
-                  ></input>
-                  <label for="nuevoLeon">Nuevo León</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="guadalajara"
-                    name="category"
-                  ></input>
-                  <label for="guadalajara">Guadalajara</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="veracruz"
-                    name="category"
-                  ></input>
-                  <label for="veracruz">Veracruz</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="chihuahua"
-                    name="category"
-                  ></input>
-                  <label for="chihuahua">Chihuahua</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="cdmx"
-                    name="category"
-                  ></input>
-                  <label for="cdmx">CDMX</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="zacatecas"
-                    name="category"
-                  ></input>
-                  <label for="zacatecas">Zacatecas</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="sanLuis"
-                    name="category"
-                  ></input>
-                  <label for="sanLuis">San Luis Potosi</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="oaxaca"
-                    name="category"
-                  ></input>
-                  <label for="oaxaca">Oaxaca</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="sonora"
-                    name="category"
-                  ></input>
-                  <label for="sonora">Sonora</label>
-                </div>
-              </div>
-              <div
-                className="selected"
-                onClick={handleClick}
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              >
-                Ciudad
-              </div>
-            </div>
+            <Select
+              placeholder="-- Selecciona el País --"
+              id="country"
+              name="country"
+              label="country"
+              className="select-form"
+              options={updatedCountries}
+              value={values.country}
+              onChange={(value) => {
+                setValues({ country: value, state: null, city: null }, false);
+              }}
+            />
+            <Select
+              placeholder="-- Selecciona el Estado --"
+              className="select-form"
+              id="state"
+              name="state"
+              options={
+                values.country ? updatedStates(values.country.isoCode) : null
+              }
+              value={values.state}
+              onChange={(value) => {
+                setValues(
+                  { country: values.country, state: value, city: null },
+                  false
+                );
+              }}
+            />
+            <Select
+              placeholder="-- Selecciona la Ciudad --"
+              className="select-form"
+              id="city"
+              name="city"
+              options={
+                values.state
+                  ? updatedCities(
+                      values.state.countryCode,
+                      values.state.isoCode
+                    )
+                  : null
+              }
+              value={values.city}
+              onChange={(value) => setFieldValue("city", value)}
+            />
 
             <input
               type="text"
@@ -228,120 +181,6 @@ function ShippingAddressScreen() {
               spellCheck="false"
               autoComplete="off"
             />
-
-            <div className="select-box">
-              <div className="options-container">
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="mexico"
-                    name="category"
-                  ></input>
-
-                  <label for="mexico">México</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="us"
-                    name="category"
-                  ></input>
-                  <label for="us">Estados Unidos</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="guatemala"
-                    name="category"
-                  ></input>
-                  <label for="guatemala">Guatemala</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="colombia"
-                    name="category"
-                  ></input>
-                  <label for="colombia">Colombia</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="ecuador"
-                    name="category"
-                  ></input>
-                  <label for="ecuador">Ecuador</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="honduras"
-                    name="category"
-                  ></input>
-                  <label for="honduras">Honduras</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="peru"
-                    name="category"
-                  ></input>
-                  <label for="peru">Perú</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="chile"
-                    name="category"
-                  ></input>
-                  <label for="chile">Chile</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="oaxaca"
-                    name="canada"
-                  ></input>
-                  <label for="canada">Canada</label>
-                </div>
-
-                <div className="option">
-                  <input
-                    type="radio"
-                    className="radio"
-                    id="uruguay"
-                    name="category"
-                  ></input>
-                  <label for="uruguay">Uruguay</label>
-                </div>
-              </div>
-              <div
-                className="selected"
-                onClick={handleClick}
-                value={city}
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                País
-              </div>
-            </div>
-
             <div className="contenedor-botones-signin">
               <button type="submit" className="boton-continuar-signin">
                 <span>Continuar</span>

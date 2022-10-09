@@ -5,7 +5,6 @@
 }
 /* Panel izquierdo*/
 .panel-order-left {
-  display: inline-block;
   margin: 1em;
   width: 100%;
   background: white;
@@ -18,10 +17,13 @@
   font-weight: 500;
   margin-bottom: 0.5em;
   text-align: center;
+  margin-top: 0.6em;
+  width: 100%;
 }
 
 .panel-left-shipping {
-  width: 100%;
+  display: inline-block;
+  width: 21.3em;
   margin-bottom: 1em;
   padding-left: 1em;
 }

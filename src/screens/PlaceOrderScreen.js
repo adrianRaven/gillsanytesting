@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import Axios from "axios";
@@ -9,11 +9,11 @@ import "../css/PlaceOrderScreen.css";
 const reducer = (state, action) => {
   switch (action.type) {
     case "CREATE_REQUEST":
-      return { ...state, loading: true };
+      return { ...state };
     case "CREATE_SUCCESS":
-      return { ...state, loading: false };
+      return { ...state };
     case "CREATE_FAIL":
-      return { ...state, loading: false };
+      return { ...state };
     default:
       return state;
   }
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
 
 function PlaceOrderScreen() {
   const navigate = useNavigate();
-  const [{ loading, error }, dispatch] = useReducer(reducer, {
+  const [dispatch] = useReducer(reducer, {
     loading: false,
     error: "",
   });
@@ -74,15 +74,19 @@ function PlaceOrderScreen() {
             <div className="panel-title-text">Vista Previa de la Orden</div>
           </div>
           <div className="panel-left-shipping">
-            <div>Información del enviío</div>
+            <div>Información del envío</div>
             <div className="shipping-text">
               <div>
                 <strong>Nombre: </strong> {cart.shippingAddress.fullName}
               </div>
               <div>
                 {" "}
-                <strong>Dirección: </strong> {cart.shippingAddress.address},{" "}
-                {cart.shippingAddress.country}
+                <strong>Dirección: </strong> {cart.shippingAddress.address}
+                ,&nbsp;
+                {cart.shippingAddress.city},&nbsp;{cart.shippingAddress.state}
+                ,&nbsp;
+                {cart.shippingAddress.country}, CP.{" "}
+                {cart.shippingAddress.postalCode}
               </div>
             </div>
             <a href="shipping">Edit</a>
