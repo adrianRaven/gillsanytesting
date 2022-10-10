@@ -1,0 +1,97 @@
+.titulo-lista-productos {
+  margin-left: 6.6em;
+  margin-top: 0.8em;
+  color: rgb(38, 13, 139);
+}
+
+.header-contenedor {
+  background-color: rgb(230, 230, 230);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 0.2em;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(22, 10, 81);
+  width: 85em;
+  margin: auto;
+}
+.contenedor-tabla-lista-productos {
+  background-color: rgb(230, 230, 230);
+  grid-column-start: 1;
+  grid-column-end: -1;
+  /*background-color: transparent;*/
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  margin-bottom: 0.2em;
+  text-align: center;
+  width: 85em;
+  margin: auto;
+  padding: 0.5em;
+}
+
+.tabla-productos {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  padding: 0.5em;
+  margin: auto;
+}
+.tabla-row-id {
+  padding: 0.5em;
+  width: 12em;
+}
+
+.tabla-row-name {
+  width: 28em;
+}
+
+.tabla-row-price {
+  width: 12em;
+}
+
+.tabla-row-isPaid {
+  width: 6em;
+}
+
+.tabla-row-category {
+  width: 12em;
+}
+
+.tabla-row-edit {
+  width: 8em;
+}
+
+.tabla-row-delete {
+  width: 8em;
+}
+.header-tabla {
+  font-weight: 700;
+}
+
+.contenedor-botones-crear {
+  margin-bottom: 1em;
+  display: flex;
+  padding-left: 17em;
+}
+.button-createProd {
+  border: none;
+  margin-top: 1em;
+  background-color: rgb(84, 105, 212);
+  border-radius: 0.2em;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 8em;
+  height: 2em;
+}
+.button-edit {
+  border: none;
+  color: rgb(74, 9, 164);
+  font-weight: 600;
+  cursor: pointer;
+}
+.button-delete {
+  border: none;
+  color: rgb(164, 9, 9);
+  font-weight: 600;
+  cursor: pointer;
+}

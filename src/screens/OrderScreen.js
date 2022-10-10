@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import "../css/OrderScreen.css";
-import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import {
+  PayPalScriptProvider,
+  usePayPalScriptReducer,
+  PayPalButtons,
+} from "@paypal/react-paypal-js";
 import { useNavigate, useParams } from "react-router-dom";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
@@ -246,6 +250,9 @@ function OrderScreen() {
             <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
 
             <div className="contenedor-row5">Total</div>
+            <PayPalScriptProvider>
+              <PayPalButtons />
+            </PayPalScriptProvider>
             <div className="contenedor-row5C5">
               <strong>$ {order.data.totalPrice}</strong>
             </div>

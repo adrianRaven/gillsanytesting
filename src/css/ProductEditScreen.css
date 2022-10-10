@@ -1,0 +1,91 @@
+.title-editProd {
+  margin-left: 2.6em;
+  margin-right: 2.6em;
+  margin-top: 1.8em;
+  color: rgb(38, 13, 139);
+}
+.contenedor-forma-updateProd {
+  background-color: rgb(230, 230, 230);
+  margin-left: 6em;
+  margin-right: 6em;
+}
+
+.forma-updateProd {
+  padding: 2.8em;
+}
+
+.field input {
+  font-size: 16px;
+  line-height: 28px;
+  padding: 8px 16px;
+  width: 100%;
+  min-height: 44px;
+  border: unset;
+  border-radius: 4px;
+  outline-color: rgb(84 105 212 / 0.5);
+  background-color: rgb(255, 255, 255);
+  border-radius: 1em;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+.titulo-field {
+  margin-left: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  color: #403e44;
+}
+
+.dropdown-category {
+  margin-top: 0.2em;
+}
+
+.dropdown-section {
+  margin-top: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  font-weight: bold;
+}
+
+.input-checkbox {
+  margin: 0;
+  background-color: yellow;
+}
+.button-updateProd {
+  border: none;
+  margin-top: 1.6em;
+  margin-left: 0.8em;
+  background-color: rgb(84, 105, 212);
+  border-radius: 0.2em;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 8em;
+  height: 2em;
+  border-radius: 1em;
+}
+
+.contenedor-input-images {
+  display: flex;
+  height: 3.6em;
+  padding-top: 1em;
+  width: 36em;
+}
+.boton-uploadto-server {
+  border: none;
+  background-color: rgb(224, 164, 0);
+  border-radius: 0.2em;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  width: 12em;
+  height: 2em;
+  border-radius: 1em;
+}
+.custom-file-upload {
+  padding-bottom: 2em;
+  padding-left: auto;
+  width: 100%;
+}

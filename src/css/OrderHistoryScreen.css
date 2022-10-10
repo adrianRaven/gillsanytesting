@@ -1,0 +1,150 @@
+/*Small Tables Styles*/
+@media screen and (max-width: 960px) {
+  .oh__contenedor {
+    background: rgb(239, 239, 239);
+    margin: 0;
+    padding-bottom: 2em;
+  }
+  .contenedor-tabla-user {
+    width: 100%;
+  }
+  .oh_title {
+    text-align: center;
+    padding-top: 1.4em;
+    font-size: 1.4em;
+    font-weight: 500;
+  }
+
+  .tabla-ordenes-user {
+    background: white;
+    margin: 1em;
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding: 1em;
+    border-radius: 0.6em;
+    margin-bottom: 1em;
+  }
+
+  .header-tabla {
+    display: none;
+  }
+
+  .tabla-row-id-user {
+    width: 100%;
+    font-size: 1.4em;
+    font-weight: 600;
+  }
+
+  .tabla-row-createdAt {
+    width: 100%;
+    color: rgb(63, 61, 68);
+  }
+
+  .tabla-row-totalPrice {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .tabla-row-isPaid {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .tabla-row-isDelivered {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .tabla-row-order {
+    margin-top: 0.6em;
+    margin-bottom: 1em;
+  }
+
+  .button-action-order {
+    background: rgb(30, 20, 72);
+    color: rgb(255, 213, 3);
+    padding: 0.4em;
+    border-radius: 0.6em;
+    font-size: 0.8em;
+  }
+
+  .box-status {
+    color: rgb(167, 25, 25);
+  }
+}
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 18px;
+  }
+  .titulo-historial {
+    margin-left: 3em;
+    padding-top: 1em;
+    margin-bottom: 2em;
+    color: rgb(20, 11, 77);
+  }
+
+  .header-contenedor {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 0.2em;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(22, 10, 81);
+    width: 85em;
+    margin: auto;
+  }
+  .contenedor-tabla-user {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    /*background-color: transparent;*/
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    margin-bottom: 0.2em;
+    text-align: center;
+    width: 85em;
+    margin: auto;
+    min-height: 18em;
+  }
+
+  .tabla-ordenes-user {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    background-color: rgb(221, 221, 221);
+    margin: auto;
+  }
+  .tabla-row-id-user {
+    width: 12em;
+  }
+
+  .tabla-row-createdAt {
+    width: 9em;
+  }
+
+  .tabla-row-totalPrice {
+    width: 12em;
+  }
+
+  .tabla-row-isPaid {
+    width: 6em;
+  }
+
+  .tabla-row-isDelivered {
+    width: 12em;
+  }
+
+  .tabla-row-order {
+    width: 12em;
+  }
+  .button-action-order {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+}

@@ -1,7 +1,8 @@
 .contenedor__order {
   display: flex;
+  flex-wrap: wrap;
   background: rgb(239, 239, 237);
-  width: 24.2em;
+  width: 100%;
 }
 
 .contenedor-order-detalle {

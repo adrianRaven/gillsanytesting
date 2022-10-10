@@ -14,7 +14,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileScreen from "./screens/ProfileScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
-
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
+import AdminRoute from "./components/AdminRoute";
+import DashboardScreen from "./screens/DashboardScreen";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
+import OrderListScreen from "./screens/OrderListScreen";
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
@@ -129,6 +134,55 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/orderhistory"
+            element={
+              <>
+                <Navbar />
+                <OrderHistoryScreen /> <Footer />
+              </>
+            }
+          ></Route>
+          {/* Admin Routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <DashboardScreen />
+                <Footer />
+              </AdminRoute>
+            }
+          ></Route>
+          <Route
+            path="/admin/products"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <ProductListScreen />
+              </AdminRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/admin/products/:id"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <ProductEditScreen />
+              </AdminRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/admin/orders"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <OrderListScreen />
+              </AdminRoute>
+            }
+          ></Route>
         </Routes>
       </Router>
     </div>
