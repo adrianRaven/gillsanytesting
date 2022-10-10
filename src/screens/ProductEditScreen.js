@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { Store } from "../Store";
 import { getError } from "../utils";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import "../css/ProductEditScreen.css";
-import { faS } from "@fortawesome/free-solid-svg-icons";
 
 const reducer = (state, action) => {
   switch (action.type) {

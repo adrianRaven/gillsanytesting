@@ -16,10 +16,10 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import AdminRoute from "./components/AdminRoute";
-import DashboardScreen from "./screens/DashboardScreen";
-import ProductListScreen from "./screens/ProductListScreen";
-import ProductEditScreen from "./screens/ProductEditScreen";
-import OrderListScreen from "./screens/OrderListScreen";
+const DashboardScreen = lazy(() => import("./screens/DashboardScreen"));
+const ProductListScreen = lazy(() => import("./screens/ProductListScreen"));
+const ProductEditScreen = lazy(() => import("./screens/ProductEditScreen"));
+const OrderListScreen = lazy(() => import("./screens/OrderListScreen"));
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );

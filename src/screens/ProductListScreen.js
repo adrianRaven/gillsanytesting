@@ -4,7 +4,7 @@ import { Store } from "../Store";
 import "../css/ProductListScreen.css";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const reducer = (state, action) => {
   switch (action.type) {
