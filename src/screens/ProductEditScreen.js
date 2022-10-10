@@ -66,6 +66,7 @@ export default function ProductEditScreen() {
   const [categories, setCategory] = useState([]);
   const [description, setDescription] = useState("");
   const [isActive, setIsActive] = useState(true);
+  console.log(isActive);
 
   const [imageSelected, setImageSelected] = useState([]);
   const uploadImage = () => {
