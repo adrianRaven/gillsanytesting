@@ -1,0 +1,50 @@
+.contenedor__order {
+  display: flex;
+  background: rgb(239, 239, 237);
+  width: 24.2em;
+}
+
+.contenedor-order-detalle {
+  width: 100%;
+  padding: 1em;
+  border-radius: 0.8em;
+}
+
+.panel-left-title {
+  background: white;
+  border-radius: 0.8em;
+}
+
+.panel-title-text {
+  width: 100%;
+  text-align: start;
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.panel-left-shipping {
+  width: 100%;
+  text-align: start;
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+.panel-left-payment {
+  width: 100%;
+  text-align: start;
+  font-size: 0.8em;
+  padding-left: 1em;
+}
+
+.panel-left-items {
+  text-align: start;
+  font-size: 0.8em;
+  padding-left: 1em;
+  margin-top: 1em;
+  padding-bottom: 2em;
+}
+.panel__order__right {
+  background: white;
+  padding: 1em;
+  border-radius: 0.8em;
+}

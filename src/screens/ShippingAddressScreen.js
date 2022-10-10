@@ -51,7 +51,7 @@ function ShippingAddressScreen() {
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [country, setCountry] = useState(shippingAddress.country || "");
-  const [stateN, setStateN] = useState(shippingAddress.stateN || "");
+  const [stateName, setStateName] = useState(shippingAddress.stateName || "");
   const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
@@ -75,7 +75,7 @@ function ShippingAddressScreen() {
         postalCode,
         //country: values.country.label,
         country: "Mexico",
-        stateN: "Coahuila",
+        stateName: "Coahuila",
         city: "Torreon",
       },
     });
@@ -88,9 +88,9 @@ function ShippingAddressScreen() {
         //state: values.state.label,
         postalCode,
         //country: values.country.label,
-        country,
-        stateN,
-        city,
+        country: "Mexico",
+        stateName: "Coahuila",
+        city: "Torreon",
       })
     );
     navigate("/placeorder");
@@ -182,7 +182,10 @@ function ShippingAddressScreen() {
             >
               <option>Mexico</option>
             </select>
-            <select value={stateN} onChange={(e) => setStateN(e.target.value)}>
+            <select
+              value={stateName}
+              onChange={(e) => setStateName(e.target.value)}
+            >
               <option>Coahuila</option>
             </select>
             <select value={city} onChange={(e) => setCity(e.target.value)}>

@@ -9,11 +9,11 @@ import "../css/PlaceOrderScreen.css";
 const reducer = (state, action) => {
   switch (action.type) {
     case "CREATE_REQUEST":
-      return { ...state };
+      return { ...state, loading: true };
     case "CREATE_SUCCESS":
-      return { ...state };
+      return { ...state, loading: false };
     case "CREATE_FAIL":
-      return { ...state };
+      return { ...state, loading: false };
     default:
       return state;
   }
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
 
 function PlaceOrderScreen() {
   const navigate = useNavigate();
-  const [dispatch] = useReducer(reducer, {
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
     loading: false,
     error: "",
   });
@@ -83,7 +83,8 @@ function PlaceOrderScreen() {
                 {" "}
                 <strong>Dirección: </strong> {cart.shippingAddress.address}
                 ,&nbsp;
-                {cart.shippingAddress.city},&nbsp;{cart.shippingAddress.state}
+                {cart.shippingAddress.city},&nbsp;
+                {cart.shippingAddress.stateName}
                 ,&nbsp;
                 {cart.shippingAddress.country}, CP.{" "}
                 {cart.shippingAddress.postalCode}
