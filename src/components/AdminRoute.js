@@ -4,7 +4,7 @@ import { Store } from "../Store";
 export default function AdminRoute({ children }) {
   const { state } = useContext(Store);
   const { userInfo } = state;
-  return userInfo && userInfo.data.user.roles[0] == "ADMIN" ? (
+  return userInfo && userInfo.data.user.roles[0] === "ADMIN" ? (
     children
   ) : (
     <Navigate to="/signin" />
