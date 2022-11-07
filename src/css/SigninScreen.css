@@ -1,20 +1,19 @@
 .contenedor-principal-signin {
   width: 100%;
-  display: flex;
+
   background: rgb(236, 236, 236);
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
 }
 
 .contenedor-detalle-signin {
-  width: 80%;
   background: white;
-  justify-self: center;
   text-align: center;
+  margin-left: 1em;
+  margin-right: 1em;
   border-radius: 0 0 4px 4px;
   padding-left: 1em;
   padding-right: 1em;
-  margin-top: 1em;
+  margin-top: 2em;
   border-radius: 1em;
   margin-bottom: 2em;
   padding-bottom: 2em;

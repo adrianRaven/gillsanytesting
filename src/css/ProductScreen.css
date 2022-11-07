@@ -1,6 +1,7 @@
 .contenedor__product_screen {
   display: block;
   padding: 1em;
+  height: 100vh;
 }
 
 .contenedor__product__name {
@@ -65,4 +66,14 @@
   text-align: center;
   -webkit-transition: 0.18s ease-out;
   transition: 0.18s ease-out;
+}
+
+.success {
+  color: rgb(0, 202, 101);
+  font-weight: 600;
+}
+
+.danger {
+  color: rgb(202, 7, 0);
+  font-weight: 600;
 }

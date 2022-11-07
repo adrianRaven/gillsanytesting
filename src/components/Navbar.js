@@ -15,13 +15,10 @@ function Navbar() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
   const navRef = useRef();
-
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
-    localStorage.removeItem("paymentMethod");
-    window.location.href = "/signin";
   };
 
   const [categories, setCategories] = useState([]);
@@ -142,7 +139,7 @@ function Navbar() {
               <a href="/signin">Ingresar</a>
             )}{" "}
           </li>
-          {userInfo && userInfo.data.user.roles[0] == "ADMIN" && (
+          {userInfo && userInfo.data.user.roles[0] === "ADMIN" && (
             <li className="container-submenu-admin">
               {" "}
               {userInfo ? (

@@ -84,10 +84,15 @@ function ProductScreen() {
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
-    <MessageBox variant="danger"></MessageBox>
+    <MessageBox variant="danger">{error} </MessageBox>
   ) : (
     <div className="contenedor__product_screen">
       <div className="contenedor__product__name">{product.name} </div>
+      {product.isActive ? (
+        <div className="success">Disponible</div>
+      ) : (
+        <div className="danger">No Disponible</div>
+      )}
       <div className="contenedor__prodict__image">
         <img
           className="img"

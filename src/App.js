@@ -2,11 +2,11 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import HomeScreen from "./screens/HomeScreen";
-import ProductScreen from "./screens/ProductScreen";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SigninScreen from "./screens/SigninScreen";
-import CartScreen from "./screens/CartScreen";
+
 import AboutScreen from "./screens/AboutScreen";
 import ProductsCategoriesScreen from "./screens/ProductsCategoriesScreen";
 import SignupScreen from "./screens/SignupScreen";
@@ -23,7 +23,8 @@ const OrderListScreen = lazy(() => import("./screens/OrderListScreen"));
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
-
+const CartScreen = lazy(() => import("./screens/CartScreen"));
+const ProductScreen = lazy(() => import("./screens/ProductScreen"));
 function App() {
   return (
     <div>

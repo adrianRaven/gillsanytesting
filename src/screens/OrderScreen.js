@@ -1,20 +1,10 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import "../css/OrderScreen.css";
-import {
-  PayPalScriptProvider,
-  usePayPalScriptReducer,
-  PayPalButtons,
-} from "@paypal/react-paypal-js";
 import { useNavigate, useParams } from "react-router-dom";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import ReactDOM from "react-dom";
-const PayPalButton = window.paypal.Buttons.driver("react", {
-  React,
-  ReactDOM,
-});
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -23,14 +13,7 @@ function reducer(state, action) {
       return { ...state, loading: false, order: action.payload, error: "" };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
-    case "PAY_REQUEST":
-      return { ...state, loadingPay: true };
-    case "PAY_SUCCESS":
-      return { ...state, loadingPay: false, successPay: true };
-    case "PAY_FAIL":
-      return { ...state, loadingPay: false };
-    case "PAY_RESET":
-      return { ...state, loadingPay: false, successPay: false };
+
     case "DELIVER_REQUEST":
       return { ...state, loadingDeliver: true };
     case "DELIVER_SUCCESS":
@@ -57,25 +40,14 @@ function OrderScreen() {
   const navigate = useNavigate();
 
   const [
-    {
-      loading,
-      error,
-      order,
-      successPay,
-      loadingPay,
-      loadingDeliver,
-      successDeliver,
-    },
+    { loading, error, order, successPay, loadingDeliver, successDeliver },
     dispatch,
   ] = useReducer(reducer, {
     loading: true,
     order: {},
     error: "",
     successPay: false,
-    loadingPay: false,
   });
-
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
   function createOrder(data, actions) {
     return actions.order
@@ -153,18 +125,10 @@ function OrderScreen() {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }
         );
-        paypalDispatch({
-          type: "resetOptions",
-          value: {
-            "client-id": clientId,
-            currency: "MX",
-          },
-        });
-        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
       };
       loadPaypalScript();
     }
-  }, [userInfo, orderId, navigate, paypalDispatch, successPay, successDeliver]);
+  }, [userInfo, orderId, navigate, successPay, successDeliver]);
 
   async function deliverOrderHandler() {
     try {
@@ -175,7 +139,7 @@ function OrderScreen() {
           user: userInfo.data.user,
           isDelivered: order.data.isDelivered,
           products: [],
-          paymentMethod: "",
+          paymentMethod: "Paypal",
           taxPrice: "",
           totalPrice: "",
         },
@@ -218,17 +182,8 @@ function OrderScreen() {
               <div>
                 Pago
                 <br></br>
-                <strong>Metodo: {order.data.paymentMethod}</strong>
+                <strong>Metodo: Paypal</strong>
               </div>
-              {order.data.isPaid ? (
-                <div className="box-status-green">
-                  Pagado el {order.data.paidAt}
-                </div>
-              ) : (
-                <div className="box-status">
-                  <strong> Aun no Pagado</strong>
-                </div>
-              )}
             </div>
             <div className="panel-left-items">
               <div>Items</div>
@@ -250,26 +205,11 @@ function OrderScreen() {
             <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
 
             <div className="contenedor-row5">Total</div>
-            <PayPalScriptProvider>
-              <PayPalButtons />
-            </PayPalScriptProvider>
+
             <div className="contenedor-row5C5">
               <strong>$ {order.data.totalPrice}</strong>
             </div>
-            {!order.data.isPaid && (
-              <div>
-                {isPending ? (
-                  <div>Cargando</div>
-                ) : (
-                  <PayPalButton
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    currency="mxn"
-                    onError={onError}
-                  />
-                )}
-              </div>
-            )}
+            {!order.data.isPaid && <div>Pendiente</div>}
             {userInfo &&
               userInfo &&
               userInfo.data.user.roles[0] === "ADMIN" &&

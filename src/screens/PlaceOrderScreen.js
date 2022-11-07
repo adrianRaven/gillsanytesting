@@ -45,7 +45,7 @@ function PlaceOrderScreen() {
           user: userInfo.data.user,
           products: cart.cartItems,
           shippingAddress: cart.shippingAddress.address,
-          paymentMethod: cart.paymentMethod,
+          paymentMethod: "Paypal",
           shippingPrice: cart.shippingPrice,
           taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
