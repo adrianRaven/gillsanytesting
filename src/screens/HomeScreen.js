@@ -45,6 +45,12 @@ function HomeScreen() {
     <main className="main">
       <div className="home">
         <Slider></Slider>
+        <div>
+          <h1>
+            ESTAMOS TRABAJANDO EN EL SITIO - PROXIMAMENTE INAUGURACION DEL SITIO
+            WEB
+          </h1>
+        </div>
         <div className="ofertas-contenedor">
           <div className="contenedor-producto">
             <div className="title-section">Ofertas</div>
