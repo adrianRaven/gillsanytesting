@@ -164,3 +164,77 @@ hr.division__menu {
 .show {
   display: block;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .navbar-contenedor {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: var(--primary);
+    color: var(--textColor);
+    padding-left: 18em;
+    padding-right: 18em;
+    max-height: 4.2em;
+  }
+
+  /* ------------------------------ */
+  .h3-nav {
+    color: var(--third);
+    margin-right: 2em;
+  }
+  .navbar-contenedor .nav-btn {
+    visibility: hidden;
+  }
+
+  .navbar-contenedor nav {
+    display: block;
+    background-color: var(--primary);
+  }
+  .navbar-contenedor nav {
+    display: flex;
+    position: relative;
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--primary);
+    transform: translateX(-0vh);
+    z-index: 99999;
+  }
+
+  .navbar-contenedor a {
+    font-size: 0.8em;
+  }
+
+  hr.division__menu {
+    display: none;
+  }
+
+  .navbar__menu__account {
+    display: flex;
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-size: 0.6em;
+  }
+
+  .navbar__menu__main {
+    display: flex;
+    gap: 1.5em;
+    text-align: center;
+  }
+  .navbar__nav {
+    width: 100%;
+    margin-top: 0.8em;
+  }
+  .show {
+    display: block;
+  }
+
+  .navbar-contenedor a:hover {
+    margin: 0 1px;
+    color: var(--secondary);
+    text-decoration: none;
+  }
+}

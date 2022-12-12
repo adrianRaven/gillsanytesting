@@ -33,7 +33,7 @@ export default function OrderHistoryScreen() {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const { data } = await axios.get(
-          `https://gillsanyback.herokuapp.com/api/purchase`,
+          process.env.REACT_APP_API_URL_TESTING + `/purchase`,
 
           { headers: { authorization: `Bearer ${userInfo.data.accessToken}` } }
         );

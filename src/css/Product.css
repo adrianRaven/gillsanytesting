@@ -28,3 +28,67 @@
   padding-left: 0.4em;
   padding-bottom: 0.6em;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .contenedor-producto .tarjeta-producto {
+    background-color: rgb(255, 255, 255);
+    width: 14em;
+    margin-top: 0.5em;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+    color: rgb(22, 22, 22);
+  }
+
+  .tarjeta-producto:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  }
+  .tarjeta-producto .contenedor-imagen {
+    height: 14em;
+    width: 14em;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+
+  .contenedor-imagen .tarjeta-link {
+    cursor: pointer;
+    height: 21.062em;
+    width: 14em;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .contenedor-item-info {
+    border-top-color: transparent;
+    border-top: 1px solid rgba(51, 51, 51, 0.1);
+    position: relative;
+    grid-template-rows: repeat(3, 1fr);
+    display: grid;
+    height: 7em;
+  }
+
+  .contenedor-item-info .item-cantidad {
+    height: 3.62em;
+    width: 100%;
+  }
+
+  .contenedor-item-info .item-meses {
+    height: 1.4em;
+    width: 100%;
+  }
+
+  .item-cantidad {
+    padding-top: 1em;
+  }
+  .contenedor-item-info .item-cantidad-tag {
+    font-size: 1.5em;
+    margin-left: 16px;
+  }
+
+  .contenedor-item-info .item-meses {
+    padding-top: 0.8em;
+    font-size: 0.8em;
+    margin-left: 16px;
+  }
+}

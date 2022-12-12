@@ -21,7 +21,7 @@ function SigninScreen() {
     e.preventDefault();
     try {
       const { data } = await Axios.post(
-        "https://gillsanyback.herokuapp.com/api/auth/login",
+        process.env.REACT_APP_API_URL_TESTING + "/auth/login",
         {
           email,
           password,
@@ -57,7 +57,7 @@ function SigninScreen() {
           <input
             type="email"
             required
-            placeholder="correo electrónico"
+            placeholder="correo electrónico o usuario"
             className="nav-search-input-signin"
             maxLength="120"
             autoFocus

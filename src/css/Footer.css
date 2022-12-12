@@ -61,3 +61,120 @@
   font-size: 0.8em;
   text-align: center;
 }
+
+@media screen and (min-width: 960px) {
+  .footer-container {
+    margin-top: 8em;
+    height: auto;
+    background-color: rgb(14, 14, 46);
+  }
+
+  .footer-main-block {
+    height: auto;
+    width: 90em;
+    margin: auto;
+    display: grid;
+    grid-template-rows: auto auto;
+  }
+
+  .footer-section-info {
+    display: grid;
+    grid-template-columns: auto repeat(2, 1fr);
+    padding-top: 1em;
+    margin-bottom: 1.4em;
+    border-bottom-color: transparent;
+    padding-bottom: 3.5em;
+    border-bottom: 2px solid rgba(232, 230, 230, 0.5);
+  }
+
+  .info-logo {
+    width: auto;
+    padding-left: 16em;
+    padding-right: 5em;
+  }
+
+  .logo {
+    padding-top: 0.5em;
+  }
+  .info-sec1 {
+    background-color: transparent;
+    padding-top: 1.4em;
+    color: aliceblue;
+  }
+  .info-sec1-text {
+    padding-top: 0.5em;
+  }
+  .info-sec1-text:hover {
+    color: rgb(255, 183, 0);
+  }
+  .info-sec2 {
+    background-color: transparent;
+  }
+
+  .footer-section-social {
+    grid-template-rows: auto auto;
+    margin: auto;
+    padding-bottom: 2em;
+  }
+
+  .icons-socialMedia {
+    display: flex;
+  }
+  .circle-social {
+    background-color: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    height: 40px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 40px;
+    color: aliceblue;
+    margin-right: 0.5em;
+  }
+
+  .circle-social a {
+    text-decoration: none;
+    color: aliceblue;
+  }
+  .facebook-icon {
+    padding-left: 0.8em;
+    padding-top: 0.3em;
+  }
+
+  .twitter-icon {
+    padding-left: 0.6em;
+    padding-top: 0.3em;
+  }
+
+  .instagram-icon {
+    padding-left: 0.52em;
+    padding-top: 0.12em;
+    font-size: 1.2em;
+  }
+
+  .youtube-icon {
+    padding-left: 0.51em;
+    padding-top: 0.38em;
+  }
+
+  .tiktok-icon {
+    padding-left: 0.6em;
+    padding-top: 0.3em;
+  }
+  .facebook-icon a:hover,
+  .twitter-icon a:hover,
+  .youtube-icon a:hover,
+  .instagram-icon a:hover,
+  .tiktok-icon a:hover,
+  .info-sec1-text a {
+    color: rgb(255, 200, 0);
+    cursor: pointer;
+  }
+
+  .text-legend {
+    margin-top: 1em;
+    color: aliceblue;
+    font-size: 0.8em;
+    text-align: center;
+  }
+}

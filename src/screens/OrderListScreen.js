@@ -36,10 +36,10 @@ export default function OrderListScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://gillsanyback.herokuapp.com/api/purchase`,
-          {
-            headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
-          }
+          process.env.REACT_APP_API_URL_TESTING +
+            {
+              headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
+            }
         );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {

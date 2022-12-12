@@ -32,7 +32,7 @@ function SignupScreen() {
     }
     try {
       const { data } = await Axios.post(
-        "https://gillsanyback.herokuapp.com/api/user/register",
+        process.env.REACT_APP_API_URL_TESTING + "/user/register",
         {
           FirstName,
           LastName,

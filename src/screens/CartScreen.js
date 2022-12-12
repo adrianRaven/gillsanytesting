@@ -21,7 +21,7 @@ function CartScreen() {
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(
-      `https://gillsanyback.herokuapp.com/api/product/${item.product.id}`
+      process.env.REACT_APP_API_URL_TESTING + `/product/${item.product.id}`
     );
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");

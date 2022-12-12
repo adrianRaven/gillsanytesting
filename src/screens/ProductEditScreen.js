@@ -92,7 +92,7 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST_CAT" });
         const resultCategories = await axios.get(
-          "https://gillsanyback.herokuapp.com/api/category"
+          process.env.REACT_APP_API_URL_TESTING + "/category"
         );
 
         dispatch({ type: "FETCH_SUCCESS_CAT", payload: resultCategories.data });
@@ -111,7 +111,7 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://gillsanyback.herokuapp.com/api/product/${productId}`
+          process.env.REACT_APP_API_URL_TESTING + `/product/${productId}`
         );
         setName(data.data.name);
         setPrice(data.data.price);
@@ -141,7 +141,7 @@ export default function ProductEditScreen() {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(
-        `https://gillsanyback.herokuapp.com/api/product/${productId}`,
+        process.env.REACT_APP_API_URL_TESTING + `/product/${productId}`,
         {
           id: productId,
           name,

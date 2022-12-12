@@ -31,7 +31,7 @@ function HomeScreen() {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get(
-          "https://gillsanyback.herokuapp.com/api/product"
+          process.env.REACT_APP_API_URL_TESTING + "/product"
         );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {

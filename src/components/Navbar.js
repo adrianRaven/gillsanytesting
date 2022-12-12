@@ -27,7 +27,7 @@ function Navbar() {
     const fetchCategories = async () => {
       try {
         const { data } = await axios.get(
-          "https://gillsanyback.herokuapp.com/api/category"
+          process.env.REACT_APP_API_URL_TESTING + "/category"
         );
         setCategories(data);
       } catch (err) {
@@ -79,7 +79,7 @@ function Navbar() {
       <a href="/">
         <h3 className="h3-nav">GILLSANY</h3>
       </a>
-      <nav ref={navRef}>
+      <nav className="navbar__nav" ref={navRef}>
         <ul className="navbar__menu__main">
           <li>
             <a href="/">Inicio</a>

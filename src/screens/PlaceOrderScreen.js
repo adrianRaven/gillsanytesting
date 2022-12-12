@@ -21,9 +21,8 @@ const reducer = (state, action) => {
 
 function PlaceOrderScreen() {
   const navigate = useNavigate();
-  const [dispatch] = useReducer(reducer, {
+  const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
-    error: "",
   });
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -41,7 +40,7 @@ function PlaceOrderScreen() {
       dispatch({ type: "CREATE_REQUEST" });
 
       const { data } = await Axios.post(
-        "https://gillsanyback.herokuapp.com/api/purchase",
+        process.env.REACT_APP_API_URL_TESTING + "/purchase",
         {
           user: userInfo.data.user,
           products: cart.cartItems,
@@ -146,6 +145,7 @@ function PlaceOrderScreen() {
             >
               Realizar Pedido
             </button>
+            {loading && <div>Cargando...</div>}
           </div>
         </div>
       </div>

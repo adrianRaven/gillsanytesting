@@ -66,7 +66,7 @@ export default function ProductListScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://gillsanyback.herokuapp.com/api/product",
+          process.env.REACT_APP_API_URL_TESTING + "/product",
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }
@@ -86,7 +86,7 @@ export default function ProductListScreen() {
       try {
         dispatch({ type: "CREATE_REQUEST" });
         const { data } = await axios.post(
-          "https://gillsanyback.herokuapp.com/api/product",
+          process.env.REACT_APP_API_URL_TESTING + "/product",
           {
             name: "Nuevo Producto",
             description: "Descripcion",
@@ -116,7 +116,7 @@ export default function ProductListScreen() {
     if (window.confirm("Are you sure to delete?")) {
       try {
         await axios.delete(
-          `https://gillsanyback.herokuapp.com/api/product/${product.id}`,
+          process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`,
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }

@@ -35,7 +35,7 @@ function ProductScreen() {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get(
-          `https://gillsanyback.herokuapp.com/api/product/${slug}`
+          process.env.REACT_APP_API_URL_TESTING + `/product/${slug}`
         );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data.data });
       } catch (err) {
@@ -51,7 +51,7 @@ function ProductScreen() {
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(
-      `https://gillsanyback.herokuapp.com/api/product/${product.id}`
+      process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`
     );
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");
@@ -68,7 +68,7 @@ function ProductScreen() {
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(
-      `https://gillsanyback.herokuapp.com/api/product/${product.id}`
+      process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`
     );
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");

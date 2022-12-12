@@ -54,7 +54,7 @@ function OrderScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(
-          `https://gillsanyback.herokuapp.com/api/purchase/${orderId}`,
+          process.env.REACT_APP_API_URL_TESTING + `/purchase/${orderId}`,
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }
@@ -87,7 +87,7 @@ function OrderScreen() {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
       const { data } = await axios.put(
-        `https://gillsanyback.herokuapp.com/api/purchase/${orderId}`,
+        `API_URL_TESTING/${orderId}`,
         {
           user: userInfo.data.user,
           isDelivered: order.data.isDelivered,

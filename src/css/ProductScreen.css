@@ -77,3 +77,87 @@
   color: rgb(202, 7, 0);
   font-weight: 600;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .contenedor__product_screen {
+    display: block;
+    padding: 1em;
+    height: 100vh;
+    width: 18em;
+  }
+
+  .contenedor__product__name {
+    font-size: 1em;
+    font-weight: 500;
+    margin-top: 1em;
+  }
+
+  .contenedor__prodict__image img {
+    width: 100%;
+    height: auto;
+  }
+  .contenedor__product__precio {
+    font-size: 0.9em;
+  }
+
+  .contenedor__product__oferta {
+    font-size: 1.8em;
+    font-weight: 500;
+    padding-top: 0.2em;
+  }
+
+  .contenedor-botones {
+    margin-top: 1em;
+  }
+
+  .boton-compra-one {
+    width: 100%;
+    margin-top: 0.5em;
+    background-color: #3483fa;
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 0 0 #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 500;
+    height: 3em;
+    line-height: 48px;
+    padding: 0 24px;
+    text-align: center;
+    -webkit-transition: 0.18s ease-out;
+    transition: 0.18s ease-out;
+  }
+
+  .boton-compra-two {
+    width: 100%;
+    margin-top: 0.5em;
+    background-color: #d9edfc;
+    border-color: transparent;
+    color: rgb(0, 83, 238);
+    box-shadow: 0 0 0 0 rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 500;
+    height: 3em;
+    line-height: 48px;
+    padding: 0 24px;
+    text-align: center;
+    -webkit-transition: 0.18s ease-out;
+    transition: 0.18s ease-out;
+  }
+
+  .success {
+    color: rgb(0, 202, 101);
+    font-weight: 600;
+  }
+
+  .danger {
+    color: rgb(202, 7, 0);
+    font-weight: 600;
+  }
+}
