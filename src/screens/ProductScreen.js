@@ -6,7 +6,12 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 import "../css/ProductScreen.css";
-
+import {
+  faTrashCan,
+  faCirclePlus,
+  faCircleMinus,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -114,6 +119,164 @@ function ProductScreen() {
         <button className="boton-compra-two">
           <span onClick={addToCartHandler}>Agregar al carrito</span>
         </button>
+
+        <div className="ui-pdp-container-accesorios">
+          <h2 className="caracteristicas-title">Accesorios extra</h2>
+          <div className="accesorios-contenedor">
+            <div className="accesorios-item">
+              <div className="img-accesorio">
+                <img
+                  src={require("../img/accesorio1.png")}
+                  alt="Caracteristica 1"
+                  width="45px"
+                ></img>
+              </div>
+              <div className="txt-accesorio">Transductor Rectal</div>
+              <div className="total-accesorio"> $ 100.00</div>
+              <div className="panel-accesorio">
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-minus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCircleMinus} />
+                  </div>
+                </button>{" "}
+                <div className="quantityItemAccesorio">
+                  <span>0</span>{" "}
+                </div>
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-plus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCirclePlus} />
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="accesorios-item">
+              <div className="img-accesorio">
+                <img
+                  src={require("../img/accesorio2.png")}
+                  alt="Caracteristica 2"
+                  width="45px"
+                ></img>
+              </div>
+              <div className="txt-accesorio">Transductor Convexo</div>
+              <div className="total-accesorio"> $ 100.00</div>
+              <div className="panel-accesorio">
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-minus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCircleMinus} />
+                  </div>
+                </button>{" "}
+                <div className="quantityItemAccesorio">
+                  <span>0</span>{" "}
+                </div>
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-plus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCirclePlus} />
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="accesorios-item">
+              <div className="img-accesorio">
+                <img
+                  src={require("../img/accesorio3.png")}
+                  alt="Caracteristica 3"
+                  width="45px"
+                ></img>
+              </div>
+              <div className="txt-accesorio">Transductor micorconvexo</div>
+              <div className="total-accesorio"> $ 100.00</div>
+              <div className="panel-accesorio">
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-minus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCircleMinus} />
+                  </div>
+                </button>{" "}
+                <div className="quantityItemAccesorio">
+                  <span>0</span>{" "}
+                </div>
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-plus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCirclePlus} />
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="accesorios-item">
+              <div className="img-accesorio">
+                <img
+                  src={require("../img/accesorio4.png")}
+                  alt="Caracteristica 3"
+                  width="45px"
+                ></img>
+              </div>
+              <div className="txt-accesorio">Protector de pantalla</div>
+              <div className="total-accesorio"> $ 100.00</div>
+              <div className="panel-accesorio">
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-minus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCircleMinus} />
+                  </div>
+                </button>{" "}
+                <div className="quantityItemAccesorio">
+                  <span>0</span>{" "}
+                </div>
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-plus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCirclePlus} />
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="accesorios-item">
+              <div className="img-accesorio">
+                <img
+                  src={require("../img/accesorio5.png")}
+                  alt="Caracteristica 3"
+                  width="45px"
+                ></img>
+              </div>
+              <div className="txt-accesorio">Pila</div>
+              <div className="total-accesorio"> $ 100.00</div>
+              <div className="panel-accesorio">
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-minus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCircleMinus} />
+                  </div>
+                </button>{" "}
+                <div className="quantityItemAccesorio">
+                  <span>0</span>{" "}
+                </div>
+                <button className="button-noDecorations">
+                  <div className="quantity-accesorio-plus">
+                    {" "}
+                    <FontAwesomeIcon icon={faCirclePlus} />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="info__product__section">
+          <div className="info_product_descripcion">
+            <div className="info_product_description_title">Descripción </div>
+            <div className="info_product_descripcion_txt">
+              <div>{product.description}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

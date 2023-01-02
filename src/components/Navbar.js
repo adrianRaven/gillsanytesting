@@ -22,7 +22,7 @@ function Navbar() {
   };
 
   const [categories, setCategories] = useState([]);
-  console.log(categories.data);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {

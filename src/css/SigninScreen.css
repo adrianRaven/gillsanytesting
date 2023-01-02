@@ -118,3 +118,30 @@ button.ghost {
   padding-left: 0;
   width: 100%;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .contenedor-detalle-signin {
+    width: 360px;
+    background: white;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+    padding-left: 4.2em;
+    padding-right: 4.2em;
+    border-radius: 0.6em;
+    padding-bottom: 6em;
+    margin: 0 auto;
+  }
+
+  .nav-search-input-signin {
+    background-color: rgb(238, 238, 239);
+    border: none;
+    padding: 12px 15px;
+    color: #33296a;
+    font-weight: 500;
+    margin: 8px 0;
+    height: 2.2em;
+    border-radius: 1em;
+    margin-bottom: 2em;
+  }
+}

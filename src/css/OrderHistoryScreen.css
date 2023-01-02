@@ -74,6 +74,17 @@
   }
 }
 
+.txt-pagado {
+  color: rgb(0, 182, 112);
+  font-weight: 500;
+  font-size: 0.8em;
+}
+
+.txt-noPagado {
+  color: rgb(255, 162, 0);
+  font-weight: 500;
+  font-size: 0.8em;
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   body {
@@ -84,6 +95,16 @@
     padding-top: 1em;
     margin-bottom: 2em;
     color: rgb(20, 11, 77);
+  }
+
+  .oh_title {
+    justify-content: center;
+    text-align: center;
+    padding-top: 1.4em;
+    margin-bottom: 1em;
+    color: rgb(100, 100, 113);
+    font-size: 1.4em;
+    font-weight: 500;
   }
 
   .header-contenedor {
@@ -102,7 +123,7 @@
     /*background-color: transparent;*/
     display: grid;
     grid-template-columns: repeat(1, auto);
-    margin-bottom: 0.2em;
+    margin-bottom: 2em;
     text-align: center;
     width: 85em;
     margin: auto;
@@ -114,6 +135,9 @@
     grid-template-columns: repeat(6, auto);
     background-color: rgb(221, 221, 221);
     margin: auto;
+    margin-bottom: 2em;
+    padding: 0.8em;
+    border-radius: 0.4em;
   }
   .tabla-row-id-user {
     width: 12em;
@@ -140,10 +164,10 @@
   }
   .button-action-order {
     background: none;
-    color: inherit;
+    color: rgb(51, 22, 137);
+    font-weight: 500;
     border: none;
     padding: 0;
-    font: inherit;
     cursor: pointer;
     outline: inherit;
   }

@@ -65,6 +65,7 @@ function PlaceOrderScreen() {
       toast.error(getError(err));
     }
   };
+
   return (
     <div className="contenedor">
       {" "}

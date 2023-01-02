@@ -48,3 +48,27 @@
   padding: 1em;
   border-radius: 0.8em;
 }
+
+.payment-section {
+  width: 28em;
+  margin-left: 2em;
+}
+
+.btn-compra {
+  background-color: rgb(26, 28, 56);
+  width: 28em;
+  color: rgb(255, 255, 249);
+}
+
+.btn-deliverOrder {
+  background: rgb(255, 208, 0);
+  color: rgb(65, 36, 108);
+  font-weight: 600;
+  margin-top: 1em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 1.2em;
+  margin-bottom: 2em;
+}

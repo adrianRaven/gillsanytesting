@@ -7,9 +7,9 @@
 }
 
 .main {
-  background: var(--third);
+  background: #eeeeee;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .banner-pagos {
@@ -20,6 +20,15 @@
   margin-top: 1em;
 }
 .title-section {
+  font-weight: 500;
+  font-size: 1.2em;
+  color: rgb(50, 48, 54);
+  padding-left: 1em;
+  padding-top: 0em;
+  padding-bottom: 0.4em;
+}
+
+.title-section-two {
   font-weight: 500;
   font-size: 1.2em;
   color: rgb(50, 48, 54);
@@ -48,22 +57,68 @@
   flex-flow: wrap;
 }
 
+.home .container-slider {
+  margin-bottom: 2em;
+}
+
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .main {
     display: flex;
-    background: var(--third);
-    height: 100vh;
+    background: rgb(237, 237, 237);
+    height: 100%;
+  }
+
+  .home {
+    width: 90%;
+    max-width: 1600px;
+  }
+
+  .title-section {
+    margin-top: 3em;
+    font-weight: 400;
+    font-size: 1.4em;
+    color: rgb(50, 48, 54);
+    padding-left: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
+
+  .title-section-two {
+    font-weight: 400;
+    font-size: 1.4em;
+    color: rgb(50, 48, 54);
+    padding-left: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+  }
+
+  .flex__container {
+    display: block;
+  }
+
+  .ofertas-contenedor {
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    transition: 0;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: 0px;
   }
 
   /* -- Slider -- */
   .home .container-slider {
-    width: 100%;
-    max-width: 100em;
+    width: 100%px;
     height: 18em;
+    text-align: center;
     justify-self: center;
     overflow: hidden;
     position: relative;
+    margin: 0 auto;
+    margin-bottom: 2em;
   }
 
   .slider {
@@ -107,5 +162,9 @@
   }
   .slider__btn--left {
     left: 10px;
+  }
+
+  .contenedor__carousel {
+    background: rgb(254, 255, 251);
   }
 }

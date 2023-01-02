@@ -6,6 +6,7 @@ import logger from "use-reducer-logger";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Slider from "../components/slider/Slider";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -45,31 +46,39 @@ function HomeScreen() {
     <main className="main">
       <div className="home">
         <Slider></Slider>
-        <div>
-          <h1>
-            ESTAMOS TRABAJANDO EN EL SITIO - PROXIMAMENTE INAUGURACION DEL SITIO
-            WEB
-          </h1>
-        </div>
-        <div className="ofertas-contenedor">
-          <div className="contenedor-producto">
-            <div className="title-section">Ofertas</div>
-            <div>
-              {" "}
-              {loading ? (
-                <LoadingBox></LoadingBox>
-              ) : error ? (
-                <MessageBox variant="danger">{error} </MessageBox>
-              ) : (
-                <div className="flex__container">
-                  <Product products={products.slice(0, 4)} />
-                </div>
-              )}{" "}
-            </div>
-          </div>
-
-          <div className="contenedor-producto"></div>
-        </div>
+        <div className="title-section">Productos destacados</div>{" "}
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error} </MessageBox>
+        ) : (
+          <>
+            {" "}
+            <Product products={products.slice(0, 12)} />;
+          </>
+        )}{" "}
+        <div className="title-section-two">Ofertas</div>{" "}
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error} </MessageBox>
+        ) : (
+          <>
+            {" "}
+            <Product products={products.slice(0, 12)} />;
+          </>
+        )}
+        <div className="title-section-two">Accesorios destacados</div>{" "}
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error} </MessageBox>
+        ) : (
+          <>
+            {" "}
+            <Product products={products.slice(0, 12)} />;
+          </>
+        )}
       </div>
     </main>
   );

@@ -131,3 +131,35 @@
   width: 100%;
   margin: 1em;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .contenedor-detalle-shipping {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 960px;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 0.6em;
+    background: white;
+    padding-bottom: 4em;
+  }
+
+  .contenedor-botones-signin {
+    width: 12em;
+    text-align: center;
+    margin-left: 2em;
+    margin: 0 auto;
+  }
+
+  .boton-continuar-signin {
+    width: 100%;
+  }
+
+  .select-form {
+    width: 100%;
+    margin: 1em;
+  }
+}
