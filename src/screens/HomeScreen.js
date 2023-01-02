@@ -64,7 +64,7 @@ function HomeScreen() {
               {" "}
               Próximo <span>Lanzamiento</span>
             </h1>
-            <p className="txtCustom">01 de Enero 2023</p>
+            <p className="txtCustom">13 de Enero 2023</p>
             <div className="launch-time">
               <div>
                 <p id="days">00</p>
