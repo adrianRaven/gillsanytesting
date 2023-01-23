@@ -10,7 +10,7 @@ import {
 function Footer() {
   return (
     <div className="footer-contenedor">
-      <div>GILLSANY</div>{" "}
+      <div className="footer-title">GILLSANY</div>{" "}
       <div className="footer-section-social">
         <div className="icons-socialMedia">
           <div className="facebook-icon">

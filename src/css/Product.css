@@ -13,7 +13,9 @@
 }
 
 .tarjeta-link img {
-  width: 100%;
+  height: 12em;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .item-cantidad {
@@ -24,9 +26,11 @@
 }
 
 .producto__info__nombre {
-  font-size: 0.85em;
+  font-size: 0.8em;
   margin-left: 16px;
-  padding-bottom: 0.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1em;
 }
 
 .contenedor-item-info {
@@ -61,8 +65,17 @@
     height: 21.062em;
     width: 14em;
     position: absolute;
-
     background: white;
+    transition: all 0.3s ease;
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .tarjeta-link img {
+    margin-top: 1em;
+  }
+  .contenedor-imagen .tarjeta-link:hover {
+    transform: scale(1.1);
   }
 
   .contenedor-item-info {
@@ -70,13 +83,13 @@
     border-top-color: transparent;
     border-top: 1px solid rgba(51, 51, 51, 0.1);
     position: relative;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     display: grid;
     height: 7em;
   }
 
   .contenedor-item-info .item-cantidad {
-    height: 3.62em;
+    height: 3em;
     width: 100%;
   }
 
@@ -86,13 +99,17 @@
   }
 
   .item-cantidad {
-    padding-top: 1em;
+    padding-top: 0.6em;
   }
   .contenedor-item-info .item-cantidad-tag {
     font-size: 1.2em;
-    margin-left: 16px;
   }
 
+  .item-original-price {
+    font-size: 0.8em;
+    text-decoration: line-through;
+    color: rgb(147, 147, 147);
+  }
   .contenedor-item-info .item-meses {
     padding-top: 0.8em;
     font-size: 0.8em;

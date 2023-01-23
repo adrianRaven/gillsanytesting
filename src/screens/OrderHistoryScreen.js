@@ -86,13 +86,11 @@ export default function OrderHistoryScreen() {
                   </div>
                   <div className="tabla-row-isDelivered">
                     {order.isDelivered ? (
-                      <div variant="success">
-                        Envíado el {order.deliveredAt}
+                      <div className="txt-pagado">
+                        Envíado el {order.deliveredAt.substring(0, 10)}
                       </div>
                     ) : (
-                      <div className="box-status">
-                        <strong>No envíado</strong>
-                      </div>
+                      <div className="box-status">Pendiente</div>
                     )}
                   </div>
                   <div className="tabla-row-order">

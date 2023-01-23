@@ -65,128 +65,139 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="contenedor-principal-signin">
-      <div className="contenedor-detalle-signin">
-        <div className="signin-titulo">
-          <div className="titulo-signin">Perfil de Usuario</div>
+    <div className="contenedor-principal-profile">
+      <div className="contenedor-detalle-profile">
+        <div className="panel__left__profile">
+          <img alt="userPhoto" src={require(`../img/profilePic.png`)}></img>
+          <div className="panel__left__user__name">
+            {userInfo.data.user.FirstName} {userInfo.data.user.LastName}
+          </div>
+          <div> {userInfo.data.user.email}</div>
+          <div>Tel: {userInfo.data.user.phoneNumber}</div>
+          <div>Dirección: {userInfo.data.user.Address}</div>
         </div>
-        <form
-          className="form-profile"
-          action=""
-          method="GET"
-          role="search"
-          onSubmit={submitHandler}
-        >
-          {" "}
-          <div className="signin-correo">
-            <input
-              type="text"
-              required
-              placeholder="Nombre"
-              className="nav-search-input-signin"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-
-            <input
-              type="text"
-              required
-              placeholder="Apellido"
-              className="nav-search-input-signin"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-              onChange={(e) => setLastName(e.target.value)}
-            />
-
-            <input
-              type="text"
-              placeholder="Dirección"
-              required
-              className="nav-search-input-signin"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-              onChange={(e) => setAddress(e.target.value)}
-            />
-
-            <input
-              type="text"
-              required
-              placeholder="Código Postal"
-              className="nav-search-input-signin"
-              maxLength="120"
-              autoFocus
-              autoCapitalize="off"
-              spellCheck="false"
-              autoComplete="off"
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
+        <div className="panel__right__profile">
+          <div className="profile-titulo">
+            <div className="titulo-profile">Actualizar información</div>
           </div>
-          <input
-            type="email"
-            required
-            placeholder="correo eléctronico"
-            className="nav-search-input-signin"
-            maxLength="120"
-            autoFocus
-            autoCapitalize="off"
-            spellCheck="false"
-            autoComplete="off"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="text"
-            required
-            placeholder="Télefono"
-            className="nav-search-input-signin"
-            maxLength="120"
-            autoFocus
-            autoCapitalize="off"
-            spellCheck="false"
-            autoComplete="off"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <input
-            type="password"
-            required
-            placeholder="Contraseña"
-            className="nav-search-input-signin"
-            maxLength="120"
-            autoFocus
-            autoCapitalize="off"
-            spellCheck="false"
-            autoComplete="off"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="password"
-            required
-            placeholder="Confirmar Contraseña"
-            className="nav-search-input-signin"
-            maxLength="120"
-            autoFocus
-            autoCapitalize="off"
-            spellCheck="false"
-            autoComplete="off"
-            onChange={(e) => setconfirmPassword(e.target.value)}
-          />
-          <div className="signin-botones">
-            <div className="contenedor-botones-signin">
-              <button type="submit" className="boton-continuar-signin">
-                <span>Actualizar</span>
-              </button>
+          <form
+            className="form-profile"
+            action=""
+            method="GET"
+            role="search"
+            onSubmit={submitHandler}
+          >
+            {" "}
+            <div className="signin-correo">
+              <input
+                type="text"
+                required
+                placeholder="Nombre"
+                className="nav-search-input-profile"
+                maxLength="120"
+                autoFocus
+                autoCapitalize="off"
+                spellCheck="false"
+                autoComplete="off"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+
+              <input
+                type="text"
+                required
+                placeholder="Apellido"
+                className="nav-search-input-profile"
+                maxLength="120"
+                autoFocus
+                autoCapitalize="off"
+                spellCheck="false"
+                autoComplete="off"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+
+              <input
+                type="text"
+                placeholder="Dirección"
+                required
+                className="nav-search-input-profile"
+                maxLength="120"
+                autoFocus
+                autoCapitalize="off"
+                spellCheck="false"
+                autoComplete="off"
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <input
+                type="text"
+                required
+                placeholder="Código Postal"
+                className="nav-search-input-profile"
+                maxLength="120"
+                autoFocus
+                autoCapitalize="off"
+                spellCheck="false"
+                autoComplete="off"
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
             </div>
-          </div>
-        </form>
+            <input
+              type="email"
+              required
+              placeholder="correo eléctronico"
+              className="nav-search-input-profile"
+              maxLength="120"
+              autoFocus
+              autoCapitalize="off"
+              spellCheck="false"
+              autoComplete="off"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="text"
+              required
+              placeholder="Télefono"
+              className="nav-search-input-profile"
+              maxLength="120"
+              autoFocus
+              autoCapitalize="off"
+              spellCheck="false"
+              autoComplete="off"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <input
+              type="password"
+              required
+              placeholder="Contraseña"
+              className="nav-search-input-profile"
+              maxLength="120"
+              autoFocus
+              autoCapitalize="off"
+              spellCheck="false"
+              autoComplete="off"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              required
+              placeholder="Confirmar Contraseña"
+              className="nav-search-input-profile"
+              maxLength="120"
+              autoFocus
+              autoCapitalize="off"
+              spellCheck="false"
+              autoComplete="off"
+              onChange={(e) => setconfirmPassword(e.target.value)}
+            />
+            <div className="signin-botones">
+              <div className="contenedor-botones-signin">
+                <button type="submit" className="boton-continuar-signin">
+                  <span>Actualizar</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,9 @@
   margin-top: 0.8em;
   color: rgb(38, 13, 139);
 }
-
+.table-component-orders {
+  background: #fff;
+}
 .header-contenedor {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -69,7 +71,6 @@
 .contenedor-botones-crear {
   margin-bottom: 1em;
   display: flex;
-  padding-left: 17em;
 }
 .button-createProd {
   border: none;

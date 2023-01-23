@@ -10,7 +10,7 @@ function ShippingAddressScreen() {
   const addressFromik = useFormik({
     initialValues: {
       country: "Mexico",
-      state: null,
+      stateName: null,
       city: null,
     },
     onSubmit: (values) => console.log(JSON.stringify(values)),
@@ -25,10 +25,10 @@ function ShippingAddressScreen() {
   }));
 
   const updatedStates = (countryId) =>
-    State.getStatesOfCountry(countryId).map((state) => ({
-      label: state.name,
-      value: state.isoCode,
-      ...state,
+    State.getStatesOfCountry(countryId).map((stateName) => ({
+      label: stateName.name,
+      value: stateName.isoCode,
+      ...stateName,
     }));
 
   const updatedCities = (countryId, stateId) =>
@@ -49,9 +49,6 @@ function ShippingAddressScreen() {
   } = state;
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
-  // const [country, setCountry] = useState(shippingAddress.country || "");
-  // const [stateName, setStateName] = useState(shippingAddress.stateName || "");
-  // const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
@@ -70,7 +67,7 @@ function ShippingAddressScreen() {
         fullName,
         address,
         city: values.city.label,
-        state: values.state.label,
+        stateName: values.stateName.label,
         postalCode,
         country: values.country.label,
       },
@@ -81,7 +78,7 @@ function ShippingAddressScreen() {
         fullName,
         address,
         city: values.city.label,
-        state: values.state.label,
+        stateName: values.stateName.label,
         postalCode,
         country: values.country.label,
       })
@@ -133,7 +130,10 @@ function ShippingAddressScreen() {
               options={updatedCountries}
               value={values.country}
               onChange={(value) => {
-                setValues({ country: value, state: null, city: null }, false);
+                setValues(
+                  { country: value, stateName: null, city: null },
+                  false
+                );
               }}
             />
             <Select
@@ -144,10 +144,10 @@ function ShippingAddressScreen() {
               options={
                 values.country ? updatedStates(values.country.isoCode) : null
               }
-              value={values.state}
+              value={values.stateName}
               onChange={(value) => {
                 setValues(
-                  { country: values.country, state: value, city: null },
+                  { country: values.country, stateName: value, city: null },
                   false
                 );
               }}
@@ -158,10 +158,10 @@ function ShippingAddressScreen() {
               id="city"
               name="city"
               options={
-                values.state
+                values.stateName
                   ? updatedCities(
-                      values.state.countryCode,
-                      values.state.isoCode
+                      values.stateName.countryCode,
+                      values.stateName.isoCode
                     )
                   : null
               }
@@ -169,21 +169,6 @@ function ShippingAddressScreen() {
               onChange={(value) => setFieldValue("city", value)}
             />
 
-            {/* <select
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            >
-              <option>Mexico</option>
-            </select>
-            <select
-              value={stateName}
-              onChange={(e) => setStateName(e.target.value)}
-            >
-              <option>Coahuila</option>
-            </select>
-            <select >
-              <option>Torreon</option>
-            </select> */}
             <input
               type="text"
               value={postalCode}

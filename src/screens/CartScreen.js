@@ -2,9 +2,7 @@ import { useContext } from "react";
 import React from "react";
 import { Store } from "../Store";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "../css/CartScreen.css";
-
 import {
   faTrashCan,
   faCirclePlus,
@@ -20,13 +18,6 @@ function CartScreen() {
   } = state;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(
-      process.env.REACT_APP_API_URL_TESTING + `/product/${item.product.id}`
-    );
-    if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
-      return;
-    }
     ctxDispatch({
       type: "CART_ADD_ITEM",
       payload: { ...item, quantity },
@@ -56,24 +47,32 @@ function CartScreen() {
               {cartItems.map((item) => (
                 <div key={item.product.id}>
                   <div className="contenedor-item-detalle-incarrito">
-                    <div className="item-img">
-                      <div>
-                        <a to={`/product/${item.product.slug}`} href="/">
-                          <img
-                            src={
-                              "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
-                              item.product.images[0].uri
+                    <div className="contenedor-section-img-title">
+                      {" "}
+                      <div className="item-img">
+                        <div>
+                          <a
+                            to={`/product/${item.product.id}`}
+                            href={`/product/${item.product.id}`}
+                          >
+                            {
+                              <img
+                                src={
+                                  "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
+                                  item.product.images[0].uri
+                                }
+                                alt={item.product.name}
+                                className="img-incarrito"
+                              ></img>
                             }
-                            alt={item.product.name}
-                            className="img-incarrito"
-                          ></img>{" "}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="item-text-details">
+                        <a href={`/product/${item.product.id}`}>
+                          {item.product.name}
                         </a>
                       </div>
-                    </div>
-                    <div className="item-text-details">
-                      <a href={`/product/${item.product.id}`}>
-                        {item.product.name}
-                      </a>
                     </div>
 
                     <div className="item-panel-options">
@@ -97,7 +96,6 @@ function CartScreen() {
                           onClick={() =>
                             updateCartHandler(item, item.product.quantity + 1)
                           }
-                          disabled={item.product.quantity === 5}
                           className="button-noDecorations"
                         >
                           <div className="quantityItem-plus">
@@ -118,7 +116,11 @@ function CartScreen() {
                         </div>
                       </div>
                       <div className="item-priceTotal">
-                        ${item.product.price}
+                        {item.product.discount > 0 ? (
+                          <div className="">$ {item.product.discount}</div>
+                        ) : (
+                          <div className="">$ {item.product.price} </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -131,16 +133,23 @@ function CartScreen() {
       <div className="section-total-carrito">
         <div className="contenedor-total-carrito">
           <div className="texto-envio-total">
-            <p>Total con envío</p>
+            <div className="precio-envio-total-txt">Total con envío</div>
             <div className="precio-envio-total">
               <span className="precio-envio-info">
                 {" "}
                 <div>
                   $
-                  {cartItems.reduce(
-                    (a, c) => a + c.product.price * c.product.quantity,
-                    0
-                  )}
+                  {cartItems
+                    .reduce(
+                      (a, c) =>
+                        a +
+                        (c.product.discount > 0
+                          ? c.product.discount
+                          : c.product.price) *
+                          c.product.quantity,
+                      0
+                    )
+                    .toLocaleString(undefined, { maximumFractionDigits: 2 })}
                 </div>
               </span>
             </div>

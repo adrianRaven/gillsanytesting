@@ -1,6 +1,8 @@
 import React, { createContext, useReducer } from "react";
 export const Store = createContext();
 
+var tempCart = [];
+
 const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -14,6 +16,9 @@ const initialState = {
       : "Openpay",
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+    cartItemsTemp: localStorage.getItem("cartItemsTemp")
+      ? JSON.parse(localStorage.getItem("cartItemsTemp"))
       : [],
   },
 };
@@ -59,6 +64,11 @@ function reducer(state, action) {
     }
     case "CART_CLEAR":
       return { ...state, cart: { ...state.cart, cartItems: [] } };
+    /* Temporary cart*/
+    case "CART_TEMPORARY_ADD_ITEM":
+      // add code with new logic
+
+      break;
 
     case "USER_SIGNIN":
       return { ...state, userInfo: action.payload };

@@ -1,13 +1,22 @@
 import axios from "axios";
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import "../css/OrderScreen.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import LoadingBox from "../components/LoadingBox";
-
+import Moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTruck,
+  faCreditCard,
+  faFileInvoice,
+  faHashtag,
+  faLink,
+} from "@fortawesome/free-solid-svg-icons";
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -44,11 +53,12 @@ function reducer(state, action) {
 function OrderScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
-
+  const currency = "MXN";
   const params = useParams();
   const { id: orderId } = params;
   const navigate = useNavigate();
-
+  const [trackingGuide, setTrackingGuide] = useState("");
+  const [deliveryInfo, setDeliveryInfo] = useState("");
   const [
     {
       loading,
@@ -76,6 +86,7 @@ function OrderScreen() {
         purchase_units: [
           {
             amount: { value: order.data.totalPrice },
+            currency_code: currency,
           },
         ],
       })
@@ -91,6 +102,7 @@ function OrderScreen() {
         const { data } = await axios.put(
           process.env.REACT_APP_API_URL_TESTING + `/purchase/${orderId}/pay`,
           details,
+
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }
@@ -148,7 +160,7 @@ function OrderScreen() {
           type: "resetOptions",
           value: {
             "client-id": clientId,
-            currency: "MXN",
+            currency_code: "MXN",
           },
         });
         paypalDispatch({ type: "setLoadingStatus", value: "pending" });
@@ -157,117 +169,253 @@ function OrderScreen() {
     }
   }, [userInfo, orderId, navigate, paypalDispatch, successPay]);
 
-  async function deliverOrderHandler() {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     try {
       dispatch({ type: "DELIVER_REQUEST" });
       const { data } = await axios.put(
-        process.env.REACT_APP_API_URL_TESTING + `/purchase/${orderId}`,
-        {},
+        process.env.REACT_APP_API_URL_TESTING + `/purchase/${orderId}/deliver`,
+        {
+          id: parseInt(orderId),
+          trakingGuide: trackingGuide,
+          deliveryInfo: deliveryInfo,
+        },
         {
           headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
         }
       );
       dispatch({ type: "DELIVER_SUCCESS", payload: data });
-      toast.success("Order is delivered");
+      toast.success("La compra ha sido entregada");
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: "DELIVER_FAIL" });
     }
-  }
+  };
   return loading ? (
     <div>cargando</div>
   ) : error ? (
-    <div>ERROR</div>
+    <div className="error__container">
+      <div className="error_title"> Tu sesión ha expirado</div>
+      <div className="error_text">
+        {" "}
+        Cierra sesión y vuelve a iniciar sesión para volver a navegar en nuestro
+        sitio web
+      </div>
+    </div>
   ) : (
     <div className="contenedor__order">
       <div className="contenedor-order-detalle">
-        <div className="panel-norder-left">
-          <div className="panel-left-title">
-            <div className="panel-title-text">Orden {orderId}</div>
-            <div className="panel-left-shipping">
-              <div>Envío</div>
-              <strong>Dirección:</strong>
-              {order.data.shippingAddress}
-              <br></br>
-              {order.isDelivered ? (
-                <div variant="success">Delivered at {order.deliveredAt}</div>
-              ) : (
-                <div className="box-status">
-                  <strong>No envíado</strong>
-                </div>
-              )}
-            </div>
+        <div className="panel-order-left">
+          <div className="panel-left-section">
+            {order.data.isDelivered ? (
+              <div className="panel-left-title-txt">Detalles de la Compra</div>
+            ) : (
+              <div className="panel-left-title-txt">Ya casi es tuyo...</div>
+            )}
 
-            <div className="panel-left-payment">
-              <div>
-                Pago
-                <br></br>
-                <strong>Metodo: Paypal</strong>
+            <div className="panel-title-text">Número de pedido: {orderId}</div>
+            <div className="panel-left-shipping">
+              <div className="panel-left-shipping-title">
+                Dirección del envío
+              </div>
+              <div className="panel-left-shipping-card">
+                {" "}
+                <div className="shipping-name-title">
+                  {order.data.user.FirstName} {order.data.user.LastName}
+                </div>
+                <div className="shipping-address-card-txt">
+                  {" "}
+                  {order.data.shippingAddress}
+                </div>
               </div>
             </div>
+
             <div className="panel-left-items">
-              <div>Items</div>
+              <div className="panel-left-shipping-title">Resumén de Compra</div>
               {order.data.products.map((item) => (
-                <div key={item.id}>
+                <div className="product-container-item" key={item.id}>
                   <div className="align-items-center">
-                    <div>{item.product.name}</div>
-                    <div>${item.purchasePrice}</div>
+                    <div className="product-image-item"></div>
+                    <div className="product-txt-item">
+                      <div className="product-txt-name">
+                        {item.product.name}
+                      </div>
+                      <div className="product-txt-currency">Mondea: MXN </div>
+                      <div className="product-txt-price">
+                        {item.product.discount > 0 ? (
+                          <>
+                            {" "}
+                            <div className="product-txt-price">
+                              ${item.product.discount}
+                            </div>
+                            <div className="product-price-discount">
+                              ${item.purchasePrice}
+                            </div>
+                          </>
+                        ) : (
+                          <div className="product-txt-price">
+                            ${item.purchasePrice}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-        <div className="panel__order__right">
-          <div className="contenedor-card-ordersummary">
-            <div className="contenedor-row1">Order Summary</div>
-            <div className="contenedor-row2">Items</div>
-            <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
-            <div className="contenedor-row5">Total</div>
-            <div className="contenedor-row5C5">
-              <strong>$ {order.data.totalPrice}</strong>
-            </div>
-            {!order.data.isPaid && <div>Pendiente</div>}
-            {userInfo &&
-              userInfo &&
-              userInfo.data.user.roles[0] === "ADMIN" &&
-              order.data.isPaid &&
-              !order.isDelivered && (
-                <div>
-                  <div className="d-grid">
-                    <button
-                      type="button"
-                      className="btn-deliverOrder"
-                      onClick={deliverOrderHandler}
-                    >
-                      Deliver Order
-                    </button>
+            <div className="status__oder_section">
+              <div className="panel-left-shipping-title">
+                Estado de la Compra
+              </div>{" "}
+              {order.data.isDelivered ? (
+                <div className="status__success">
+                  <FontAwesomeIcon icon={faTruck} />{" "}
+                  <div className="status__success__txt">Enviado el:</div>
+                  <div className="status__success__green">
+                    {Moment(order.data.deliveredAt).format("l")}
                   </div>
                 </div>
+              ) : (
+                <div className="status__success">
+                  Estado del envío:{" "}
+                  <strong className="status__envio__txt">En Preparación</strong>{" "}
+                </div>
               )}
-          </div>
-        </div>
-      </div>
-      <div className="payment-section">
-        {!order.data.isPaid && (
-          <div>
-            {isPending ? (
-              <LoadingBox></LoadingBox>
-            ) : (
+              {order.data.isPaid ? (
+                <div className="status__success">
+                  <FontAwesomeIcon icon={faCreditCard} />{" "}
+                  <div className="status__success__txt">Pagado el:</div>
+                  <div className="status__success__green">
+                    {Moment(order.data.paidAt).format("l")}
+                  </div>
+                </div>
+              ) : (
+                <div className="status__success">
+                  Estado del pago:{" "}
+                  <strong className="status__envio__txt">Pago Pendiente</strong>{" "}
+                </div>
+              )}
+              {order.data.isDelivered ? (
+                <>
+                  {" "}
+                  <div className="status__success">
+                    <FontAwesomeIcon icon={faHashtag} />{" "}
+                    <div className="status__success__txt">
+                      Número de Rastreo:
+                    </div>
+                    <div className="status__success__green">
+                      {order.data.trakingGuide}
+                    </div>
+                  </div>
+                  <div className="status__success">
+                    <FontAwesomeIcon icon={faLink} />{" "}
+                    <div className="status__success__txt">Enlace:</div>
+                    <div className="status__success__green">
+                      {order.data.deliveryInfo}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+
+            {!order.data.isPaid && (
               <div>
-                Hola
-                <div>
+                {isPending ? (
+                  <LoadingBox>Cargando</LoadingBox>
+                ) : (
                   <PayPalButtons
                     createOrder={createOrder}
                     onApprove={onApprove}
                     onError={onError}
                   ></PayPalButtons>
-                </div>
+                )}
+                {loadingPay && <LoadingBox>Cargando</LoadingBox>}
               </div>
             )}
-            {loadingPay && <LoadingBox></LoadingBox>}
           </div>
-        )}
+        </div>
+        <div className="panel__order__right">
+          <div className="contenedor-card-ordersummary">
+            <div className="contenedor-row1">Resumén de Compra</div>
+            <div className="contenedor-row-products-price">
+              <div className="contenedor-row2">Productos</div>
+              <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
+            </div>
+
+            <div className="contenedor-row-products-total">
+              <div className="contenedor-row2">Total</div>
+              <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
+            </div>
+            <div className="admin__panel__order">
+              <div className="admin__panel__order__title">
+                Panel de Administrador:
+              </div>
+              {!order.data.isPaid && (
+                <div className="admin__panel__order__status">
+                  <FontAwesomeIcon icon={faFileInvoice} /> Pago Pendiente
+                </div>
+              )}
+              {userInfo &&
+                userInfo &&
+                userInfo.data.user.roles[0] === "ADMIN" &&
+                order.data.isPaid && (
+                  <div className="deliver__section__admin">
+                    {loadingDeliver && <LoadingBox>Cargando</LoadingBox>}
+                    <form
+                      action=""
+                      method="GET"
+                      role="search"
+                      onSubmit={submitHandler}
+                    >
+                      <div className="deliver__section__admin__laebl">
+                        Número de Rastreo
+                      </div>
+                      <div className="deliver__section__admin__input">
+                        <input
+                          type="text"
+                          className="admin__input"
+                          maxLength="120"
+                          autoFocus
+                          value={trackingGuide}
+                          autoCapitalize="off"
+                          spellCheck="false"
+                          autoComplete="off"
+                          onChange={(e) => setTrackingGuide(e.target.value)}
+                        />
+                      </div>
+                      <div className="deliver__section__admin__label">
+                        Información adicional
+                      </div>
+                      <div className="deliver__section__admin__input">
+                        <input
+                          type="text"
+                          required
+                          className="admin__input"
+                          maxLength="120"
+                          autoFocus
+                          value={deliveryInfo}
+                          autoCapitalize="off"
+                          spellCheck="false"
+                          autoComplete="off"
+                          onChange={(e) => setDeliveryInfo(e.target.value)}
+                        />
+                      </div>
+                      <div className="signin-botones-signin">
+                        <button
+                          type="submit"
+                          className="boton-continuar-signin"
+                        >
+                          <span>Envíar Orden</span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

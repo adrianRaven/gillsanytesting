@@ -1,9 +1,13 @@
 .titulo-lista-productos {
-  margin-left: 6.6em;
+  margin-left: 6.8em;
   margin-top: 0.8em;
   color: rgb(38, 13, 139);
 }
 
+.table-component-products {
+  background: #fff;
+  margin-bottom: 8em;
+}
 .header-contenedor {
   background-color: rgb(230, 230, 230);
   display: grid;
@@ -13,7 +17,6 @@
   font-weight: 600;
   color: rgb(22, 10, 81);
   width: 85em;
-  margin: auto;
 }
 .contenedor-tabla-lista-productos {
   background-color: rgb(230, 230, 230);
@@ -30,6 +33,18 @@
 }
 
 .tabla-productos {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  padding: 0.5em;
+  margin: auto;
+}
+.tabla__headers {
+  display: grid;
+  grid-template-columns: 2.5fr 3fr 2fr 2fr 1fr 1fr;
+  padding: 0.5em;
+  text-align: center;
+}
+.tabla-productos-info {
   display: grid;
   grid-template-columns: repeat(6, auto);
   padding: 0.5em;
@@ -70,28 +85,34 @@
 .contenedor-botones-crear {
   margin-bottom: 1em;
   display: flex;
-  padding-left: 17em;
+  padding-left: 14em;
 }
 .button-createProd {
   border: none;
   margin-top: 1em;
   background-color: rgb(84, 105, 212);
-  border-radius: 0.2em;
+  border-radius: 0.8em;
   color: #fff;
   font-weight: 600;
   cursor: pointer;
-  width: 8em;
+  width: 12em;
   height: 2em;
 }
 .button-edit {
   border: none;
-  color: rgb(74, 9, 164);
+  color: rgb(31, 21, 96);
   font-weight: 600;
   cursor: pointer;
+}
+.button-edit:hover {
+  color: rgb(36, 12, 193);
 }
 .button-delete {
   border: none;
   color: rgb(164, 9, 9);
   font-weight: 600;
   cursor: pointer;
+}
+.button-delete:hover {
+  color: rgb(255, 1, 1);
 }

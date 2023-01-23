@@ -54,7 +54,7 @@ function HomeScreen() {
         ) : (
           <>
             {" "}
-            <Product products={products.slice(0, 12)} />;
+            <Product products={products.slice(0, 12)} />
           </>
         )}{" "}
         <div className="title-section-two">Ofertas</div>{" "}
@@ -65,7 +65,11 @@ function HomeScreen() {
         ) : (
           <>
             {" "}
-            <Product products={products.slice(0, 12)} />;
+            <Product
+              products={products.slice(0, 12).filter((product) => {
+                return product.discount > 0;
+              })}
+            />
           </>
         )}
         <div className="title-section-two">Accesorios destacados</div>{" "}
@@ -76,7 +80,16 @@ function HomeScreen() {
         ) : (
           <>
             {" "}
-            <Product products={products.slice(0, 12)} />;
+            <Product
+              products={products
+                .slice(0, 12)
+                .filter(
+                  (p) =>
+                    p.categories.filter(
+                      (c) => c.name.toLowerCase() === "accesorios"
+                    ).length > 0
+                )}
+            />
           </>
         )}
       </div>

@@ -1,20 +1,137 @@
-.contenedor__aboutus {
-  padding: 1em;
+.contenedor__main__aboutus {
+  min-height: 2em;
+  background: rgb(255, 255, 255);
+  max-width: 75em;
+  margin: 0 auto;
+  margin-top: 4em;
+  margin-bottom: 4em;
+  padding-bottom: 6em;
+  padding-top: 4em;
+}
+
+.aboutus__section__one {
+  display: flex;
+  margin-top: 2em;
+  background-color: rgb(255, 255, 255);
+  padding-top: 1em;
+}
+
+.aboutus__section__one__img {
+  min-width: 22em;
+
   text-align: center;
+  padding-top: 0.5em;
 }
 
-.aboutus_img img {
+.aboutus__section__one__img img {
+  width: 12em;
+  margin: 0 auto;
+}
+.aboutus__section__one_txt {
+  padding-right: 8em;
+}
+
+.aboutus__txt__title {
+  font-size: 2.2em;
+  font-weight: 600;
+  margin-bottom: 0.8em;
+}
+
+.aboutus__txt__text {
+  color: rgb(105, 105, 108);
+}
+
+.aboutus__section__two {
+  min-height: 6em;
+  background: #143066;
+  margin-top: 4em;
+}
+.aboutus__section__two img {
+  object-fit: fill;
+}
+.aboutus__section__three {
+  margin-top: 4em;
+  margin-left: 8em;
+  margin-right: 5.2em;
+  display: flex;
+}
+
+.aboutus__card__mision {
+  height: 16em;
+  width: 42em;
+  min-height: 18em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  background: rgb(233, 233, 233);
+}
+
+.aboutus__card__mision_title {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.aboutus__card__mision_txt {
+  color: rgb(108, 108, 108);
+}
+.aboutus__card__vision {
+  height: 16em;
   width: 100%;
-  height: auto;
-  margin-bottom: 0.4em;
-  border-radius: 0.6em;
+  min-height: 18em;
+  margin-right: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  background: #143066;
 }
 
-.aboutus_info_text {
-  padding-bottom: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
+.aboutus__card__vision_title {
+  color: rgb(235, 235, 235);
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 1.4em;
+  font-weight: 500;
 }
-.aboutus_info_text p {
-  color: rgb(49, 49, 49);
+
+.aboutus__card__vision_txt {
+  color: rgb(210, 210, 210);
+}
+
+.aboutus__section__four {
+  margin-top: 3em;
+  min-height: 4em;
+  margin-left: 4em;
+  margin-right: 4em;
+  display: block;
+  background: rgb(255, 255, 255);
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-top: 2em;
+  padding-bottom: 2.6em;
+}
+
+.aboutus__valores__title {
+  width: 100%;
+  font-size: 1.8em;
+  text-align: center;
+  padding-bottom: 1.6em;
+  font-weight: 500;
+}
+
+.aboutus__valores__items__section {
+  display: flex;
+}
+
+.valores__item {
+  width: 16.6%;
+  padding: 1em;
+  font-size: 0.8em;
+  text-align: center;
+  color: rgb(106, 106, 106);
+  display: block;
+}
+
+.valores__item img {
+  width: 100%;
 }

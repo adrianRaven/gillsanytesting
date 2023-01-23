@@ -14,7 +14,11 @@ const reducer = (state, action) => {
     case "FETCH_SUCCESS":
       return { ...state, loading: false };
     case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case "FETCH_REQUEST_CAT":
       return { ...state, loading: true };
     case "FETCH_SUCCESS_CAT":
@@ -27,7 +31,12 @@ const reducer = (state, action) => {
       return { ...state, loadingUpdate: false };
     case "UPDATE_FAIL":
       return { ...state, loadingUpdate: false };
-
+    case "FETCH_REQUEST_PRODUCTOS":
+      return { ...state, loading: true };
+    case "FETCH_SUCCESS_PRODUCTOS":
+      return { ...state, products: action.payload.data, loading: false };
+    case "FETCH_FAIL_PRODUCTOS":
+      return { ...state, loading: false, error: action.payload.data };
     default:
       return state;
   }
@@ -39,13 +48,32 @@ export default function ProductEditScreen() {
   const navigate = useNavigate();
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const [{ loading, error, loadingUpdate, categoriesdata }, dispatch] =
-    useReducer(reducer, {
-      categoriesdata: [],
-      loading: true,
-      error: "",
-    });
+  const [
+    { loading, error, loadingUpdate, products, categoriesdata },
+    dispatch,
+  ] = useReducer(reducer, {
+    categoriesdata: [],
+    products: [],
+    loading: true,
+    error: "",
+  });
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [image, setImage] = useState([]);
+  const [categories, setCategory] = useState([]);
+  //accesorios
+  const [accesories, setAccesories] = useState([]);
+  const [description, setDescription] = useState("");
 
+  const [imageSelected, setImageSelected] = useState([]);
+  const accesoriesArrayOne = products.filter((p) => p.id !== productId);
+
+  const accesoriesArray = accesoriesArrayOne.filter(
+    (p) =>
+      p.categories.filter((c) => c.name.toLowerCase() === "accesorios").length >
+      0
+  );
   const MyComponent = () => (
     <Select
       isMulti="true"
@@ -55,20 +83,23 @@ export default function ProductEditScreen() {
       closeMenuOnSelect={false}
       onChange={(e) => {
         categories.push(e[e.length - 1]);
-        //setCategory([...categories, e[e.lenght - 1]]);
       }}
     />
   );
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [image, setImage] = useState([]);
-  const [categories, setCategory] = useState([]);
-  const [description, setDescription] = useState("");
-  const [isActive, setIsActive] = useState(true);
-  console.log(isActive);
 
-  const [imageSelected, setImageSelected] = useState([]);
+  const MyComponentAcc = () => (
+    <Select
+      isMulti="true"
+      options={accesoriesArray.map((item) => {
+        return { label: item.name, value: item.id };
+      })}
+      closeMenuOnSelect={false}
+      onChange={(e) => {
+        accesories.push(e[e.length - 1]);
+      }}
+    />
+  );
+
   const uploadImage = () => {
     Array.from(imageSelected).forEach((item) => {
       const formData = new FormData();
@@ -86,6 +117,40 @@ export default function ProductEditScreen() {
         });
     });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch({ type: "FETCH_REQUEST" });
+        const { data } = await axios.get(
+          process.env.REACT_APP_API_URL_TESTING + `/product/${productId}`
+        );
+        setName(data.data.name);
+        setPrice(data.data.price);
+        setImage(data.data.images);
+        setDiscount(data.data.discount);
+        setCategory(
+          data.data.categories.map((item) => {
+            return { label: item.name, value: item.id };
+          })
+        );
+        setAccesories(
+          data.data.accessories.map((item) => {
+            return { label: item.name, value: item.id };
+          })
+        );
+
+        setDescription(data.data.description);
+        dispatch({ type: "FETCH_SUCCESS" });
+      } catch (err) {
+        dispatch({
+          type: "FETCH_FAIL",
+          payload: getError(err),
+        });
+      }
+    };
+    fetchData();
+  }, [productId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,32 +173,18 @@ export default function ProductEditScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
+      dispatch({ type: "FETCH_REQUEST_PRODUCTOS" });
       try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(
-          process.env.REACT_APP_API_URL_TESTING + `/product/${productId}`
+        const result = await axios.get(
+          process.env.REACT_APP_API_URL_TESTING + "/product"
         );
-        setName(data.data.name);
-        setPrice(data.data.price);
-        setImage(data.data.images);
-        setDiscount(data.data.discount);
-        setCategory(
-          data.data.categories.map((item) => {
-            return { label: item.name, value: item.id };
-          })
-        );
-        setIsActive(data.data.isActive);
-        setDescription(data.data.description);
-        dispatch({ type: "FETCH_SUCCESS" });
+        dispatch({ type: "FETCH_SUCCESS_PRODUCTOS", payload: result.data });
       } catch (err) {
-        dispatch({
-          type: "FETCH_FAIL",
-          payload: getError(err),
-        });
+        dispatch({ type: "FETCH_FAIL_PRODUCTOS", payload: err.message });
       }
     };
     fetchData();
-  }, [productId]);
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -152,6 +203,9 @@ export default function ProductEditScreen() {
           categories: categories.map((item) => {
             return { id: item.value };
           }),
+          accessories: accesories.map((item) => {
+            return { id: item.value };
+          }),
           description,
         },
         {
@@ -168,47 +222,51 @@ export default function ProductEditScreen() {
       dispatch({ type: "UPDATE_FAIL" });
     }
   };
-
+  console.log(image);
   return (
-    <div className="small-container">
-      <div>
-        <title>Edit Product ${productId}</title>
-      </div>
-      <h1 className="title-editProd">Editar Producto {productId}</h1>
-
+    <>
       {loading ? (
         <div></div>
       ) : error ? (
         <div variant="danger">{error}</div>
       ) : (
-        <div className="contenedor-forma-updateProd">
-          <div className="forma-updateProd">
-            <section className="contenedor-input-images">
-              <input
-                type="file"
-                name="file"
-                placeholder="Subir Imagen"
-                onChange={(event) => {
-                  setImageSelected(event.target.files);
-                }}
-                className="custom-file-upload"
-                multiple
-              />
-              <button className="boton-uploadto-server" onClick={uploadImage}>
-                Subir imagenes
-              </button>
-            </section>
+        <div className="contenedor__forma__updateProd">
+          <div className="product__edit__title">
+            Editar Producto {productId}
+          </div>
 
+          <section className="product__edit__form__upload">
+            <input
+              type="file"
+              name="file"
+              placeholder="Subir Imagen"
+              onChange={(event) => {
+                setImageSelected(event.target.files);
+              }}
+              className="custom__file__upload"
+              multiple
+            />
+            {/* <div className="product__edit__images__container">
+              {image.map((item) => (
+                <div>{item.uri} </div>
+              ))}
+            </div> */}
+
+            <button className="boton__uploadto__server" onClick={uploadImage}>
+              Subir imagenes
+            </button>
+          </section>
+          <div className="product__edit__form">
             <form action="" method="GET" role="search" onSubmit={submitHandler}>
               {" "}
-              <div className="field">
-                <div className="titulo-field">Nombre</div>
+              <div className="field__edit__product">
+                <div className="field__edit__product__title">Nombre</div>
 
-                <div className="field">
+                <div className="field__edit__product__input">
                   <input
                     type="text"
                     required
-                    className="nav-search-input-signin"
+                    className="edit__product__input__txt"
                     maxLength="120"
                     autoFocus
                     value={name}
@@ -218,12 +276,12 @@ export default function ProductEditScreen() {
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <div className="titulo-field">Precio</div>
+                <div className="field__edit__product__title">Precio</div>
                 <div className="field">
                   <input
                     type="number"
                     required
-                    className="nav-search-input-signin"
+                    className="edit__product__input__txt"
                     maxLength="120"
                     autoFocus
                     autoCapitalize="off"
@@ -233,12 +291,12 @@ export default function ProductEditScreen() {
                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
-                <div className="titulo-field">Precio Oferta</div>
+                <div className="field__edit__product__title">Precio Oferta</div>
                 <div className="field">
                   <input
                     type="number"
                     required
-                    className="nav-search-input-signin"
+                    className="edit__product__input__txt"
                     maxLength="120"
                     autoFocus
                     autoCapitalize="off"
@@ -249,12 +307,12 @@ export default function ProductEditScreen() {
                   />
                 </div>
               </div>
-              <div className="titulo-field">Descripción</div>
+              <div className="field__edit__product__title">Descripción</div>
               <div className="field">
-                <input
+                <textarea
                   type="text"
                   required
-                  className="nav-search-input-signin"
+                  className="edit__product__input__desc"
                   maxLength="999"
                   autoFocus
                   autoCapitalize="off"
@@ -264,34 +322,26 @@ export default function ProductEditScreen() {
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
-              <div className="titulo-field">Categorias</div>
+              <div className="field__edit__product__title">Categorias</div>
               <div className="dropdown-category">
                 <MyComponent></MyComponent>
               </div>
-              <div className="dropdown-section">
-                <input
-                  className="input-checkbox"
-                  type="checkbox"
-                  onChange={(e) => setIsActive(e.target.value)}
-                />{" "}
-                <div className="text-checkbox">Producto Activo</div>
-              </div>
-              <div>
-                <div className="field-button padding-bottom--24">
-                  <button
-                    className="button-updateProd"
-                    disabled={loadingUpdate}
-                    type="submit"
-                  >
-                    Actualizar
-                  </button>
-                  {loadingUpdate && <div>Cargando</div>}
-                </div>
+              <div className="field__edit__product__title">Accesorios</div>
+              <MyComponentAcc></MyComponentAcc>
+              <div className="edit__product__buton__update">
+                <button
+                  className="button-updateProd"
+                  disabled={loadingUpdate}
+                  type="submit"
+                >
+                  Actualizar
+                </button>
+                {loadingUpdate && <div>Cargando</div>}
               </div>
             </form>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

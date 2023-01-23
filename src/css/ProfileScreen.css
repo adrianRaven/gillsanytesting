@@ -5,3 +5,65 @@
 .form-profile {
   text-align: center;
 }
+
+/*Large tablest & laptop styles*/
+@media screen and (min-width: 960px) {
+  .contenedor-principal-profile {
+    padding-top: 1em;
+    background: rgb(247, 247, 245);
+    padding-bottom: 4em;
+  }
+
+  .contenedor-detalle-profile {
+    background: rgb(255, 255, 255);
+    width: 80%;
+    max-width: 85em;
+    margin: 0 auto;
+    padding-left: 2em;
+    padding-right: 4em;
+    padding-top: 3.4em;
+    padding-bottom: 4em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panel__left__profile {
+    padding-top: 2em;
+    padding-left: 2em;
+  }
+  .panel__left__profile img {
+    width: 8em;
+    margin-bottom: 2em;
+  }
+
+  .panel__left__user__name {
+    font-size: 2em;
+    font-weight: 600;
+    color: #4e4a60;
+  }
+  .panel__right__profile {
+    padding: 2em;
+    text-align: center;
+  }
+
+  .profile-titulo {
+    margin-bottom: 1em;
+  }
+  .titulo-profile {
+    font-size: 1.4em;
+    font-weight: 600;
+  }
+
+  .nav-search-input-profile {
+    background-color: rgb(238, 238, 239);
+    border: none;
+    padding: 12px 15px;
+    color: #33296a;
+    font-weight: 500;
+    margin: 8px 0;
+    height: 2.2em;
+    border-radius: 1em;
+    margin-bottom: 2em;
+    width: 40em;
+  }
+}

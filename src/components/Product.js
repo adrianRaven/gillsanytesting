@@ -48,10 +48,25 @@ function Product(props) {
             </div>
             <div className="contenedor-item-info">
               <div className="item-cantidad">
-                <span className="item-cantidad-tag">
-                  <span className="item-precio-simbolo">$ </span>
-                  <span className="itemprecio-digitos">{product.price} </span>
-                </span>
+                {product.discount > 0 ? (
+                  <span className="item-cantidad-tag">
+                    <span className="item-precio-simbolo">$ </span>
+                    <span className="itemprecio-digitos">
+                      {product.discount}{" "}
+                    </span>
+                  </span>
+                ) : (
+                  <span className="item-cantidad-tag">
+                    <span className="item-precio-simbolo">$ </span>
+                    <span className="itemprecio-digitos">{product.price} </span>
+                  </span>
+                )}
+
+                {product.discount === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="item-original-price">$ {product.price} </div>
+                )}
               </div>
               <div className="producto__info__nombre">
                 <p>{product.name}</p>

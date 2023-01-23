@@ -8,6 +8,8 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   align-self: center;
+  margin: 0 auto;
+  text-align: center;
 }
 
 @keyframes rotation {

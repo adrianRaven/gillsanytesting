@@ -70,11 +70,6 @@
   font-weight: 300;
 }
 
-.contenedor-botones-cart {
-  margin: 0;
-  padding: 0;
-}
-
 .boton-compra-one-cart {
   width: 100%;
   margin-top: 1em;
@@ -174,16 +169,19 @@
     padding-bottom: 0.6em;
     min-height: 12em;
     width: 75em;
+    padding-top: 1.2em;
   }
 
   .section-title-carrito {
     color: #323335;
+    margin-bottom: 4em;
+    margin-left: 1em;
   }
 
   .section-items-carrito {
     margin-top: 1em;
     margin-bottom: 1em;
-    padding-left: 1em;
+    padding-left: 2em;
     padding-right: 1em;
   }
 
@@ -195,18 +193,27 @@
   }
 
   .contenedor-total-carrito {
-    padding: 1em;
+    padding: 0em;
+    padding-bottom: 0em;
+    padding-bottom: 4em;
+    margin-top: 1em;
   }
 
   .texto-envio-total {
     font-size: 1.2em;
-    float: right;
-    width: 20em;
+    text-align: right;
+    width: 100%;
+  }
+  .precio-envio-total-txt {
+    padding-top: 1em;
+    width: 90%;
   }
 
   .precio-envio-total {
-    width: 50%;
-    padding-left: 1em;
+    width: 10%;
+    padding-left: 0em;
+    padding-right: 2em;
+    padding-top: 1em;
     text-align: end;
     font-weight: 600;
   }
@@ -218,12 +225,16 @@
   }
 
   .contenedor-botones-cart {
-    background: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    justify-content: right;
   }
 
   .boton-compra-one-cart {
     width: 12em;
-    margin-top: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    margin-top: 1em;
     background-color: #3483fa;
     border-color: transparent;
     color: #fff;
@@ -239,18 +250,23 @@
     -webkit-transition: 0.18s ease-out;
     transition: 0.18s ease-out;
   }
-
+  .boton-compra-one-cart:hover {
+    background: rgb(255, 213, 0);
+    color: rgb(21, 22, 31);
+  }
   .contenedor__item__carrito {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-block;
     background: rgb(237, 237, 237);
   }
 
   .contenedor-item-detalle-incarrito {
-    width: 75em;
+    width: 70em;
     background: var(--third);
     margin-bottom: 0.4em;
     display: inline-block;
+  }
+  .contenedor-section-img-title {
+    display: flex;
   }
 
   .item-img img {
@@ -259,7 +275,7 @@
 
   .item-text-details {
     min-width: 60%;
-    padding-top: 0.8em;
+    padding-top: 3em;
     padding-left: 0.5em;
   }
   .item-text-details a {

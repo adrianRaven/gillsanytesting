@@ -10,7 +10,7 @@ function SignupScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInUrl ? redirectInUrl : "/";
+  const redirect = redirectInUrl ? redirectInUrl : "/confirmation";
 
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
@@ -27,7 +27,7 @@ function SignupScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (Password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error("Las contraseñas no coinciden");
       return;
     }
     try {

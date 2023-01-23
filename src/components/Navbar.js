@@ -10,15 +10,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Store } from "../Store";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+  const navigate = useNavigate();
   const navRef = useRef();
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
+    navigate("/");
   };
 
   const [categories, setCategories] = useState([]);
@@ -74,6 +77,9 @@ function Navbar() {
       }
     }
   };
+  const refreshPage = () => {
+    window.location.reload();
+  };
   return (
     <div className="navbar-contenedor">
       <a href="/">
@@ -91,7 +97,7 @@ function Navbar() {
             <a href="/">Ofertas</a>
           </li>
           <li>
-            <a href="/acercade">Acerca de</a>
+            <a href="/acercade">Nosotros</a>
           </li>
         </ul>
         <hr className="division__menu" />
@@ -164,7 +170,10 @@ function Navbar() {
                       <a href="/admin/Products">Productos</a>
                     </li>
                     <li>
-                      <a href="/admin/Orders">Ordenes</a>
+                      <a href="/admin/Orders">Compras</a>
+                    </li>
+                    <li>
+                      <a href="/admin/categories">Categorias</a>
                     </li>
                   </ul>
                 </>
@@ -176,7 +185,14 @@ function Navbar() {
 
           {userInfo && (
             <li>
-              <button className="dropbtn" onClick={signoutHandler}>
+              <button
+                target="/"
+                className="dropbtn"
+                onClick={() => {
+                  signoutHandler();
+                  refreshPage();
+                }}
+              >
                 Salir
               </button>
             </li>

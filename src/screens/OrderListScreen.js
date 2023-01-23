@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import { getError } from "../utils";
 import "../css/OrderListScreen.css";
-
+import { DataGrid } from "@mui/x-data-grid";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -30,7 +30,16 @@ export default function OrderListScreen() {
     loading: true,
     error: "",
   });
-
+  const rows = orders?.data.map((o) => {
+    return {
+      id: o.id,
+      col1: o.id,
+      col2: o.createdAt.substring(0, 10),
+      col3: o.totalPrice,
+      col4: o.isPaid ? o.paidAt.substring(0, 10) : "No",
+      col5: o.isDelivered ? o.deliveredAt.substring(0, 10) : "No",
+    };
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -58,12 +67,12 @@ export default function OrderListScreen() {
       {loading ? (
         <div>cargando...</div>
       ) : error ? (
-        <div>{error}</div>
+        <div variant="danger">{error}</div>
       ) : (
         <div>
           <div>
             <div>
-              <h1 className="titulo-lista-ordenes">Ordenes</h1>
+              <h1 className="titulo-lista-ordenes">Compras</h1>
             </div>
           </div>
           {loading ? (
@@ -71,51 +80,62 @@ export default function OrderListScreen() {
           ) : error ? (
             <div>{error}</div>
           ) : (
-            <div>
-              <div className="contenedor-tabla-lista-ordenes">
-                <div className="tabla-ordenes">
-                  {" "}
-                  <div className="tabla-row-id header-tabla">ID</div>
-                  <div className="tabla-row-user header-tabla">Usuario</div>
-                  <div className="tabla-row-date header-tabla">Fecha</div>
-                  <div className="tabla-row-total header-tabla">Total</div>
-                  <div className="tabla-row-paid header-tabla">Pagado</div>
-                  <div className="tabla-row-deliver header-tabla">
-                    Entregado
-                  </div>
-                  <div className="tabla-row-actions header-tabla">Acciones</div>
-                  {orders.data.map((order) => (
-                    <>
-                      <div className="tabla-row-id">{order.id}</div>
-                      <div className="tabla-row-user">
-                        {order.user ? order.user.name : "DELETED USER"}
-                      </div>
-                      <div className="tabla-row-date">
-                        {order.createdAt.substring(0, 10)}
-                      </div>
-                      <div className="tabla-row-total">{order.totalPrice}</div>
-                      <div className="tabla-row-paid">
-                        {order.isPaid ? order.paidAt.substring(0, 10) : "No"}
-                      </div>
-                      <div className="tabla-row-deliver">
-                        {order.isDelivered
-                          ? order.deliveredAt.substring(0, 10)
-                          : "No"}
-                      </div>
-                      <div className="tabla-row-edit">
-                        {" "}
+            <div
+              className="table-component-orders"
+              style={{ height: 800, width: "80%", margin: "0 auto" }}
+            >
+              <DataGrid
+                columns={[
+                  { field: "col1", headerName: "ID", flex: 0.1, minWidth: 80 },
+                  {
+                    field: "col2",
+                    headerName: "Fecha",
+                    flex: 0.2,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col3",
+                    headerName: "Total",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col4",
+                    headerName: "Pagado",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col5",
+                    headerName: "Entregado",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col6",
+                    headerName: "Editar",
+                    sortable: false,
+                    flex: 0.1,
+                    minWidth: 80,
+                    renderCell: (params) => {
+                      const onClick = (e) => {
+                        e.stopPropagation(); // don't select this row after clicking
+                        navigate(`/order/${params.id}`);
+                      };
+                      return (
                         <button
                           type="button"
                           className="button-edit"
-                          onClick={() => navigate(`/order/${order.id}`)}
+                          onClick={onClick}
                         >
-                          Editar
+                          Edit
                         </button>
-                      </div>
-                    </>
-                  ))}
-                </div>
-              </div>
+                      );
+                    },
+                  },
+                ]}
+                rows={rows ? rows : []}
+              />
             </div>
           )}
         </div>

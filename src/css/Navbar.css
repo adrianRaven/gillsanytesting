@@ -110,13 +110,12 @@ hr.division__menu {
 
 .badgeCarrito {
   background-color: red;
-  width: 0.5em;
+  width: 1.8em;
   font-weight: 500;
   font-size: 0.8em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
   color: var(--third);
   border-radius: 1em;
+  justify-content: center;
 }
 
 .navbar__menu__account {

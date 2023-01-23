@@ -1,17 +1,19 @@
 import axios from "axios";
-import { useContext, useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { Store } from "../Store";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 import "../css/ProductScreen.css";
-import {
-  faTrashCan,
-  faCirclePlus,
-  faCircleMinus,
-} from "@fortawesome/free-solid-svg-icons";
+import AccessorieItem from "../components/AccessorieItem";
+import { faCirclePlus, faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Carousel from "react-multi-carousel";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -26,6 +28,37 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  // ---- temporary cart --------*/
+  const [data, setData] = useState(0);
+  const childToParent = (childData) => {
+    setData(childData);
+    console.log(childData);
+  };
+
+  //----- end temporary cart section --------*/
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1660 },
+      items: 4,
+    },
+    desktopTwo: {
+      breakpoint: { max: 1660, min: 1460 },
+      items: 4,
+    },
+    desktop: {
+      breakpoint: { max: 1460, min: 1023 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1023, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
@@ -34,7 +67,7 @@ function ProductScreen() {
     loading: true,
     error: "",
   });
-
+  const imageRef = useRef(null);
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -52,38 +85,31 @@ function ProductScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
+
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(
-      process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`
-    );
-    if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
-      return;
-    }
     ctxDispatch({
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity },
     });
-    navigate("/cart");
+    //navigate("/cart");
   };
 
   const addToCartCheckoutHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x.id === product.id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(
-      process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`
+    const existItem = cart.cartItems.find(
+      (x) => x.id === product.id || x.product.id === product.id
     );
-    if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
-      return;
-    }
+    const quantity = existItem ? existItem.quantity + 1 : 1;
     ctxDispatch({
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity },
     });
     navigate("/signin?redirect=/shipping");
+  };
+
+  const showImage = async (pic) => {
+    imageRef.current.src = pic;
   };
 
   return loading ? (
@@ -92,189 +118,136 @@ function ProductScreen() {
     <MessageBox variant="danger">{error} </MessageBox>
   ) : (
     <div className="contenedor__product_screen">
-      <div className="contenedor__product__name">{product.name} </div>
-      {product.isActive ? (
-        <div className="success">Disponible</div>
-      ) : (
-        <div className="danger">No Disponible</div>
-      )}
-      <div className="contenedor__prodict__image">
-        <img
-          className="img"
-          src={
-            "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
-            product.images[0].uri
-          }
-          alt={product.name}
-        />
+      <div className="contenedor__product__main">
+        <div className="flex__box">
+          <div className="contenedor__product_left">
+            <div className="contenedor__big__image">
+              <Zoom>
+                <img
+                  ref={imageRef}
+                  alt={product.name}
+                  src={
+                    "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                    product.images[0].uri
+                  }
+                />
+              </Zoom>
+            </div>
+
+            <Carousel responsive={responsive}>
+              {product.images.map((p) => (
+                <div className="small__images" key={product.id}>
+                  <img
+                    src={
+                      "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                      p.uri
+                    }
+                    alt={p.name}
+                    key={product.id}
+                    onClick={() =>
+                      showImage(
+                        "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                          p.uri
+                      )
+                    }
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+        <div className="contenedor__product_right">
+          {" "}
+          <div className="contenedor__product__name">{product.name} </div>
+          {product.isActive ? (
+            <div className="success">Disponible</div>
+          ) : (
+            <div className="danger">No Disponible</div>
+          )}
+          <div className="contenedor__product__precio"> </div>
+          {product.discount === 0 ? (
+            <div></div>
+          ) : (
+            <div className="contenedor__product__precio">
+              ${" "}
+              {product.price.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}{" "}
+            </div>
+          )}
+          {product.discount > 0 ? (
+            <div className="contenedor__product__oferta">
+              ${" "}
+              {product.discount.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}{" "}
+            </div>
+          ) : (
+            <div className="contenedor__product__oferta">
+              ${" "}
+              {product.price.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}{" "}
+            </div>
+          )}
+          <div>IVA Incluido </div>
+          <div className="product__panel__container">
+            <div className="product__panel__title">Cantidad</div>
+            <div className="accessory-panelAdd">
+              <button>
+                <div className="quantityItem-minus">
+                  {" "}
+                  <FontAwesomeIcon icon={faCircleMinus} />
+                </div>
+              </button>{" "}
+              <div className="accessory__quantityItem">{data}</div>
+              <button className="accessory__button___noDecorations">
+                <div className="quantityItem-plus">
+                  {" "}
+                  <FontAwesomeIcon icon={faCirclePlus} />
+                </div>
+              </button>
+            </div>
+          </div>
+          <div className="contenedor-botones-product">
+            <div className="ui-pdp-container-accesorios">
+              <h2 className="caracteristicas-title">Accesorios extra</h2>
+              <div className="accesorios-contenedor">
+                <AccessorieItem
+                  props={product.accessories}
+                  childToParent={childToParent}
+                ></AccessorieItem>
+              </div>
+            </div>
+            <button className="boton-compra-one">
+              <span onClick={addToCartCheckoutHandler}>Comprar ahora</span>
+            </button>
+            <button className="boton-compra-two">
+              <span onClick={addToCartHandler}>Agregar al carrito</span>
+            </button>
+          </div>
+        </div>{" "}
       </div>
-      <div className="contenedor__product__precio">$ {product.price} </div>
-      <div className="contenedor__product__oferta">$ {product.discount} </div>
-      <div>IVA Incluido </div>
 
-      <div className="contenedor-botones">
-        <button className="boton-compra-one">
-          <span onClick={addToCartCheckoutHandler}>Comprar ahora</span>
-        </button>
-        <button className="boton-compra-two">
-          <span onClick={addToCartHandler}>Agregar al carrito</span>
-        </button>
-
-        <div className="ui-pdp-container-accesorios">
-          <h2 className="caracteristicas-title">Accesorios extra</h2>
-          <div className="accesorios-contenedor">
-            <div className="accesorios-item">
-              <div className="img-accesorio">
-                <img
-                  src={require("../img/accesorio1.png")}
-                  alt="Caracteristica 1"
-                  width="45px"
-                ></img>
-              </div>
-              <div className="txt-accesorio">Transductor Rectal</div>
-              <div className="total-accesorio"> $ 100.00</div>
-              <div className="panel-accesorio">
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-minus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleMinus} />
-                  </div>
-                </button>{" "}
-                <div className="quantityItemAccesorio">
-                  <span>0</span>{" "}
-                </div>
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-plus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCirclePlus} />
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <div className="accesorios-item">
-              <div className="img-accesorio">
-                <img
-                  src={require("../img/accesorio2.png")}
-                  alt="Caracteristica 2"
-                  width="45px"
-                ></img>
-              </div>
-              <div className="txt-accesorio">Transductor Convexo</div>
-              <div className="total-accesorio"> $ 100.00</div>
-              <div className="panel-accesorio">
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-minus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleMinus} />
-                  </div>
-                </button>{" "}
-                <div className="quantityItemAccesorio">
-                  <span>0</span>{" "}
-                </div>
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-plus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCirclePlus} />
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <div className="accesorios-item">
-              <div className="img-accesorio">
-                <img
-                  src={require("../img/accesorio3.png")}
-                  alt="Caracteristica 3"
-                  width="45px"
-                ></img>
-              </div>
-              <div className="txt-accesorio">Transductor micorconvexo</div>
-              <div className="total-accesorio"> $ 100.00</div>
-              <div className="panel-accesorio">
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-minus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleMinus} />
-                  </div>
-                </button>{" "}
-                <div className="quantityItemAccesorio">
-                  <span>0</span>{" "}
-                </div>
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-plus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCirclePlus} />
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <div className="accesorios-item">
-              <div className="img-accesorio">
-                <img
-                  src={require("../img/accesorio4.png")}
-                  alt="Caracteristica 3"
-                  width="45px"
-                ></img>
-              </div>
-              <div className="txt-accesorio">Protector de pantalla</div>
-              <div className="total-accesorio"> $ 100.00</div>
-              <div className="panel-accesorio">
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-minus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleMinus} />
-                  </div>
-                </button>{" "}
-                <div className="quantityItemAccesorio">
-                  <span>0</span>{" "}
-                </div>
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-plus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCirclePlus} />
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <div className="accesorios-item">
-              <div className="img-accesorio">
-                <img
-                  src={require("../img/accesorio5.png")}
-                  alt="Caracteristica 3"
-                  width="45px"
-                ></img>
-              </div>
-              <div className="txt-accesorio">Pila</div>
-              <div className="total-accesorio"> $ 100.00</div>
-              <div className="panel-accesorio">
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-minus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCircleMinus} />
-                  </div>
-                </button>{" "}
-                <div className="quantityItemAccesorio">
-                  <span>0</span>{" "}
-                </div>
-                <button className="button-noDecorations">
-                  <div className="quantity-accesorio-plus">
-                    {" "}
-                    <FontAwesomeIcon icon={faCirclePlus} />
-                  </div>
-                </button>
-              </div>
+      <div className="info__product__section">
+        <div className="info__product__content_section">
+          <div className="info__product__youtube__link">
+            <a
+              href="https://www.youtube.com/channel/UCTJu8pudB5MTKE1Nx9GJRxg"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FontAwesomeIcon icon={faYoutube} />
+            </a>
+            <div className="info__product__youtube__txt">
+              Video con información detallada
             </div>
           </div>
         </div>
-        <div className="info__product__section">
-          <div className="info_product_descripcion">
-            <div className="info_product_description_title">Descripción </div>
-            <div className="info_product_descripcion_txt">
-              <div>{product.description}</div>
-            </div>
+        <div className="info_product_descripcion">
+          <div className="info_product_description_title">Descripción </div>
+          <div className="info_product_descripcion_txt">
+            <div>{product.description}</div>
           </div>
         </div>
       </div>
