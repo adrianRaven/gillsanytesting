@@ -18,18 +18,10 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-};*/
+};
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebookF,
-  faTwitter,
-  faInstagram,
-  faYoutube,
-  faTiktok,
-} from "@fortawesome/free-brands-svg-icons";
 function HomeScreen() {
-  /*const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
     loading: true,
     error: "",
@@ -48,7 +40,7 @@ function HomeScreen() {
       }
     };
     fetchData();
-  }, []);*/
+  }, []);
 
   return (
     <main className="main">

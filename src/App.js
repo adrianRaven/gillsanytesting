@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import HomeScreen from "./screens/HomeScreen";
 
-/*import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SigninScreen from "./screens/SigninScreen";
 
@@ -28,26 +28,25 @@ const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
 
-const ProductScreen = lazy(() => import("./screens/ProductScreen"));*/
+const ProductScreen = lazy(() => import("./screens/ProductScreen"));
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          {/*<Route
+          <Route
             path="/product/:slug"
             element={
               <>
                 <Navbar /> <ProductScreen /> <Footer />{" "}
               </>
             }
-          /> */}
+          />
           <Route
             path="/"
             element={
               <>
-                {/* <Navbar /> <HomeScreen /> <Footer />*/}
-                <HomeScreen />
+                <Navbar /> <HomeScreen /> <Footer />
               </>
             }
           ></Route>
@@ -159,7 +158,7 @@ function App() {
               </>
             }
           ></Route>
-          {/* Admin Routes 
+          {/* Admin Routes */}
           <Route
             path="/admin/dashboard"
             element={
@@ -179,6 +178,7 @@ function App() {
               </AdminRoute>
             }
           ></Route>
+
           <Route
             path="/admin/products/:id"
             element={
