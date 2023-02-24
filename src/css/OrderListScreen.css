@@ -5,6 +5,7 @@
 }
 .table-component-orders {
   background: #fff;
+  font-size: 36px;
 }
 .header-contenedor {
   display: grid;
@@ -89,6 +90,7 @@
   color: rgb(74, 9, 164);
   font-weight: 600;
   cursor: pointer;
+  font-size: 1.4em;
 }
 .button-delete {
   background-color: transparent;

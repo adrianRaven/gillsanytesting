@@ -210,11 +210,14 @@
   font-size: 2em;
 }
 
-.info__product__youtube__txt {
-  margin-left: 1.4em;
-  padding-top: 0.6em;
+.info__product__youtube__txt a {
+  margin-left: 0.8em;
+
+  font-size: 1em;
   font-weight: 500;
+  color: #20222a;
 }
+
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .contenedor__product_screen {

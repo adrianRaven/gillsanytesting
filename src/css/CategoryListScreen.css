@@ -1,10 +1,13 @@
-.categoy__list__container {
+.update__category__container {
   background: rgb(255, 255, 255);
   width: 85em;
   margin: 0 auto;
   padding: 1.2em;
 }
 
+.contenedor__create__category {
+  padding-left: 8.6em;
+}
 .button__create__category {
   border: none;
   margin-top: 1em;

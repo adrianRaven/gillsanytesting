@@ -1,8 +1,6 @@
 import React, { createContext, useReducer } from "react";
 export const Store = createContext();
 
-var tempCart = [];
-
 const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -16,9 +14,6 @@ const initialState = {
       : "Openpay",
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
-      : [],
-    cartItemsTemp: localStorage.getItem("cartItemsTemp")
-      ? JSON.parse(localStorage.getItem("cartItemsTemp"))
       : [],
   },
 };
@@ -39,21 +34,59 @@ function reducer(state, action) {
               ? {
                   product: {
                     ...existItem.product,
-                    quantity: newItem.product
-                      ? newItem.quantity
-                      : existItem.product.quantity + 1,
                   },
                   purchasePrice: item.purchasePrice,
+                  quantity: newItem.product
+                    ? newItem.quantity
+                    : existItem.quantity + 1,
                 }
               : item
           )
         : [
             ...state.cart.cartItems,
-            { product: newItem, purchasePrice: newItem.price },
+            {
+              product: newItem,
+              purchasePrice: newItem.price,
+              quantity: newItem.quantity,
+            },
           ];
 
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
+    case "CART_ADD_ITEMS": {
+      //add to cart
+      const productsArray = action.payload;
+      var cartItems2 = state.cart.cartItems;
+      productsArray.forEach((newItem) => {
+        const existItem = cartItems2.find(
+          (item) => item.product.id === newItem.product.id
+        );
+        cartItems2 = existItem
+          ? cartItems2.map((item) =>
+              item.product.id === existItem.product.id
+                ? {
+                    product: {
+                      ...existItem.product,
+                    },
+                    purchasePrice: item.purchasePrice,
+                    quantity: newItem.quantity + existItem.quantity,
+                  }
+                : item
+            )
+          : [
+              ...cartItems2,
+              {
+                product: newItem.product,
+                purchasePrice: newItem.product.price,
+                quantity: newItem.quantity,
+              },
+            ];
+      });
+
+      // return;
+      localStorage.setItem("cartItems", JSON.stringify(cartItems2));
+      return { ...state, cart: { ...state.cart, cartItems2 } };
+    }
 
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.cartItems.filter(
@@ -64,11 +97,6 @@ function reducer(state, action) {
     }
     case "CART_CLEAR":
       return { ...state, cart: { ...state.cart, cartItems: [] } };
-    /* Temporary cart*/
-    case "CART_TEMPORARY_ADD_ITEM":
-      // add code with new logic
-
-      break;
 
     case "USER_SIGNIN":
       return { ...state, userInfo: action.payload };

@@ -37,13 +37,21 @@ function Product(props) {
           >
             <div className="contenedor-imagen">
               <div className="tarjeta-link">
-                <img
-                  alt={product.name}
-                  src={
-                    "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
-                    product.images[0].uri
-                  }
-                />
+                {product.images.length > 0 ? (
+                  <img
+                    alt={product.name}
+                    src={
+                      "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                      product.images[0].uri
+                    }
+                  />
+                ) : (
+                  <img
+                    alt={product.name}
+                    className={product.name}
+                    src={require(`../img/noimage.png`)}
+                  />
+                )}
               </div>
             </div>
             <div className="contenedor-item-info">
@@ -62,7 +70,7 @@ function Product(props) {
                   </span>
                 )}
 
-                {product.discount === 0 ? (
+                {product.discount == 0 ? (
                   <div></div>
                 ) : (
                   <div className="item-original-price">$ {product.price} </div>

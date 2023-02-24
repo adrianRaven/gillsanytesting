@@ -10,7 +10,10 @@ root.render(
   <React.StrictMode>
     <StoreProvider>
       <PayPalScriptProvider
-        options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}
+        options={{
+          "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
+          currency: "MXN",
+        }}
       >
         {" "}
         <App />

@@ -111,7 +111,7 @@ function Navbar() {
 
               {cart.cartItems.length > 0 && (
                 <div bg="danger" className="badgeCarrito">
-                  {cart.cartItems.reduce((a, c) => a + c.product.quantity, 0)}
+                  {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                 </div>
               )}
             </a>
@@ -207,7 +207,7 @@ function Navbar() {
         <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
         {cart.cartItems.length > 0 && (
           <div bg="danger" className="items-cart-bars">
-            {cart.cartItems.reduce((a, c) => a + c.product.quantity, 0)}
+            {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
           </div>
         )}
       </button>

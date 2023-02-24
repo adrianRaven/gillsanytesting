@@ -86,7 +86,7 @@ export default function CategoryEditScreen() {
   };
 
   return (
-    <div className="small-container">
+    <div className="update__category__container">
       <div>
         <title>Editar Categoria ${categoryId}</title>
       </div>

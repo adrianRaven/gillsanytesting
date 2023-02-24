@@ -20,15 +20,14 @@ import CategoryListScreen from "./screens/CategoryListScren";
 import CategoryEditScreen from "./screens/CategoryEditScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import ConfirmationScreen from "./screens/ConfirmationScreen";
-
+import CartScreen from "./screens/CartScreen";
 const DashboardScreen = lazy(() => import("./screens/DashboardScreen"));
 const ProductListScreen = lazy(() => import("./screens/ProductListScreen"));
-
 const OrderListScreen = lazy(() => import("./screens/OrderListScreen"));
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
-const CartScreen = lazy(() => import("./screens/CartScreen"));
+
 const ProductScreen = lazy(() => import("./screens/ProductScreen"));
 function App() {
   return (
@@ -75,7 +74,8 @@ function App() {
             element={
               <>
                 {" "}
-                <Navbar /> <CartScreen /> <Footer />{" "}
+                <Navbar />
+                <CartScreen></CartScreen> <Footer />{" "}
               </>
             }
           />

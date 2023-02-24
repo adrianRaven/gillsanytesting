@@ -32,7 +32,7 @@ function PlaceOrderScreen() {
     cart.cartItems.reduce(
       (a, c) =>
         a +
-        c.product.quantity *
+        c.quantity *
           (c.product.discount > 0 ? c.product.discount : c.product.price),
       0
     )
@@ -133,7 +133,7 @@ function PlaceOrderScreen() {
                       {item.product.name}
                     </div>
                     <div className="name-item-order-quantity">
-                      Cantidad: <span>{item.product.quantity}</span>
+                      Cantidad: <span>{item.quantity}</span>
                     </div>
                     <div className="name-item-order-price">
                       ${" "}

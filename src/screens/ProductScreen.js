@@ -29,10 +29,15 @@ const reducer = (state, action) => {
 
 function ProductScreen() {
   // ---- temporary cart --------*/
-  const [data, setData] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [data, setData] = useState([]);
+
+  const parentToChild = () => {
+    setData();
+  };
+
   const childToParent = (childData) => {
     setData(childData);
-    console.log(childData);
   };
 
   //----- end temporary cart section --------*/
@@ -68,6 +73,9 @@ function ProductScreen() {
     error: "",
   });
   const imageRef = useRef(null);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -83,17 +91,20 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
-
   const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x.id === product.id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const finalArray = [
+      ...data,
+      {
+        product: product,
+        purchasePrice: product.price,
+        quantity: quantity,
+      },
+    ];
     ctxDispatch({
-      type: "CART_ADD_ITEM",
-      payload: { ...product, quantity },
+      type: "CART_ADD_ITEMS",
+      payload: finalArray,
     });
-    //navigate("/cart");
+    navigate("/cart");
   };
 
   const addToCartCheckoutHandler = async () => {
@@ -112,6 +123,14 @@ function ProductScreen() {
     imageRef.current.src = pic;
   };
 
+  const addProduct = async () => {
+    setQuantity(quantity + 1);
+  };
+
+  const removeProduct = async () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+  };
+
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
@@ -123,14 +142,22 @@ function ProductScreen() {
           <div className="contenedor__product_left">
             <div className="contenedor__big__image">
               <Zoom>
-                <img
-                  ref={imageRef}
-                  alt={product.name}
-                  src={
-                    "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
-                    product.images[0].uri
-                  }
-                />
+                {product.images.length > 0 ? (
+                  <img
+                    ref={imageRef}
+                    alt={product.name}
+                    src={
+                      "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                      product.images[0].uri
+                    }
+                  />
+                ) : (
+                  <img
+                    alt={product.name}
+                    className={product.name}
+                    src={require(`../img/noimage.png`)}
+                  />
+                )}
               </Zoom>
             </div>
 
@@ -165,7 +192,7 @@ function ProductScreen() {
             <div className="danger">No Disponible</div>
           )}
           <div className="contenedor__product__precio"> </div>
-          {product.discount === 0 ? (
+          {product.discount == 0 ? (
             <div></div>
           ) : (
             <div className="contenedor__product__precio">
@@ -194,14 +221,17 @@ function ProductScreen() {
           <div className="product__panel__container">
             <div className="product__panel__title">Cantidad</div>
             <div className="accessory-panelAdd">
-              <button>
+              <button onClick={removeProduct}>
                 <div className="quantityItem-minus">
                   {" "}
                   <FontAwesomeIcon icon={faCircleMinus} />
                 </div>
               </button>{" "}
-              <div className="accessory__quantityItem">{data}</div>
-              <button className="accessory__button___noDecorations">
+              <div className="accessory__quantityItem">{quantity}</div>
+              <button
+                className="accessory__button___noDecorations"
+                onClick={addProduct}
+              >
                 <div className="quantityItem-plus">
                   {" "}
                   <FontAwesomeIcon icon={faCirclePlus} />
@@ -214,6 +244,7 @@ function ProductScreen() {
               <h2 className="caracteristicas-title">Accesorios extra</h2>
               <div className="accesorios-contenedor">
                 <AccessorieItem
+                  parentToChild={data}
                   props={product.accessories}
                   childToParent={childToParent}
                 ></AccessorieItem>
@@ -232,15 +263,13 @@ function ProductScreen() {
       <div className="info__product__section">
         <div className="info__product__content_section">
           <div className="info__product__youtube__link">
-            <a
-              href="https://www.youtube.com/channel/UCTJu8pudB5MTKE1Nx9GJRxg"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={product.video} target="_blank" rel="noreferrer">
               <FontAwesomeIcon icon={faYoutube} />
             </a>
             <div className="info__product__youtube__txt">
-              Video con información detallada
+              <a href={product.video} target="_blank">
+                Más información
+              </a>
             </div>
           </div>
         </div>

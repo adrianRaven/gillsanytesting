@@ -159,7 +159,7 @@
   }
 
   .items-contenedor-left img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
   .items-contenedor {
@@ -180,11 +180,13 @@
   .name-item-order-txt {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 50%;
+    max-width: 31em;
     height: 1.2em;
     white-space: nowrap;
     font-size: 1.2em;
     font-weight: 600;
+    display: block;
+    margin-right: 2em;
   }
   .name-item-order-quantity {
     width: 10%;

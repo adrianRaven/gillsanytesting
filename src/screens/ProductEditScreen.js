@@ -62,6 +62,7 @@ export default function ProductEditScreen() {
   const [discount, setDiscount] = useState("");
   const [image, setImage] = useState([]);
   const [categories, setCategory] = useState([]);
+  const [video, setVideo] = useState("");
   //accesorios
   const [accesories, setAccesories] = useState([]);
   const [description, setDescription] = useState("");
@@ -129,6 +130,7 @@ export default function ProductEditScreen() {
         setPrice(data.data.price);
         setImage(data.data.images);
         setDiscount(data.data.discount);
+        setVideo(data.data.video);
         setCategory(
           data.data.categories.map((item) => {
             return { label: item.name, value: item.id };
@@ -200,6 +202,7 @@ export default function ProductEditScreen() {
           images: image,
           isActive: true,
           discount: parseFloat(discount),
+          video: video,
           categories: categories.map((item) => {
             return { id: item.value };
           }),
@@ -306,6 +309,21 @@ export default function ProductEditScreen() {
                     onChange={(e) => setDiscount(e.target.value)}
                   />
                 </div>
+              </div>
+              <div className="field__edit__product__title">Enlace Video</div>
+              <div className="field__edit__product__input">
+                <input
+                  type="text"
+                  required
+                  className="edit__product__input__txt"
+                  maxLength="120"
+                  autoFocus
+                  value={video}
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  autoComplete="off"
+                  onChange={(e) => setVideo(e.target.value)}
+                />
               </div>
               <div className="field__edit__product__title">Descripción</div>
               <div className="field">

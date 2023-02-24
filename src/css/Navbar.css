@@ -226,13 +226,18 @@ hr.division__menu {
     justify-content: center;
     text-align: center;
     color: #ffcf06;
-    flex-wrap: nowrap;
-    margin-right: 2em;
+    margin-right: 0em;
     padding-top: 0.25em;
     font-size: 1em;
     justify-content: center;
+    width: 5em;
   }
 
+  .li__carrito a:hover {
+    margin: 0 4rem;
+    color: white;
+    text-decoration: none;
+  }
   .navbar__menu__main {
     display: flex;
     gap: 1.5em;

@@ -138,7 +138,7 @@ export default function CategoryEditScren() {
           <h1 className="titulo-lista-productos">Categorias</h1>
         </div>
         <div className="col text-end">
-          <div className="contenedor-botones-crear">
+          <div className="contenedor__create__category">
             <button
               className="button__create__category"
               type="button"

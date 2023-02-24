@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import React from "react";
 import { Store } from "../Store";
 import { useNavigate } from "react-router-dom";
 import "../css/CartScreen.css";
+
 import {
   faTrashCan,
   faCirclePlus,
@@ -78,9 +79,9 @@ function CartScreen() {
                     <div className="item-panel-options">
                       <div className="item-panelAdd">
                         <button
-                          disabled={item.product.quantity === 1}
+                          disabled={item.quantity === 1}
                           onClick={() =>
-                            updateCartHandler(item, item.product.quantity - 1)
+                            updateCartHandler(item, item.quantity - 1)
                           }
                           className="button-noDecorations"
                         >
@@ -90,11 +91,11 @@ function CartScreen() {
                           </div>
                         </button>{" "}
                         <div className="quantityItem">
-                          <span>{item.product.quantity}</span>{" "}
+                          <span>{item.quantity}</span>{" "}
                         </div>
                         <button
                           onClick={() =>
-                            updateCartHandler(item, item.product.quantity + 1)
+                            updateCartHandler(item, item.quantity + 1)
                           }
                           className="button-noDecorations"
                         >
@@ -146,16 +147,18 @@ function CartScreen() {
                         (c.product.discount > 0
                           ? c.product.discount
                           : c.product.price) *
-                          c.product.quantity,
+                          c.quantity,
                       0
                     )
-                    .toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    .toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
                 </div>
               </span>
             </div>
           </div>
           <div className="precio-envio-info-items-quantity">
-            ({cartItems.reduce((a, c) => a + c.product.quantity, 0)} productos)
+            ({cartItems.reduce((a, c) => a + c.quantity, 0)} productos)
           </div>
           <div className="contenedor-botones-cart">
             {cartItems.length > 0 && (

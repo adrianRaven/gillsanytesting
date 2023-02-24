@@ -108,6 +108,7 @@ export default function ProductListScreen() {
             discount: 0.0,
             images: [],
             isActive: true,
+            video: "",
           },
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },

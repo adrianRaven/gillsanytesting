@@ -6,7 +6,7 @@ import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import LoadingBox from "../components/LoadingBox";
 import Moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +16,7 @@ import {
   faFileInvoice,
   faHashtag,
   faLink,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 function reducer(state, action) {
   switch (action.type) {
@@ -76,17 +77,21 @@ function OrderScreen() {
     error: "",
     successPay: false,
     loadingPay: false,
+    successDeliver: false,
   });
 
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const [{ options, isPending }, paypalDispatch] = usePayPalScriptReducer();
 
   function createOrder(data, actions) {
     return actions.order
       .create({
         purchase_units: [
+          //{ amount: { currency_code: "MXN", value: order.data.totalPrice } },
           {
-            amount: { value: order.data.totalPrice },
-            currency_code: currency,
+            amount: {
+              currency_code: currency,
+              value: order.data.totalPrice,
+            },
           },
         ],
       })
@@ -159,8 +164,9 @@ function OrderScreen() {
         paypalDispatch({
           type: "resetOptions",
           value: {
-            "client-id": clientId,
-            currency_code: "MXN",
+            ...options,
+
+            currency: currency,
           },
         });
         paypalDispatch({ type: "setLoadingStatus", value: "pending" });
@@ -186,11 +192,28 @@ function OrderScreen() {
       );
       dispatch({ type: "DELIVER_SUCCESS", payload: data });
       toast.success("La compra ha sido entregada");
+      navigate("/admin/Orders");
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: "DELIVER_FAIL" });
     }
   };
+
+  const receivedOrderHandler = async (e) => {
+    try {
+      await axios.put(
+        process.env.REACT_APP_API_URL_TESTING + `/purchase/${orderId}/receive`,
+        {
+          headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
+        }
+      );
+      toast.success("La compra se ha recibido");
+      navigate("/admin/Orders");
+    } catch (err) {
+      toast.error(getError(err));
+    }
+  };
+
   return loading ? (
     <div>cargando</div>
   ) : error ? (
@@ -213,7 +236,7 @@ function OrderScreen() {
               <div className="panel-left-title-txt">Ya casi es tuyo...</div>
             )}
 
-            <div className="panel-title-text">Número de pedido: {orderId}</div>
+            <div className="panel-title-text">Número de compra: {orderId}</div>
             <div className="panel-left-shipping">
               <div className="panel-left-shipping-title">
                 Dirección del envío
@@ -235,7 +258,15 @@ function OrderScreen() {
               {order.data.products.map((item) => (
                 <div className="product-container-item" key={item.id}>
                   <div className="align-items-center">
-                    <div className="product-image-item"></div>
+                    <div className="product-image-item">
+                      <img
+                        src={
+                          "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
+                          item.product.images[0].uri
+                        }
+                        alt={item.product.name}
+                      ></img>{" "}
+                    </div>
                     <div className="product-txt-item">
                       <div className="product-txt-name">
                         {item.product.name}
@@ -263,60 +294,85 @@ function OrderScreen() {
                 </div>
               ))}
             </div>
+
             <div className="status__oder_section">
               <div className="panel-left-shipping-title">
                 Estado de la Compra
               </div>{" "}
-              {order.data.isDelivered ? (
-                <div className="status__success">
-                  <FontAwesomeIcon icon={faTruck} />{" "}
-                  <div className="status__success__txt">Enviado el:</div>
-                  <div className="status__success__green">
-                    {Moment(order.data.deliveredAt).format("l")}
-                  </div>
-                </div>
-              ) : (
-                <div className="status__success">
-                  Estado del envío:{" "}
-                  <strong className="status__envio__txt">En Preparación</strong>{" "}
-                </div>
-              )}
-              {order.data.isPaid ? (
-                <div className="status__success">
-                  <FontAwesomeIcon icon={faCreditCard} />{" "}
-                  <div className="status__success__txt">Pagado el:</div>
-                  <div className="status__success__green">
-                    {Moment(order.data.paidAt).format("l")}
-                  </div>
-                </div>
-              ) : (
-                <div className="status__success">
-                  Estado del pago:{" "}
-                  <strong className="status__envio__txt">Pago Pendiente</strong>{" "}
-                </div>
-              )}
-              {order.data.isDelivered ? (
+              {order.data.isReceived ? (
                 <>
-                  {" "}
-                  <div className="status__success">
-                    <FontAwesomeIcon icon={faHashtag} />{" "}
-                    <div className="status__success__txt">
-                      Número de Rastreo:
-                    </div>
-                    <div className="status__success__green">
-                      {order.data.trakingGuide}
-                    </div>
-                  </div>
-                  <div className="status__success">
-                    <FontAwesomeIcon icon={faLink} />{" "}
-                    <div className="status__success__txt">Enlace:</div>
-                    <div className="status__success__green">
-                      {order.data.deliveryInfo}
+                  <div className="label__compra__recibida">
+                    Entregado el{" "}
+                    <div className="label__compra__date">
+                      {Moment(order.data.receivedAt).format("l")}
                     </div>
                   </div>
                 </>
               ) : (
-                <></>
+                <>
+                  {" "}
+                  {order.data.isDelivered ? (
+                    <div className="status__success">
+                      <FontAwesomeIcon icon={faTruck} />{" "}
+                      <div className="status__success__txt">Enviado el:</div>
+                      <div className="status__success__green">
+                        {Moment(order.data.deliveredAt).format("l")}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="status__success">
+                      Estado del envío:{" "}
+                      <strong className="status__envio__txt">
+                        En Preparación
+                      </strong>{" "}
+                    </div>
+                  )}
+                  {order.data.isPaid ? (
+                    <div className="status__success">
+                      <FontAwesomeIcon icon={faCreditCard} />{" "}
+                      <div className="status__success__txt">Pagado el:</div>
+                      <div className="status__success__green">
+                        {Moment(order.data.paidAt).format("l")}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="status__success">
+                      Estado del pago:{" "}
+                      <strong className="status__envio__txt">
+                        Pago Pendiente
+                      </strong>{" "}
+                    </div>
+                  )}
+                  {order.data.isDelivered ? (
+                    <>
+                      {" "}
+                      <div className="status__success">
+                        <FontAwesomeIcon icon={faHashtag} />{" "}
+                        <div className="status__success__txt">
+                          Número de Rastreo:
+                        </div>
+                        <div className="status__success__green">
+                          {order.data.trakingGuide}
+                        </div>
+                      </div>
+                      <div className="status__success">
+                        <FontAwesomeIcon icon={faLink} />{" "}
+                        <div className="status__success__txt">Enlace:</div>
+                        <div className="status__success__green">
+                          <a
+                            href={"https://" + order.data.deliveryInfo}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Rastrea tu envio aqui{" "}
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </>
               )}
             </div>
 
@@ -326,6 +382,7 @@ function OrderScreen() {
                   <LoadingBox>Cargando</LoadingBox>
                 ) : (
                   <PayPalButtons
+                    forceReRender={[currency]}
                     createOrder={createOrder}
                     onApprove={onApprove}
                     onError={onError}
@@ -343,77 +400,121 @@ function OrderScreen() {
               <div className="contenedor-row2">Productos</div>
               <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
             </div>
-
             <div className="contenedor-row-products-total">
               <div className="contenedor-row2">Total</div>
               <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
             </div>
-            <div className="admin__panel__order">
-              <div className="admin__panel__order__title">
-                Panel de Administrador:
-              </div>
-              {!order.data.isPaid && (
-                <div className="admin__panel__order__status">
-                  <FontAwesomeIcon icon={faFileInvoice} /> Pago Pendiente
-                </div>
-              )}
-              {userInfo &&
-                userInfo &&
-                userInfo.data.user.roles[0] === "ADMIN" &&
-                order.data.isPaid && (
+
+            {userInfo && userInfo && userInfo.data.user.roles[0] === "ADMIN" ? (
+              <>
+                {" "}
+                <div className="admin__panel__order">
                   <div className="deliver__section__admin">
-                    {loadingDeliver && <LoadingBox>Cargando</LoadingBox>}
-                    <form
-                      action=""
-                      method="GET"
-                      role="search"
-                      onSubmit={submitHandler}
-                    >
-                      <div className="deliver__section__admin__laebl">
-                        Número de Rastreo
+                    <div className="admin__panel__order__title">
+                      Panel de Administrador:
+                    </div>
+
+                    {userInfo &&
+                    userInfo &&
+                    userInfo.data.user.roles[0] === "ADMIN" &&
+                    order.data.isPaid ? (
+                      !order.data.isDelivered ? (
+                        <>
+                          {loadingDeliver && <LoadingBox>Cargando</LoadingBox>}
+                          <form
+                            action=""
+                            method="GET"
+                            role="search"
+                            onSubmit={submitHandler}
+                          >
+                            <div className="deliver__section__admin__laebl">
+                              Número de Rastreo
+                            </div>
+                            <div className="deliver__section__admin__input">
+                              <input
+                                type="text"
+                                className="admin__input"
+                                maxLength="120"
+                                autoFocus
+                                value={trackingGuide}
+                                autoCapitalize="off"
+                                spellCheck="false"
+                                autoComplete="off"
+                                onChange={(e) =>
+                                  setTrackingGuide(e.target.value)
+                                }
+                              />
+                            </div>
+                            <div className="deliver__section__admin__label">
+                              Información adicional
+                            </div>
+                            <div className="deliver__section__admin__input">
+                              <input
+                                type="text"
+                                required
+                                className="admin__input"
+                                maxLength="120"
+                                autoFocus
+                                value={deliveryInfo}
+                                autoCapitalize="off"
+                                spellCheck="false"
+                                autoComplete="off"
+                                onChange={(e) =>
+                                  setDeliveryInfo(e.target.value)
+                                }
+                              />
+                            </div>
+                            <div className="signin-botones-signin">
+                              <button
+                                type="submit"
+                                className="boton-continuar-signin"
+                              >
+                                <span>Envíar Orden</span>
+                              </button>
+                            </div>
+                          </form>
+                        </>
+                      ) : !order.data.isReceived ? (
+                        <>
+                          <div className="txt__confirmar__recepcion">
+                            Confirmar recepción
+                          </div>
+                          <button
+                            onClick={receivedOrderHandler}
+                            className="boton__confirmar__recepcion"
+                          >
+                            Confirmar
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <div className="contenedor__mensaje__recibido">
+                            <div className="icon__check__recibido">
+                              <FontAwesomeIcon icon={faCheck} />
+                            </div>
+                            <div className="txt__recibido">
+                              {" "}
+                              Compra recibida
+                            </div>
+                          </div>
+                        </>
+                      )
+                    ) : (
+                      <div>
+                        {!order.data.isPaid && (
+                          <div className="admin__panel__order__status">
+                            <FontAwesomeIcon icon={faFileInvoice} /> Pago
+                            Pendiente
+                          </div>
+                        )}
                       </div>
-                      <div className="deliver__section__admin__input">
-                        <input
-                          type="text"
-                          className="admin__input"
-                          maxLength="120"
-                          autoFocus
-                          value={trackingGuide}
-                          autoCapitalize="off"
-                          spellCheck="false"
-                          autoComplete="off"
-                          onChange={(e) => setTrackingGuide(e.target.value)}
-                        />
-                      </div>
-                      <div className="deliver__section__admin__label">
-                        Información adicional
-                      </div>
-                      <div className="deliver__section__admin__input">
-                        <input
-                          type="text"
-                          required
-                          className="admin__input"
-                          maxLength="120"
-                          autoFocus
-                          value={deliveryInfo}
-                          autoCapitalize="off"
-                          spellCheck="false"
-                          autoComplete="off"
-                          onChange={(e) => setDeliveryInfo(e.target.value)}
-                        />
-                      </div>
-                      <div className="signin-botones-signin">
-                        <button
-                          type="submit"
-                          className="boton-continuar-signin"
-                        >
-                          <span>Envíar Orden</span>
-                        </button>
-                      </div>
-                    </form>
+                    )}
                   </div>
-                )}
-            </div>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

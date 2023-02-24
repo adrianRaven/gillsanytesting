@@ -38,6 +38,7 @@ export default function OrderListScreen() {
       col3: o.totalPrice,
       col4: o.isPaid ? o.paidAt.substring(0, 10) : "No",
       col5: o.isDelivered ? o.deliveredAt.substring(0, 10) : "No",
+      col6: o.isReceived ? o.receivedAt.substring(0, 10) : "No",
     };
   });
   useEffect(() => {
@@ -82,11 +83,21 @@ export default function OrderListScreen() {
           ) : (
             <div
               className="table-component-orders"
-              style={{ height: 800, width: "80%", margin: "0 auto" }}
+              style={{
+                height: 800,
+                width: "80%",
+                margin: "0 auto",
+                fontSize: 80,
+              }}
             >
               <DataGrid
                 columns={[
-                  { field: "col1", headerName: "ID", flex: 0.1, minWidth: 80 },
+                  {
+                    field: "col1",
+                    headerName: "ID",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
                   {
                     field: "col2",
                     headerName: "Fecha",
@@ -107,12 +118,19 @@ export default function OrderListScreen() {
                   },
                   {
                     field: "col5",
-                    headerName: "Entregado",
+                    headerName: "Enviado",
                     flex: 0.1,
                     minWidth: 80,
                   },
                   {
                     field: "col6",
+                    headerName: "Recibido",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col7",
+
                     headerName: "Editar",
                     sortable: false,
                     flex: 0.1,
