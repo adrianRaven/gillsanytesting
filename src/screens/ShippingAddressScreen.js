@@ -2,46 +2,45 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import "../css/ShippingAddressScreen.css";
-//import { Country, State, City } from "country-state-city";
-//import { useFormik } from "formik";
-//import Select from "react-select";
+import { Country, State, City } from "country-state-city";
+import { useFormik } from "formik";
+import Select from "react-select";
 
 function ShippingAddressScreen() {
-  // const addressFromik = useFormik({
-  //   initialValues: {
-  //     country: "Mexico",
-  //     state: null,
-  //     city: null,
-  //   },
-  //   onSubmit: (values) => console.log(JSON.stringify(values)),
-  // });
+  const addressFromik = useFormik({
+    initialValues: {
+      country: "Mexico",
+      stateName: null,
+      city: null,
+    },
+    onSubmit: (values) => console.log(JSON.stringify(values)),
+  });
 
-  // const countries = Country.getAllCountries();
+  const countries = Country.getAllCountries();
 
-  // const updatedCountries = countries.map((country) => ({
-  //   label: country.name,
-  //   value: country.isoCode,
-  //   ...country,
-  // }));
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+    ...country,
+  }));
 
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.isoCode,
-  //     ...state,
-  //   }));
+  const updatedStates = (countryId) =>
+    State.getStatesOfCountry(countryId).map((stateName) => ({
+      label: stateName.name,
+      value: stateName.isoCode,
+      ...stateName,
+    }));
 
-  // const updatedCities = (countryId, stateId) =>
-  //   City.getCitiesOfState(countryId, stateId).map((city) => ({
-  //     label: city.name,
-  //     value: city.stateCode,
-  //     ...city,
-  //   }));
-  // const { values, setFieldValue, setValues } = addressFromik;
+  const updatedCities = (countryId, stateId) =>
+    City.getCitiesOfState(countryId, stateId).map((city) => ({
+      label: city.name,
+      value: city.stateCode,
+      ...city,
+    }));
+  const { values, setFieldValue, setValues } = addressFromik;
 
-  // useEffect(() => {}, [values]);
+  useEffect(() => {}, [values]);
 
-  /**/
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -50,9 +49,6 @@ function ShippingAddressScreen() {
   } = state;
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
-  const [country, setCountry] = useState(shippingAddress.country || "");
-  const [stateName, setStateName] = useState(shippingAddress.stateName || "");
-  const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
@@ -70,13 +66,10 @@ function ShippingAddressScreen() {
       payload: {
         fullName,
         address,
-        // city: values.city.label,
-        //state: values.state.label,
+        city: values.city.label,
+        stateName: values.stateName.label,
         postalCode,
-        //country: values.country.label,
-        country: "Mexico",
-        stateName: "Coahuila",
-        city: "Torreon",
+        country: values.country.label,
       },
     });
     localStorage.setItem(
@@ -84,13 +77,10 @@ function ShippingAddressScreen() {
       JSON.stringify({
         fullName,
         address,
-        //city: values.city.label,
-        //state: values.state.label,
+        city: values.city.label,
+        stateName: values.stateName.label,
         postalCode,
-        //country: values.country.label,
-        country: "Mexico",
-        stateName: "Coahuila",
-        city: "Torreon",
+        country: values.country.label,
       })
     );
     navigate("/placeorder");
@@ -131,7 +121,7 @@ function ShippingAddressScreen() {
               spellCheck="false"
               autoComplete="off"
             />
-            {/* <Select
+            <Select
               placeholder="-- Selecciona el País --"
               id="country"
               name="country"
@@ -140,7 +130,10 @@ function ShippingAddressScreen() {
               options={updatedCountries}
               value={values.country}
               onChange={(value) => {
-                setValues({ country: value, state: null, city: null }, false);
+                setValues(
+                  { country: value, stateName: null, city: null },
+                  false
+                );
               }}
             />
             <Select
@@ -151,10 +144,10 @@ function ShippingAddressScreen() {
               options={
                 values.country ? updatedStates(values.country.isoCode) : null
               }
-              value={values.state}
+              value={values.stateName}
               onChange={(value) => {
                 setValues(
-                  { country: values.country, state: value, city: null },
+                  { country: values.country, stateName: value, city: null },
                   false
                 );
               }}
@@ -165,32 +158,17 @@ function ShippingAddressScreen() {
               id="city"
               name="city"
               options={
-                  values.state
-                    ? updatedCities(
-                        values.state.countryCode,
-                        values.state.isoCode
-                      )
-                    : null
+                values.stateName
+                  ? updatedCities(
+                      values.stateName.countryCode,
+                      values.stateName.isoCode
+                    )
+                  : null
               }
               value={values.city}
               onChange={(value) => setFieldValue("city", value)}
-            /> */}
+            />
 
-            <select
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            >
-              <option>Mexico</option>
-            </select>
-            <select
-              value={stateName}
-              onChange={(e) => setStateName(e.target.value)}
-            >
-              <option>Coahuila</option>
-            </select>
-            <select value={city} onChange={(e) => setCity(e.target.value)}>
-              <option>Torreon</option>
-            </select>
             <input
               type="text"
               value={postalCode}

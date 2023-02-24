@@ -29,7 +29,13 @@ function PlaceOrderScreen() {
   const { cart, userInfo } = state;
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
   cart.itemsPrice = round2(
-    cart.cartItems.reduce((a, c) => a + c.product.quantity * c.product.price, 0)
+    cart.cartItems.reduce(
+      (a, c) =>
+        a +
+        c.quantity *
+          (c.product.discount > 0 ? c.product.discount : c.product.price),
+      0
+    )
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
@@ -44,7 +50,16 @@ function PlaceOrderScreen() {
         {
           user: userInfo.data.user,
           products: cart.cartItems,
-          shippingAddress: cart.shippingAddress.address,
+          shippingAddress:
+            cart.shippingAddress.address +
+            ", " +
+            cart.shippingAddress.city +
+            ", " +
+            cart.shippingAddress.stateName +
+            ", " +
+            cart.shippingAddress.country +
+            ", " +
+            cart.shippingAddress.postalCode,
           paymentMethod: "Paypal",
           shippingPrice: cart.shippingPrice,
           taxPrice: cart.taxPrice,
@@ -65,6 +80,7 @@ function PlaceOrderScreen() {
       toast.error(getError(err));
     }
   };
+
   return (
     <div className="contenedor">
       {" "}
@@ -73,8 +89,8 @@ function PlaceOrderScreen() {
           <div className="panel-left-title">
             <div className="panel-title-text">Vista Previa de la Orden</div>
           </div>
-          <div className="panel-left-shipping">
-            <div>Información del envío</div>
+          <div className="panel-left-shipping-preview">
+            <div className="shipping__title">Información del envío</div>
             <div className="shipping-text">
               <div>
                 <strong>Nombre: </strong> {cart.shippingAddress.fullName}
@@ -96,32 +112,45 @@ function PlaceOrderScreen() {
           <div className="panel-left-items">
             <div>
               {cart.cartItems.map((item) => (
-                <div key={item.product.id}>
-                  <div className="items-contenedor">
-                    <div className="items-contenedor-left">
-                      <img
-                        src={
-                          "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
-                          item.product.images[0].uri
-                        }
-                        alt={item.product.name}
-                      ></img>
+                <div
+                  className="contenedor__item__preview_order"
+                  key={item.product.id}
+                >
+                  <div className="items-contenedor-left">
+                    <img
+                      src={
+                        "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
+                        item.product.images[0].uri
+                      }
+                      alt={item.product.name}
+                    ></img>
+                  </div>
+                  <div className="items-contenedor-right">
+                    <div
+                      className="name-item-order-txt"
+                      to={`/product/${item.product.slug}`}
+                    >
+                      {item.product.name}
                     </div>
-                    <div className="items-contenedor-right">
-                      <div
-                        className="name-item-order-txt"
-                        to={`/product/${item.product.slug}`}
-                      >
-                        {item.product.name}
-                      </div>
-                      <div className="name-item-order-txt">
-                        Cantidad: <span>{item.product.quantity}</span>
-                      </div>
-                      <div className="name-item-order-price">
-                        ${item.product.price}
-                      </div>
-                      <a href="/cart">Edit</a>
+                    <div className="name-item-order-quantity">
+                      Cantidad: <span>{item.quantity}</span>
                     </div>
+                    <div className="name-item-order-price">
+                      ${" "}
+                      {item.product.discount > 0
+                        ? item.product.discount.toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                          })
+                        : item.product.price.toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                          })}{" "}
+                      <p className="preview__unit_price_label">
+                        Precio Unitario
+                      </p>
+                    </div>
+                    <a className="name-item-order-edit" href="/cart">
+                      Editar
+                    </a>
                   </div>
                 </div>
               ))}
@@ -132,7 +161,12 @@ function PlaceOrderScreen() {
           <div className="contenedor-card-ordersummary">
             <div className="contenedor-row5">Total</div>
             <div className="contenedor-row5C5">
-              <strong>${cart.totalPrice.toFixed(2)}</strong>
+              <strong>
+                $
+                {cart.totalPrice.toLocaleString(undefined, {
+                  maximumFractionDigits: 2,
+                })}
+              </strong>
             </div>
           </div>
           <div className="contenedor-boton-pedido">

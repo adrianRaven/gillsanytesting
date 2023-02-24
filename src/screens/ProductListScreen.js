@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { DataGrid } from "@mui/x-data-grid";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -54,6 +56,16 @@ export default function ProductListScreen() {
     error: "",
   });
 
+  const rows = products?.map((p) => {
+    return {
+      id: p.id,
+      col1: p.id,
+      col2: p.name,
+      col3: p.price,
+      col4: p.categories.map((item) => item.name).join(", "),
+    };
+  });
+
   const navigate = useNavigate();
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
@@ -91,10 +103,12 @@ export default function ProductListScreen() {
             name: "Nuevo Producto",
             description: "Descripcion",
             categories: [],
+            accessories: [],
             price: 0.0,
             discount: 0.0,
             images: [],
             isActive: true,
+            video: "",
           },
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
@@ -112,11 +126,11 @@ export default function ProductListScreen() {
     }
   };
 
-  const deleteHandler = async (product) => {
-    if (window.confirm("Are you sure to delete?")) {
+  const deleteHandler = async (productId) => {
+    if (window.confirm("¿Quieres eliminar este producto?")) {
       try {
         await axios.delete(
-          process.env.REACT_APP_API_URL_TESTING + `/product/${product.id}`,
+          process.env.REACT_APP_API_URL_TESTING + `/product/${productId}`,
           {
             headers: { authorization: `Bearer ${userInfo.data.accessToken}` },
           }
@@ -132,76 +146,126 @@ export default function ProductListScreen() {
     }
   };
   return (
-    <div>
-      <div>
-        <div>
-          <h1 className="titulo-lista-productos">Products</h1>
-        </div>
-        <div className="col text-end">
-          <div className="contenedor-botones-crear">
-            <button
-              className="button-createProd"
-              type="button"
-              onClick={createHandler}
-            >
-              Crear Producto
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {loadingCreate && <div>Loading</div>}
-      {loadingDelete && <div>Loading</div>}
-
+    <>
+      {" "}
       {loading ? (
-        <div></div>
+        <div>cargando...</div>
       ) : error ? (
-        <div variant="danger">{error}</div>
+        <div>{error}</div>
       ) : (
         <div>
-          <div className="contenedor-tabla-lista-productos">
-            <div className="tabla-productos">
-              {" "}
-              <div className="tabla-row-id header-tabla">ID</div>
-              <div className="tabla-row-name header-tabla">Nombre</div>
-              <div className="tabla-row-price header-tabla">Precio</div>
-              <div className="tabla-row-category header-tabla">Categoria</div>
-              <div className="tabla-row-edit header-tabla">Editar</div>
-              <div className="tabla-row-delete header-tabla">Eliminar</div>
-              {products.map((product) => (
-                <>
-                  <div className="tabla-row-id">{product.id}</div>
-                  <div className="tabla-row-name">{product.name}</div>
-                  <div className="tabla-row-price">{product.price}</div>
-                  <div className="tabla-row-category">
-                    {product.categories.map((item) => item.name).join(", ")}
-                  </div>
+          <div>
+            <div>
+              <h1 className="titulo-lista-productos">Administrar Productos</h1>
+            </div>
 
-                  <div className="tabla-row-edit">
-                    {" "}
-                    <button
-                      type="button"
-                      className="button-edit"
-                      onClick={() => navigate(`/admin/products/${product.id}`)}
-                    >
-                      Edit
-                    </button>
-                  </div>
-                  <div className="tabla-row-delete">
-                    <button
-                      type="button"
-                      className="button-delete"
-                      onClick={() => deleteHandler(product)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-              ))}
+            <div className="col text-end">
+              <div className="contenedor-botones-crear">
+                <button
+                  className="button-createProd"
+                  type="button"
+                  onClick={createHandler}
+                >
+                  Crear Producto
+                </button>
+              </div>
             </div>
           </div>
+
+          {loadingCreate && <div>Loading</div>}
+          {loadingDelete && <div>Loading</div>}
+
+          {loading ? (
+            <div></div>
+          ) : error ? (
+            <div variant="danger">
+              <div className="error__container">
+                <div className="error_title"> Tu sesión ha expirado</div>
+                <div className="error_text">
+                  {" "}
+                  {error}
+                  Cierra sesión y vuelve a iniciar sesión para volver a navegar
+                  en nuestro sitio web
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="table-component-products"
+              style={{ height: 800, width: "80%", margin: "0 auto" }}
+            >
+              <DataGrid
+                columns={[
+                  { field: "col1", headerName: "ID", flex: 0.1, minWidth: 80 },
+                  {
+                    field: "col2",
+                    headerName: "Nombre",
+                    flex: 0.2,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col3",
+                    headerName: "Precio",
+                    flex: 0.1,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col4",
+                    headerName: "Categoria",
+                    flex: 0.2,
+                    minWidth: 80,
+                  },
+                  {
+                    field: "col5",
+                    headerName: "Editar",
+                    sortable: false,
+                    flex: 0.1,
+                    minWidth: 80,
+                    renderCell: (params) => {
+                      const onClick = (e) => {
+                        e.stopPropagation(); // don't select this row after clicking
+                        navigate(`/admin/products/${params.id}`);
+                      };
+                      return (
+                        <button
+                          type="button"
+                          className="button-edit"
+                          onClick={onClick}
+                        >
+                          Editar
+                        </button>
+                      );
+                    },
+                  },
+                  {
+                    field: "col6",
+                    headerName: "Eliminar",
+                    sortable: false,
+                    flex: 0.1,
+                    minWidth: 80,
+                    renderCell: (params) => {
+                      const onClick = (e) => {
+                        e.stopPropagation(); // don't select this row after clicking
+                        deleteHandler(params.id);
+                      };
+                      return (
+                        <button
+                          type="button"
+                          className="button-delete"
+                          onClick={onClick}
+                        >
+                          Eliminar
+                        </button>
+                      );
+                    },
+                  },
+                ]}
+                rows={rows ? rows : []}
+              />
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 }

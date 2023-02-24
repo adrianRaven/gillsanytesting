@@ -9,15 +9,14 @@
       name="description"
       content="Ecommerce website medical devices"
     />
-    
-    <script src="https://www.paypal.com/sdk/js?client-id=Adim9Gu3--vNyK6sFjEAM9TRxeRaa6FWqJAf2IQWRyyA-nDKjb7Yc5PL_V5VbvXziSPY_6yAZsB6VFVG"></script>
-    <script type="text/javascript" src="https://resources.openpay.mx/lib/openpay-js/1.2.38/openpay.v1.min.js"></script>
+      
     <link rel="apple-touch-icon" href="" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -43,34 +42,9 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  
   <script type="text/javascript">
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
   </script>
-
-<script>
-  var countDownDate= new Date("Jan 13, 2023 19:00:00").getTime();
-  var x = setInterval(() => {
-    var now = new Date().getTime();
-    var distance = countDownDate- now;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
-
-    if(distance < 0){
-      clearInterval(x);
-      document.getElementById("days").innerHTML = "00";
-    document.getElementById("hours").innerHTML = "00";
-    document.getElementById("minutes").innerHTML = "00";
-    document.getElementById("seconds").innerHTML = "00";
-    }
-  }, 1000);
-</script>
 </html>

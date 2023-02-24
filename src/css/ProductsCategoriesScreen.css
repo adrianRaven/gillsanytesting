@@ -1,0 +1,32 @@
+.products__main__container {
+  max-width: 75em;
+  margin: 0 auto;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background: rgb(255, 255, 255);
+}
+
+.products__no__available {
+  background: rgb(233, 233, 233);
+  color: rgb(92, 87, 99);
+  text-align: center;
+  margin-top: 1em;
+  padding-top: 4.2em;
+  margin-bottom: 2em;
+  padding-bottom: 4.2em;
+}
+
+.products__title__category {
+  font-size: 1.6em;
+  font-weight: 500;
+  color: rgb(64, 64, 67);
+}
+
+.products__banner img {
+  width: 100%;
+  margin-bottom: 2em;
+}

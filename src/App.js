@@ -16,14 +16,18 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import AdminRoute from "./components/AdminRoute";
+import CategoryListScreen from "./screens/CategoryListScren";
+import CategoryEditScreen from "./screens/CategoryEditScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
+import ConfirmationScreen from "./screens/ConfirmationScreen";
+import CartScreen from "./screens/CartScreen";
 const DashboardScreen = lazy(() => import("./screens/DashboardScreen"));
 const ProductListScreen = lazy(() => import("./screens/ProductListScreen"));
-const ProductEditScreen = lazy(() => import("./screens/ProductEditScreen"));
 const OrderListScreen = lazy(() => import("./screens/OrderListScreen"));
 const ShippingAddressScreen = lazy(() =>
   import("./screens/ShippingAddressScreen")
 );
-const CartScreen = lazy(() => import("./screens/CartScreen"));
+
 const ProductScreen = lazy(() => import("./screens/ProductScreen"));*/
 function App() {
   return (
@@ -47,7 +51,17 @@ function App() {
               </>
             }
           ></Route>
-          {/*<Route
+
+          <Route
+            path="/confirmation"
+            element={
+              <>
+                <Navbar /> <ConfirmationScreen /> <Footer />
+              </>
+            }
+          ></Route>
+
+          <Route
             path="/signin"
             element={
               <>
@@ -61,7 +75,8 @@ function App() {
             element={
               <>
                 {" "}
-                <Navbar /> <CartScreen /> <Footer />{" "}
+                <Navbar />
+                <CartScreen></CartScreen> <Footer />{" "}
               </>
             }
           />
@@ -173,6 +188,17 @@ function App() {
               </AdminRoute>
             }
           ></Route>
+
+          <Route
+            path="/admin/categories/:id"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <CategoryEditScreen />
+              </AdminRoute>
+            }
+          ></Route>
+
           <Route
             path="/admin/orders"
             element={
@@ -182,7 +208,16 @@ function App() {
               </AdminRoute>
             }
           ></Route>
-          */}
+
+          <Route
+            path="/admin/categories"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <CategoryListScreen />
+              </AdminRoute>
+            }
+          ></Route>
         </Routes>
       </Router>
     </div>

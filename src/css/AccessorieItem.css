@@ -1,0 +1,52 @@
+.itemAccessory__container {
+  display: grid;
+  height: 4.8em;
+  grid-template-columns: 1fr 3.5fr 1.5fr 2fr;
+  padding-bottom: 0.4em;
+}
+
+.accessory__img__container {
+  border: 2px solid rgb(25, 17, 17, 0.2);
+}
+.img__accessory {
+  width: 100%;
+}
+
+.accessory__name__container {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-size: 0.8em;
+  padding-top: 2.2em;
+  font-weight: 500;
+}
+
+.accessory__price__container {
+  text-align: center;
+  margin-top: 25%;
+}
+
+.accessory-panelAdd {
+  display: flex;
+  align-items: center;
+  max-width: 5em;
+  margin: 0 auto;
+  margin-top: 18%;
+}
+
+.accessory__quantityItem {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.quantityItem-minus {
+  color: rgb(45, 35, 95);
+}
+
+.quantityItem-plus {
+  color: rgb(45, 35, 95);
+}
+.accessory__panel__container {
+  background: transparent;
+}

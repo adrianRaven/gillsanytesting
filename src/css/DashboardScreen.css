@@ -1,4 +1,47 @@
 .dashboard__container {
-  background: rgb(238, 238, 238);
-  height: 100vh;
+  background: rgb(255, 255, 255);
+  width: 75em;
+  min-height: 4em;
+  margin: 0 auto;
+  margin-top: 1em;
+  padding-top: 1em;
+  margin-bottom: 4em;
+  padding-bottom: 4em;
+}
+
+.dashboad__section__one {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.section__one__title {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 0.8em;
+}
+
+.section__one__summary__item {
+  display: block;
+  background: rgb(227, 228, 232);
+  font-size: 1.2em;
+  max-width: 2.8em;
+  max-height: 4em;
+  text-align: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
+.summary__item__label {
+  margin-right: 1em;
+  font-size: 0.8em;
+  margin-bottom: 0.4em;
+}
+
+.summary__item_important {
+  font-weight: 600;
 }
