@@ -57,7 +57,7 @@ function HomeScreen() {
             <Product products={products.slice(0, 12)} />
           </>
         )}{" "}
-        <div className="title-section-two">Ofertas Mensuales</div>{" "}
+        <div className="title-section-two">Ofertas</div>{" "}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
