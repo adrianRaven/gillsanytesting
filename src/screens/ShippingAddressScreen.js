@@ -2,93 +2,93 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import "../css/ShippingAddressScreen.css";
-import { Country, State, City } from "country-state-city";
+//import { Country, State, City } from "country-state-city";
 import { useFormik } from "formik";
 import Select from "react-select";
 
 function ShippingAddressScreen() {
-  const addressFromik = useFormik({
-    initialValues: {
-      country: "Mexico",
-      stateName: null,
-      city: null,
-    },
-    onSubmit: (values) => console.log(JSON.stringify(values)),
-  });
+  // const addressFromik = useFormik({
+  //   initialValues: {
+  //     country: "Mexico",
+  //     stateName: null,
+  //     city: null,
+  //   },
+  //   onSubmit: (values) => console.log(JSON.stringify(values)),
+  // });
 
-  const countries = Country.getAllCountries();
+  //const countries = Country.getAllCountries();
 
-  const updatedCountries = countries.map((country) => ({
-    label: country.name,
-    value: country.isoCode,
-    ...country,
-  }));
+  // const updatedCountries = countries.map((country) => ({
+  //   label: country.name,
+  //   value: country.isoCode,
+  //   ...country,
+  // }));
 
-  const updatedStates = (countryId) =>
-    State.getStatesOfCountry(countryId).map((stateName) => ({
-      label: stateName.name,
-      value: stateName.isoCode,
-      ...stateName,
-    }));
+  // const updatedStates = (countryId) =>
+  //   State.getStatesOfCountry(countryId).map((stateName) => ({
+  //     label: stateName.name,
+  //     value: stateName.isoCode,
+  //     ...stateName,
+  //   }));
 
-  const updatedCities = (countryId, stateId) =>
-    City.getCitiesOfState(countryId, stateId).map((city) => ({
-      label: city.name,
-      value: city.stateCode,
-      ...city,
-    }));
-  const { values, setFieldValue, setValues } = addressFromik;
+  // const updatedCities = (countryId, stateId) =>
+  //   City.getCitiesOfState(countryId, stateId).map((city) => ({
+  //     label: city.name,
+  //     value: city.stateCode,
+  //     ...city,
+  //   }));
+  // const { values, setFieldValue, setValues } = addressFromik;
 
-  useEffect(() => {}, [values]);
+  // useEffect(() => {}, [values]);
 
-  const navigate = useNavigate();
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {
-    userInfo,
-    cart: { shippingAddress },
-  } = state;
-  const [fullName, setFullName] = useState(shippingAddress.fullName || "");
-  const [address, setAddress] = useState(shippingAddress.address || "");
-  const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ""
-  );
+  // const navigate = useNavigate();
+  // const { state, dispatch: ctxDispatch } = useContext(Store);
+  // const {
+  //   userInfo,
+  //   cart: { shippingAddress },
+  // } = state;
+  // const [fullName, setFullName] = useState(shippingAddress.fullName || "");
+  // const [address, setAddress] = useState(shippingAddress.address || "");
+  // const [postalCode, setPostalCode] = useState(
+  //   shippingAddress.postalCode || ""
+  // );
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/signin?redirect=/shipping");
-    }
-  }, [userInfo, navigate]);
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     navigate("/signin?redirect=/shipping");
+  //   }
+  // }, [userInfo, navigate]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    ctxDispatch({
-      type: "SAVE_SHIPPING_ADDRESS",
-      payload: {
-        fullName,
-        address,
-        city: values.city.label,
-        stateName: values.stateName.label,
-        postalCode,
-        country: values.country.label,
-      },
-    });
-    localStorage.setItem(
-      "shippingAddress",
-      JSON.stringify({
-        fullName,
-        address,
-        city: values.city.label,
-        stateName: values.stateName.label,
-        postalCode,
-        country: values.country.label,
-      })
-    );
-    navigate("/placeorder");
-  };
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   ctxDispatch({
+  //     type: "SAVE_SHIPPING_ADDRESS",
+  //     payload: {
+  //       fullName,
+  //       address,
+  //       city: values.city.label,
+  //       stateName: values.stateName.label,
+  //       postalCode,
+  //       country: values.country.label,
+  //     },
+  //   });
+  //   localStorage.setItem(
+  //     "shippingAddress",
+  //     JSON.stringify({
+  //       fullName,
+  //       address,
+  //       city: values.city.label,
+  //       stateName: values.stateName.label,
+  //       postalCode,
+  //       country: values.country.label,
+  //     })
+  //   );
+  //   navigate("/placeorder");
+  // };
 
   return (
     <div>
-      <div className="contenedor-principal-shipping">
+      {/* <div className="contenedor-principal-shipping">
         <div className="contenedor-detalle-shipping">
           <div className="detalle-shipping-title">
             <div className="shipping-title">Dirección de Envío</div>
@@ -189,7 +189,7 @@ function ShippingAddressScreen() {
             </div>
           </form>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
