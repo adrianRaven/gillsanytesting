@@ -117,13 +117,21 @@ function PlaceOrderScreen() {
                   key={item.product.id}
                 >
                   <div className="items-contenedor-left">
-                    <img
-                      src={
-                        "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
-                        item.product.images[0].uri
-                      }
-                      alt={item.product.name}
-                    ></img>
+                    {item.product.images.length > 0 ? (
+                      <img
+                        alt={item.product.name}
+                        src={
+                          "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                          item.product.images[0].uri
+                        }
+                      />
+                    ) : (
+                      <img
+                        alt={item.product.name}
+                        className={item.product.name}
+                        src={require(`../img/noimage.png`)}
+                      />
+                    )}
                   </div>
                   <div className="items-contenedor-right">
                     <div

@@ -105,6 +105,7 @@ function ProductScreen() {
       payload: finalArray,
     });
     navigate("/cart");
+    window.location.reload(false);
   };
 
   const addToCartCheckoutHandler = async () => {

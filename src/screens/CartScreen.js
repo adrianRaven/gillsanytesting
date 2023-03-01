@@ -56,16 +56,21 @@ function CartScreen() {
                             to={`/product/${item.product.id}`}
                             href={`/product/${item.product.id}`}
                           >
-                            {
+                            {item.product.images.length > 0 ? (
                               <img
+                                alt={item.product.name}
                                 src={
-                                  "https://res.cloudinary.com/ds5t2rctu/image/upload/v1654998479/" +
+                                  "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
                                   item.product.images[0].uri
                                 }
+                              />
+                            ) : (
+                              <img
                                 alt={item.product.name}
-                                className="img-incarrito"
-                              ></img>
-                            }
+                                className={item.product.name}
+                                src={require(`../img/noimage.png`)}
+                              />
+                            )}
                           </a>
                         </div>
                       </div>
