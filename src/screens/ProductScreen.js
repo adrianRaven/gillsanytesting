@@ -118,6 +118,7 @@ function ProductScreen() {
       payload: { ...product, quantity },
     });
     navigate("/signin?redirect=/shipping");
+    window.location.reload(false);
   };
 
   const showImage = async (pic) => {

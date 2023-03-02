@@ -4,17 +4,20 @@ import React, { Suspense, lazy } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
-const Navbar = lazy(() => import("./components/Navbar"));
-const Footer = lazy(() => import("./components/Footer"));
-const SigninScreen = lazy(() => import("./screens/SigninScreen"));
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import SigninScreen from "./screens/SigninScreen";
+import SignupScreen from "./screens/SignupScreen";
+import CartScreen from "./screens/CartScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+
 const AboutScreen = lazy(() => import("./screens/AboutScreen"));
 const ProductsCategoriesScreen = lazy(() =>
   import("./screens/ProductsCategoriesScreen")
 );
-const SignupScreen = lazy(() => import("./screens/SignupScreen"));
 
 const ProfileScreen = lazy(() => import("./screens/ProfileScreen"));
-const PlaceOrderScreen = lazy(() => import("./screens/PlaceOrderScreen"));
+
 const OrderScreen = lazy(() => import("./screens/OrderScreen"));
 const OrderHistoryScreen = lazy(() => import("./screens/OrderHistoryScreen"));
 
@@ -22,7 +25,7 @@ const CategoryListScreen = lazy(() => import("./screens/CategoryListScren"));
 const CategoryEditScreen = lazy(() => import("./screens/CategoryEditScreen"));
 const ProductEditScreen = lazy(() => import("./screens/ProductEditScreen"));
 const ConfirmationScreen = lazy(() => import("./screens/ConfirmationScreen"));
-const CartScreen = lazy(() => import("./screens/CartScreen"));
+
 const DashboardScreen = lazy(() => import("./screens/DashboardScreen"));
 const ProductListScreen = lazy(() => import("./screens/ProductListScreen"));
 const OrderListScreen = lazy(() => import("./screens/OrderListScreen"));
