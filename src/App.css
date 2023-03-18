@@ -62,21 +62,39 @@ h4 {
   color: rgb(50, 48, 54);
 }
 
-/*Mobile Styles */
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
 
-/*Small Tables Styles*/
-@media screen and (min-width: 620px) {
+@media (min-width: 320px) and (max-width: 480px) {
+  /* CSS */
+  body {
+    font-size: 14px;
+  }
 }
 
-/*Large tablest & laptop styles*/
-@media screen and (min-width: 960px) {
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
   body {
-    font-size: 18px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* CSS */
+  body {
+    font-size: 16px;
   }
 }
 
 /*Desktop Styles*/
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1281px) {
   body {
     font-size: 20px;
   }

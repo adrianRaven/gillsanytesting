@@ -30,3 +30,18 @@
   width: 100%;
   margin-bottom: 2em;
 }
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .products__title__category {
+    font-size: 1.6em;
+    font-weight: 500;
+    color: rgb(64, 64, 67);
+    padding-bottom: 1.2em;
+    padding-top: 1em;
+  }
+}

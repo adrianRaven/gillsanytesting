@@ -163,7 +163,7 @@ function ProductScreen() {
               </Zoom>
             </div>
 
-            <Carousel responsive={responsive}>
+            <Carousel responsive={responsive} className="carousel__component">
               {product.images.map((p) => (
                 <div className="small__images" key={product.id}>
                   <img

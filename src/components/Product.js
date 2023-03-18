@@ -27,7 +27,7 @@ function Product(props) {
     },
   };
   return (
-    <div>
+    <div className="product__container__main">
       <Carousel responsive={responsive}>
         {props.products.map((product) => (
           <a

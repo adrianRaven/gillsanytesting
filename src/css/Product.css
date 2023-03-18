@@ -38,6 +38,50 @@
   border-top: 2px solid rgba(51, 51, 51, 0.2);
 }
 
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .product__container__main {
+    text-align: center;
+  }
+
+  .tarjeta-producto {
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    border-radius: 4px;
+    transition: 0.3s;
+    text-decoration: none;
+    color: rgb(11, 11, 11);
+    border: 1px solid rgb(90, 89, 89, 0.2);
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .tarjeta-producto .contenedor-imagen {
+    height: auto;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+  }
+
+  .producto__info__nombre {
+    font-size: 0.8em;
+    margin-left: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1em;
+  }
+
+  .contenedor-item-info {
+    width: 100%;
+    background: rgb(253, 253, 253);
+    border-top: 2px solid rgba(51, 51, 51, 0.2);
+  }
+}
+
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .tarjeta-producto {

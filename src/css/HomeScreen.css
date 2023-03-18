@@ -61,6 +61,26 @@
   margin-bottom: 2em;
 }
 
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .title-section {
+    font-weight: 500;
+    font-size: 1.2em;
+    color: rgb(50, 48, 54);
+    padding-left: 1em;
+    padding-top: 0em;
+    padding-bottom: 1.4em;
+    text-align: center;
+  }
+
+  .title-section-two {
+    text-align: center;
+  }
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .main {

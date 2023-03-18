@@ -218,6 +218,22 @@
   color: #20222a;
 }
 
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .carousel__container {
+    max-width: 2em;
+    display: flex;
+    background: yellow;
+  }
+
+  .carousel__component {
+    display: none;
+  }
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .contenedor__product_screen {
