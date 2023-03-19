@@ -43,3 +43,58 @@
 .link__verification__mail {
   font-weight: 700;
 }
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .contenedor__verification__main {
+    height: auto;
+  }
+
+  .contenedor__verification_mail {
+    background: rgb(239, 238, 241);
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+    border-radius: 1em;
+  }
+
+  .contenedor__verification_mail img {
+    height: 10em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+  }
+  .titulo__verification__mail {
+    text-align: center;
+    width: 100%;
+    padding-top: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 1em;
+    color: rgb(39, 14, 77);
+  }
+
+  .text__verification__mail {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2em;
+    font-size: 0.9em;
+  }
+
+  .text__login__link {
+    text-align: center;
+  }
+
+  .link__verification__mail {
+    font-weight: 700;
+  }
+}

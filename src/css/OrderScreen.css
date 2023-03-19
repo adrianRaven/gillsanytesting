@@ -82,6 +82,375 @@
   margin-bottom: 2em;
 }
 
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .contenedor-order-detalle {
+    padding: 0em;
+    border-radius: 0em;
+    background: rgb(255, 255, 255);
+    display: inline-block;
+  }
+
+  .panel-order-left {
+    width: 100%;
+  }
+  .error_title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
+  .panel-left-title {
+    border-radius: 0.8em;
+  }
+
+  .panel-title-text {
+    width: 100%;
+    text-align: start;
+    padding-top: 1em;
+    margin-bottom: 1.5em;
+  }
+
+  .panel-left-shipping {
+    display: inline-block;
+    text-align: start;
+    font-size: 0.8em;
+    margin-top: 1em;
+    width: 100%;
+  }
+
+  .panel-left-payment {
+    width: 100%;
+    text-align: start;
+    font-size: 0.8em;
+    padding-left: 1em;
+  }
+
+  .panel-left-items {
+    text-align: start;
+    font-size: 0.8em;
+    padding-left: 1em;
+    margin-top: 1em;
+    padding-bottom: 2em;
+  }
+
+  .payment-section {
+    width: 100%;
+    margin-left: 2em;
+    margin: 0 auto;
+  }
+
+  .btn-compra {
+    background-color: rgb(26, 28, 56);
+    width: 28em;
+    color: rgb(255, 255, 249);
+  }
+
+  .btn-deliverOrder {
+    background: rgb(255, 208, 0);
+    color: rgb(65, 36, 108);
+    font-weight: 600;
+    margin-top: 1em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 1.2em;
+    margin-bottom: 2em;
+  }
+
+  .error__container {
+    background: rgb(71, 28, 243);
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 4em;
+    padding: 1em;
+    border-radius: 0.8em;
+  }
+
+  .error_title {
+    margin-bottom: 1em;
+  }
+
+  .error_text {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1em;
+    width: 50em;
+  }
+
+  .error__link {
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
+  .contenedor__order {
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    font-size: 1em;
+    padding-bottom: 0em;
+    padding-top: 0em;
+    display: inline-block;
+  }
+
+  .panel-left-section {
+    width: 90%;
+    padding-left: 0em;
+    display: inline-block;
+  }
+  .panel-left-title {
+    width: 100%;
+    border-radius: 0.8em;
+  }
+  .panel-left-title-txt {
+    text-align: start;
+    padding-left: 0em;
+    font-weight: 700;
+    font-size: 1.3em;
+  }
+  .panel-title-text {
+    text-align: start;
+    font-weight: 600;
+    color: rgb(23, 28, 73);
+    font-size: 1em;
+    padding-top: 1em;
+    margin-bottom: 1.5em;
+    margin-left: 0.8em;
+  }
+
+  .panel-left-shipping {
+    display: block;
+    text-align: start;
+    font-size: 16px;
+    margin-top: 1em;
+    width: 100%;
+    padding-left: 0em;
+  }
+  .panel-left-shipping-card {
+    width: 70%;
+    background: rgb(250, 248, 250);
+    display: inline-block;
+    min-height: 5em;
+    padding: 1.6em;
+    border: 2px solid rgb(25, 17, 17, 0.2);
+    border-radius: 0.4em;
+    margin-left: 1.4em;
+  }
+  .panel-left-shipping-title {
+    color: rgb(66, 67, 68);
+    font-weight: 600;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    font-size: 1em;
+  }
+  .label__compra__recibida {
+    display: flex;
+    margin-left: 2em;
+    font-size: 1.4em;
+    font-weight: 600;
+  }
+
+  .label__compra__date {
+    margin-left: 0.4em;
+    color: rgb(4, 162, 62);
+  }
+  .status__success {
+    padding-left: 4em;
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  .status__success__green {
+    margin-left: 1em;
+    font-weight: 600;
+  }
+  .status__success__txt {
+    margin-left: 1em;
+  }
+  .shipping-address-card-txt {
+    color: rgb(110, 110, 110);
+    font-size: 1em;
+  }
+
+  .product-container-item {
+    margin-left: 2em;
+    display: flex;
+    margin-bottom: 1.6em;
+  }
+  .status__envio__txt {
+    color: rgb(201, 62, 16);
+    margin-left: 1em;
+  }
+  .shipping-name-title {
+    font-weight: 700;
+    margin-bottom: 0.4em;
+  }
+  .align-items-center {
+    margin-bottom: 0em;
+    margin-right: 2em;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    display: flex;
+  }
+
+  .product-image-item {
+    width: 7.2em;
+    min-height: 6em;
+    background: rgb(254, 254, 254);
+  }
+  .product-image-item img {
+    width: 100%;
+  }
+  .product-txt-item {
+    padding-left: 1em;
+    padding-top: 0.4em;
+  }
+
+  .product-txt-price {
+    display: flex;
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-top: 0.6em;
+  }
+  .product-price-discount {
+    font-weight: 400;
+    font-size: 0.6em;
+    padding-top: 2em;
+    margin-left: 1em;
+    text-decoration: line-through;
+    color: rgb(158, 47, 69);
+  }
+  .product-txt-name {
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  .product-txt-currency {
+    font-size: 0.8em;
+    color: rgb(152, 152, 152);
+  }
+
+  .contenedor-row-products-price {
+    display: flex;
+    margin-bottom: 3.2em;
+    width: 100%;
+  }
+
+  .contenedor-row-products-total {
+    display: flex;
+    margin-bottom: 1em;
+    background: rgb(216, 216, 222);
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    width: 100%;
+  }
+  .contenedor-row1 {
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+  }
+
+  .contenedor-row2 {
+    font-weight: 500;
+    width: 40%;
+    font-size: 1em;
+  }
+  .contenedor-row2C2 {
+    text-align: end;
+    font-weight: 600;
+    width: 100%;
+  }
+  .contenedor-row5C5 {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .panel__order__right {
+    width: 90%;
+    padding: 1em;
+    border-radius: 0.8em;
+    margin: 0 auto;
+    background: rgb(238, 236, 236);
+    margin-bottom: 2em;
+  }
+
+  .status__oder_section {
+    margin-left: 0em;
+    margin-bottom: 4em;
+  }
+
+  .admin__panel__order {
+    background: rgb(247, 234, 175);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    border-radius: 0.4em;
+  }
+
+  .admin__panel__order__title {
+    font-weight: 600;
+    margin-bottom: 1em;
+  }
+
+  .admin__panel__order__status {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+  .deliver__section__admin {
+    padding-bottom: 0.4em;
+  }
+
+  .admin__input {
+    width: 100%;
+    height: 2em;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .txt__confirmar__recepcion {
+    margin-top: 2em;
+  }
+
+  .boton__confirmar__recepcion {
+    background: rgb(21, 21, 67);
+    color: aliceblue;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    margin-top: 1em;
+    border-radius: 0.6em;
+    font-weight: 600;
+  }
+
+  .boton__confirmar__recepcion:hover {
+    background: rgb(11, 187, 58);
+    color: aliceblue;
+  }
+
+  .contenedor__mensaje__recibido {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    font-weight: 600;
+  }
+
+  .icon__check__recibido {
+    color: rgb(0, 179, 80);
+    margin-right: 0.5em;
+  }
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .error__container {

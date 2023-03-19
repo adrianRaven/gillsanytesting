@@ -139,6 +139,7 @@ export default function OrderListScreen() {
                       const onClick = (e) => {
                         e.stopPropagation(); // don't select this row after clicking
                         navigate(`/order/${params.id}`);
+                        window.location.reload();
                       };
                       return (
                         <button
@@ -146,7 +147,7 @@ export default function OrderListScreen() {
                           className="button-edit"
                           onClick={onClick}
                         >
-                          Edit
+                          Editar
                         </button>
                       );
                     },

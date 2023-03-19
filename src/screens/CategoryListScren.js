@@ -183,7 +183,7 @@ export default function CategoryEditScren() {
                       className="button-edit"
                       onClick={onClick}
                     >
-                      Edit
+                      Editar
                     </button>
                   );
                 },

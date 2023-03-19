@@ -99,6 +99,7 @@ export default function OrderHistoryScreen() {
                       className="button-action-order"
                       onClick={() => {
                         navigate(`/order/${order.id}`);
+                        window.location.reload();
                       }}
                     >
                       Detalles

@@ -49,6 +49,46 @@
   color: rgb(255, 191, 0);
 }
 
+.error__signup_form,
+.error__name,
+.error__last__name,
+.error__postal__code,
+.error__phone,
+.error__pass__one,
+.error__pass__two {
+  font-size: 0.7em;
+  color: rgb(232, 48, 15);
+  display: none;
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.input__name:invalid[focused="true"] ~ .error__name {
+  display: block;
+}
+
+.input__last__name:invalid[focused="true"] ~ .error__last__name {
+  display: block;
+}
+.input__postal__code:invalid[focused="true"] ~ .error__postal__code {
+  display: block;
+}
+
+.input__phone:invalid[focused="true"] ~ .error__phone {
+  display: block;
+}
+
+.input__pass__one:invalid[focused="true"] ~ .error__pass__one {
+  display: block;
+}
+
+.input__pass__two:invalid[focused="true"] ~ .error__pass__two {
+  display: block;
+}
+
+.contenedor-btn-signup {
+  text-align: center;
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .contenedor-signup-base {
@@ -95,5 +135,9 @@
 
   .boton-continuar-signin {
     margin-top: 2em;
+  }
+
+  .contenedor-btn-signup {
+    margin-top: 1em;
   }
 }

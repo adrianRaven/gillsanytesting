@@ -57,6 +57,16 @@ function SignupScreen() {
     }
   }, [navigate, redirect, userInfo]);
 
+  const [message, setMessage] = useState("");
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = (e) => {
+    setFocused(true);
+  };
+
+  const handleChange = (event) => {
+    setMessage(event.target.value);
+  };
   return (
     <div className="contenedor-signup-base">
       <div className="contenedoor-signup-main">
@@ -65,80 +75,102 @@ function SignupScreen() {
           <form action="" method="GET" role="search" onSubmit={submitHandler}>
             <div className="signup-form-input">
               <input
+                className="input__name"
                 type="text"
                 required
                 placeholder="Nombre"
-                maxLength="120"
-                autoFocus
+                maxLength="40"
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
                 onChange={(e) => setFirstName(e.target.value)}
+                onBlur={handleFocus}
+                focused={focused.toString()}
+                pattern="^[a-zA-Z\s]*$"
               />
-
+              <span className="error__name">
+                El nombre debe incluir solamente letras y espacios.
+              </span>
               <input
+                className="input__last__name"
                 type="text"
                 required
-                className=""
                 placeholder="Apellido"
-                maxLength="120"
-                autoFocus
+                maxLength="40"
+                focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
                 onChange={(e) => setLastName(e.target.value)}
+                onBlur={handleFocus}
+                pattern="^[a-zA-Z\s]*$"
               />
-
+              <span className="error__last__name">
+                El Apellido debe incluir solamente letras y espacios.
+              </span>
               <input
                 type="text"
                 required
                 className=""
                 placeholder="Dirección"
                 maxLength="120"
-                autoFocus
+                focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
                 onChange={(e) => setAddress(e.target.value)}
+                onBlur={handleFocus}
               />
 
               <input
                 type="text"
                 required
-                className=""
+                className="input__postal__code"
                 placeholder="Código Postal"
-                maxLength="120"
-                autoFocus
+                maxLength="6"
+                focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
+                pattern="^\d+$"
                 onChange={(e) => setPostalCode(e.target.value)}
+                onBlur={handleFocus}
               />
+              <span className="error__postal__code">
+                El código postal solo debe incluir números.
+              </span>
               <input
                 type="email"
                 required
-                className=""
                 placeholder="Correo electrónico"
                 maxLength="120"
-                autoFocus
+                focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
+                onBlur={handleFocus}
               />
+
               <input
                 type="text"
-                required
-                className=""
+                className="input__phone"
                 placeholder="Número de Telefono"
-                maxLength="120"
-                autoFocus
+                required
+                maxLength="10"
+                focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
                 autoComplete="off"
+                pattern="^\d+$"
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onBlur={handleFocus}
               />
+              <span className="error__phone">
+                El número de telefono debe incluir el formato correcto.
+              </span>
             </div>
+
             <div className="signup-form-input">
               <div
                 className=""
@@ -150,15 +182,27 @@ function SignupScreen() {
                 <input
                   type="password"
                   required
-                  className=""
-                  maxLength="120"
-                  autoFocus
+                  id="message"
+                  name="message"
+                  className="input__pass__one"
+                  maxLength="20"
+                  focused={focused.toString()}
                   autoCapitalize="off"
                   spellCheck="false"
                   autoComplete="off"
                   placeholder="Contraseña"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    handleChange(e);
+                  }}
+                  onBlur={handleFocus}
+                  pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,20}"
                 />
+                <span className="error__pass__one">
+                  La contraseña debe incluir el formato y longitud correcta (Al
+                  menos una mayúscula, un número y un caractér especial y al
+                  menos 8 caracteres de longitud).
+                </span>
               </div>
             </div>
             <div className="signup-form-input">
@@ -166,15 +210,20 @@ function SignupScreen() {
                 <input
                   type="password"
                   required
-                  className=""
-                  maxLength="120"
-                  autoFocus
+                  className="input__pass__two"
+                  maxLength="20"
                   autoCapitalize="off"
                   spellCheck="false"
                   autoComplete="off"
                   placeholder="Confirmar contraseñas"
                   onChange={(e) => setconfirmPassword(e.target.value)}
+                  pattern={message}
+                  onBlur={handleFocus}
+                  focused={focused.toString()}
                 />
+                <span className="error__pass__two">
+                  Las contraseñas deben coincidir
+                </span>
               </div>
             </div>
 
