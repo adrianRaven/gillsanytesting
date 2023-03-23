@@ -163,7 +163,7 @@ function ProductScreen() {
               </Zoom>
             </div>
 
-            <Carousel responsive={responsive} className="carousel__component">
+            <Carousel responsive={responsive} className="carousel">
               {product.images.map((p) => (
                 <div className="small__images" key={product.id}>
                   <img
@@ -199,24 +199,24 @@ function ProductScreen() {
           ) : (
             <div className="contenedor__product__precio">
               ${" "}
-              {product.price.toLocaleString(undefined, {
+              {parseFloat(product.price, 2).toLocaleString(undefined, {
                 maximumFractionDigits: 2,
-              })}{" "}
+              })}
             </div>
           )}
           {product.discount > 0 ? (
             <div className="contenedor__product__oferta">
               ${" "}
-              {product.discount.toLocaleString(undefined, {
+              {parseFloat(product.discount, 2).toLocaleString(undefined, {
                 maximumFractionDigits: 2,
-              })}{" "}
+              })}
             </div>
           ) : (
             <div className="contenedor__product__oferta">
               ${" "}
-              {product.price.toLocaleString(undefined, {
+              {parseFloat(product.price, 2).toLocaleString(undefined, {
                 maximumFractionDigits: 2,
-              })}{" "}
+              })}
             </div>
           )}
           <div>IVA Incluido </div>

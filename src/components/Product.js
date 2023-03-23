@@ -26,6 +26,7 @@ function Product(props) {
       items: 1,
     },
   };
+
   return (
     <div className="product__container__main">
       <Carousel responsive={responsive}>
@@ -60,20 +61,32 @@ function Product(props) {
                   <span className="item-cantidad-tag">
                     <span className="item-precio-simbolo">$ </span>
                     <span className="itemprecio-digitos">
-                      {product.discount}{" "}
+                      {parseFloat(product.discount, 2).toLocaleString(
+                        undefined,
+                        { maximumFractionDigits: 2 }
+                      )}
                     </span>
                   </span>
                 ) : (
                   <span className="item-cantidad-tag">
                     <span className="item-precio-simbolo">$ </span>
-                    <span className="itemprecio-digitos">{product.price} </span>
+                    <span className="itemprecio-digitos">
+                      {parseFloat(product.price, 2).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      })}
+                    </span>
                   </span>
                 )}
 
                 {product.discount == 0 ? (
                   <div></div>
                 ) : (
-                  <div className="item-original-price">$ {product.price} </div>
+                  <div className="item-original-price">
+                    ${" "}
+                    {parseFloat(product.price, 2).toLocaleString(undefined, {
+                      maximumFractionDigits: 2,
+                    })}
+                  </div>
                 )}
               </div>
               <div className="producto__info__nombre">
