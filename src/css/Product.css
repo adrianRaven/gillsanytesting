@@ -76,9 +76,31 @@
   }
 
   .contenedor-item-info {
+    text-align: center;
     width: 100%;
     background: rgb(253, 253, 253);
     border-top: 2px solid rgba(51, 51, 51, 0.2);
+  }
+
+  .item-original-price {
+    font-size: 0.7em;
+    text-decoration: line-through;
+    color: rgb(147, 147, 147);
+  }
+
+  .item-cantidad {
+    padding-top: 0.2em;
+    padding-left: 0em;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .producto__info__nombre {
+    font-size: 0.8em;
+    margin-left: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1em;
   }
 }
 
