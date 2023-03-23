@@ -225,6 +225,7 @@ export default function ProductListScreen() {
                       const onClick = (e) => {
                         e.stopPropagation(); // don't select this row after clicking
                         navigate(`/admin/products/${params.id}`);
+                        window.location.reload();
                       };
                       return (
                         <button

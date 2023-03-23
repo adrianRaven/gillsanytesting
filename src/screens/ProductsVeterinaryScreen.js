@@ -1,10 +1,11 @@
-import "../css/ProductsCategoriesScreen.css";
+import React from "react";
 import Product from "../components/Product";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import logger from "use-reducer-logger";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import "../css/ProductsCategoriesScreen.css";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,7 +20,7 @@ const reducer = (state, action) => {
   }
 };
 
-function ProductsCategoriesScreen() {
+export default function ProductsVeterinaryScreen() {
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
     loading: true,
@@ -40,12 +41,11 @@ function ProductsCategoriesScreen() {
     };
     fetchData();
   }, []);
-
   const pVetArray = products?.filter(
     (p) =>
-      p.categories.filter((c) => c.name.toLowerCase() === "humanos").length > 0
+      p.categories.filter((c) => c.name.toLowerCase() === "veterinaria")
+        .length > 0
   );
-
   return (
     <div className="products__main__container">
       <div className="products__banner">
@@ -206,5 +206,3 @@ function ProductsCategoriesScreen() {
     </div>
   );
 }
-
-export default ProductsCategoriesScreen;

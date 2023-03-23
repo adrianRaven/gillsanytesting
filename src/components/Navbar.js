@@ -48,6 +48,10 @@ function Navbar() {
     document.getElementById("subMenu").classList.toggle("show");
   }
 
+  function subMenuClickCategoies() {
+    document.getElementById("subMenu_catrgories").classList.toggle("show");
+  }
+
   function subMenuClickAdmin() {
     document.getElementById("subMenu_admin").classList.toggle("show");
   }
@@ -90,8 +94,24 @@ function Navbar() {
           <li>
             <a href="/">Inicio</a>
           </li>
-          <li>
-            <a href="/productos">Productos</a>
+          <li className="container-submenu">
+            {" "}
+            <button
+              type="button"
+              className="dropbtn"
+              onClick={subMenuClickCategoies}
+            >
+              Categorias&nbsp;
+              <FontAwesomeIcon icon={faChevronDown} className="arrow-down" />
+            </button>
+            <ul className="subMenu_catrgories" id="subMenu_catrgories">
+              <li>
+                <a href="/productos">Humanos</a>
+              </li>
+              <li>
+                <a href="/productos-veterinaria">Veterinaria</a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href="/">Ofertas</a>

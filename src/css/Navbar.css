@@ -144,7 +144,8 @@ hr.division__menu {
 }
 
 .submenu,
-.submenu_admin {
+.submenu_admin,
+.subMenu_catrgories {
   display: none;
   border: #ffcf06;
   background: #162746;
@@ -253,8 +254,13 @@ hr.division__menu {
     text-decoration: none;
   }
 
+  .container-submenu {
+    font-size: 0.8em;
+    padding-top: 0.01em;
+  }
   .dropbtn {
     color: var(--third);
+    font-size: 0.8em;
     font-weight: 500;
     font-size: 1em;
     margin-top: 0.2em;
@@ -267,7 +273,8 @@ hr.division__menu {
   }
 
   .submenu,
-  .submenu_admin {
+  .submenu_admin,
+  .subMenu_catrgories {
     position: absolute;
     border: #ffcf06;
     background: #162746;

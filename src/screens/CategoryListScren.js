@@ -87,7 +87,7 @@ export default function CategoryEditScren() {
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    if (window.confirm("Quieres crear una nueva categoria?")) {
+    if (window.confirm("¿Quieres crear una nueva categoria?")) {
       try {
         dispatch({ type: "CREATE_REQUEST" });
         const { data } = await axios.post(

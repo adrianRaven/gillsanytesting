@@ -1,3 +1,12 @@
+.categoy__list__container {
+  background: rgb(255, 255, 255);
+}
+
+.titulo-lista-productos {
+  font-size: 1.2em;
+  margin-left: 7em;
+  font-weight: 700;
+}
 .update__category__container {
   background: rgb(255, 255, 255);
   width: 85em;
