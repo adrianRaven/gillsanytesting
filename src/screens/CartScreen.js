@@ -40,8 +40,21 @@ function CartScreen() {
         <div className="section-items-carrito">
           {cartItems.length === 0 ? (
             <div className="text-alert-noItems">
-              <p>El carrito de compras esta vacío. </p> <br></br>
-              <a href="/">Vuelve a comprar!</a>
+              <div>
+                {" "}
+                <p>El carrito de compras esta vacío. </p>
+              </div>
+              <div className="link__buy__again">
+                {" "}
+                <a href="/">¡Vuelve a comprar!</a>
+              </div>
+              <div>
+                {" "}
+                <img
+                  className="empty__cart__img"
+                  src={require(`../img/emptycart.png`)}
+                ></img>
+              </div>
             </div>
           ) : (
             <div className="contenedor__item__carrito">

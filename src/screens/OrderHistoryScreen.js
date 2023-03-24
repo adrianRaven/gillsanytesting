@@ -49,66 +49,60 @@ export default function OrderHistoryScreen() {
   }, [userInfo]);
   return (
     <div className="oh__contenedor">
-      <div className="oh_title">Historial de Compras</div>
+      <div className="oh_title">Mi hsistorial de Compras</div>
       {loading ? (
         <div>Loading</div>
       ) : error ? (
         <div>{error} </div>
       ) : (
-        <div>
-          <div className="contenedor-tabla-user">
-            <div className="tabla-ordenes-user">
-              <div className="tabla-row-id-user header-tabla">ID</div>
-              <div className="tabla-row-createdAt header-tabla">FECHA</div>
-              <div className="tabla-row-totalPrice header-tabla">TOTAL</div>
-              <div className="tabla-row-isPaid header-tabla">PAGADO</div>
-              <div className="tabla-row-isDelivered header-tabla">
-                ENTREGADO
+        <div className="my__history__container">
+          {orders.data.map((order) => (
+            <div className="item__order__history">
+              <div className="tabla-row-id-user">
+                Número de la compra: {order.id}
               </div>
-              <div className="tabla-row-order header-tabla">IR A ORDEN</div>
-              {orders.data.map((order) => (
-                <>
-                  <div className="tabla-row-id-user">{order.id}</div>
-                  <div className="tabla-row-createdAt">
-                    {order.createdAt.substring(0, 10)}
+              <div className="tabla-row-createdAt">
+                Fecha: {order.createdAt.substring(0, 10)}
+              </div>
+              <div className="tabla-row-totalPrice">
+                Total: ${order.totalPrice}
+              </div>
+              <div className="tabla-row-isPaid">
+                {order.isPaid ? (
+                  <div className="txt-pagado">
+                    {"Pagado el " + order.paidAt.substring(0, 10)}
                   </div>
-                  <div className="tabla-row-totalPrice">
-                    ${order.totalPrice}
+                ) : (
+                  <div className="txt-noPagado">No pagado</div>
+                )}
+              </div>
+              <div className="tabla-row-isDelivered">
+                {" "}
+                {order.isDelivered ? (
+                  <div className="txt-pagado">
+                    {order.deliveredAt.substring(0, 10)}
                   </div>
-                  <div className="tabla-row-isPaid">
-                    {order.isPaid ? (
-                      <div className="txt-pagado">
-                        {"Pagado el " + order.paidAt.substring(0, 10)}
-                      </div>
-                    ) : (
-                      <div className="txt-noPagado">No pagado</div>
-                    )}
-                  </div>
-                  <div className="tabla-row-isDelivered">
-                    {order.isDelivered ? (
-                      <div className="txt-pagado">
-                        Envíado el {order.deliveredAt.substring(0, 10)}
-                      </div>
-                    ) : (
-                      <div className="box-status">Pendiente</div>
-                    )}
-                  </div>
-                  <div className="tabla-row-order">
-                    <button
-                      type="button"
-                      className="button-action-order"
-                      onClick={() => {
-                        navigate(`/order/${order.id}`);
-                        window.location.reload();
-                      }}
-                    >
-                      Detalles
-                    </button>
-                  </div>
-                </>
-              ))}
+                ) : (
+                  <>
+                    Estatus de envío:
+                    <div className="box-status">Pendiente</div>
+                  </>
+                )}
+              </div>
+              <div className="tabla-row-order">
+                <button
+                  type="button"
+                  className="button-action-order"
+                  onClick={() => {
+                    navigate(`/order/${order.id}`);
+                    window.location.reload();
+                  }}
+                >
+                  Detalles
+                </button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       )}
     </div>

@@ -50,3 +50,18 @@
 .accessory__panel__container {
   background: transparent;
 }
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .accessory-panelAdd {
+    display: flex;
+    align-items: center;
+    max-width: 0em;
+    margin: 0;
+    margin-top: 1em;
+  }
+}

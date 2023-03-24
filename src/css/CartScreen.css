@@ -23,10 +23,11 @@
 }
 
 .section-title-carrito {
-  padding-top: 0.6em;
+  padding-top: 1.2em;
   padding-left: 1em;
   font-size: 1.2em;
   font-weight: 600;
+  text-align: center;
 }
 
 .section-items-carrito {
@@ -153,6 +154,21 @@
   width: 6em;
 }
 
+.text-alert-noItems {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.empty__cart__img {
+  margin: 0 auto;
+  width: 30%;
+  margin-top: 1.2em;
+  margin-bottom: 2.4em;
+}
+
+.link__buy__again {
+  padding-top: 1em;
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .contenedor_cart_main {
@@ -174,7 +190,7 @@
 
   .section-title-carrito {
     color: #323335;
-    margin-bottom: 4em;
+    margin-bottom: 1em;
     margin-left: 1em;
   }
 
@@ -317,5 +333,15 @@
   }
   .item-priceTotal {
     width: 6em;
+  }
+  .empty__cart__img {
+    margin: 0 auto;
+    width: 10%;
+    margin-top: 1.2em;
+    margin-bottom: 2.4em;
+  }
+
+  .link__buy__again {
+    margin-top: 0em;
   }
 }

@@ -43,7 +43,7 @@ function Product(props) {
                     alt={product.name}
                     src={
                       "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
-                      product.images[0].uri
+                      product.images[product.images.length - 1].uri
                     }
                   />
                 ) : (

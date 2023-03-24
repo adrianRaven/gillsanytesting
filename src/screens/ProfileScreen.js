@@ -76,7 +76,7 @@ export default function ProfileScreen() {
           <div>Tel: {userInfo.data.user.phoneNumber}</div>
           <div>Dirección: {userInfo.data.user.Address}</div>
         </div>
-        <div className="panel__right__profile">
+        {/* <div className="panel__right__profile">
           <div className="profile-titulo">
             <div className="titulo-profile">Actualizar información</div>
           </div>
@@ -197,7 +197,7 @@ export default function ProfileScreen() {
               </div>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   );

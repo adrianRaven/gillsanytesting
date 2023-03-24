@@ -1,7 +1,7 @@
 /*Small Tables Styles*/
 @media screen and (max-width: 960px) {
   .oh__contenedor {
-    background: rgb(239, 239, 239);
+    background: rgb(255, 255, 255);
     margin: 0;
     padding-bottom: 2em;
   }
@@ -11,12 +11,17 @@
   .oh_title {
     text-align: center;
     padding-top: 1.4em;
+    margin-bottom: 1.2em;
     font-size: 1.4em;
     font-weight: 500;
   }
 
+  .my__history__container {
+    width: 100%;
+    margin: 0 auto;
+  }
   .tabla-ordenes-user {
-    background: white;
+    background: rgb(255, 255, 255);
     margin: 1em;
     display: flex;
     max-width: 100%;
@@ -26,14 +31,25 @@
     margin-bottom: 1em;
   }
 
+  .item__order__history {
+    background: rgb(255, 255, 255);
+    width: 80%;
+    margin-bottom: 1em;
+    padding-left: 1.2em;
+    padding-top: 0.5em;
+    box-shadow: 4px 4px 11px rgba(33, 33, 33, 0.2);
+    border-radius: 0.2em;
+  }
+
   .header-tabla {
     display: none;
   }
 
   .tabla-row-id-user {
     width: 100%;
-    font-size: 1.4em;
+    font-size: 1em;
     font-weight: 600;
+    color: rgb(63, 63, 63);
   }
 
   .tabla-row-createdAt {
@@ -43,7 +59,7 @@
 
   .tabla-row-totalPrice {
     width: 100%;
-    font-size: 1.2em;
+    color: rgb(63, 61, 68);
   }
 
   .tabla-row-isPaid {
@@ -62,15 +78,26 @@
   }
 
   .button-action-order {
-    background: rgb(30, 20, 72);
-    color: rgb(255, 213, 3);
+    color: rgb(49, 10, 111);
+    background: rgb(236, 236, 236);
     padding: 0.4em;
     border-radius: 0.6em;
-    font-size: 0.8em;
+    font-size: 1em;
+    font-weight: 600;
   }
 
+  .button-action-order:hover {
+    color: rgb(251, 192, 14);
+    background: rgb(31, 12, 113);
+    padding: 0.4em;
+    border-radius: 0.6em;
+    font-size: 1em;
+    font-weight: 600;
+  }
   .box-status {
-    color: rgb(167, 25, 25);
+    color: rgb(68, 4, 128);
+    font-size: 0.8em;
+    font-weight: 600;
   }
 }
 
@@ -81,7 +108,7 @@
 }
 
 .txt-noPagado {
-  color: rgb(255, 162, 0);
+  color: rgb(238, 139, 1);
   font-weight: 500;
   font-size: 0.8em;
 }
@@ -89,6 +116,16 @@
 @media screen and (min-width: 960px) {
   body {
     font-size: 18px;
+  }
+  .oh__contenedor {
+    background: rgb(255, 255, 255);
+    margin: 0;
+    padding-bottom: 2em;
+    min-height: 700px;
+  }
+  .my__history__container {
+    width: 900px;
+    margin: 0 auto;
   }
   .titulo-historial {
     margin-left: 3em;
@@ -170,5 +207,24 @@
     padding: 0;
     cursor: pointer;
     outline: inherit;
+  }
+  .item__order__history {
+    background: rgb(255, 255, 255);
+    width: 100%;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-radius: 0.2em;
+    padding-left: 1.2em;
+    padding-top: 0.5em;
+    box-shadow: 4px 4px 11px rgba(33, 33, 33, 0.2);
+  }
+
+  .button-action-order:hover {
+    color: rgb(251, 192, 14);
+    background: rgb(31, 12, 113);
+    padding: 0.2em;
+    border-radius: 0.2em;
+    font-size: 1em;
+    font-weight: 600;
   }
 }

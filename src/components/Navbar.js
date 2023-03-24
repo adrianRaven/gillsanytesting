@@ -207,7 +207,7 @@ function Navbar() {
             <li>
               <button
                 target="/"
-                className="dropbtn"
+                className="dropbtn__salir"
                 onClick={() => {
                   signoutHandler();
                   refreshPage();

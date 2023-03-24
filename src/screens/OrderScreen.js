@@ -277,15 +277,33 @@ function OrderScreen() {
                           <>
                             {" "}
                             <div className="product-txt-price">
-                              ${item.product.discount}
+                              $
+                              {parseFloat(
+                                item.product.discount,
+                                2
+                              ).toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                              })}
                             </div>
                             <div className="product-price-discount">
-                              ${item.purchasePrice}
+                              $
+                              {parseFloat(item.purchasePrice, 2).toLocaleString(
+                                undefined,
+                                {
+                                  maximumFractionDigits: 2,
+                                }
+                              )}
                             </div>
                           </>
                         ) : (
                           <div className="product-txt-price">
-                            ${item.purchasePrice}
+                            ${" "}
+                            {parseFloat(item.purchasePrice, 2).toLocaleString(
+                              undefined,
+                              {
+                                maximumFractionDigits: 2,
+                              }
+                            )}
                           </div>
                         )}
                       </div>
@@ -398,11 +416,27 @@ function OrderScreen() {
             <div className="contenedor-row1">Resumén de Compra</div>
             <div className="contenedor-row-products-price">
               <div className="contenedor-row2">Productos</div>
-              <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
+              <div className="contenedor-row2C2">
+                $
+                {parseFloat(order.data.totalPrice, 2).toLocaleString(
+                  undefined,
+                  {
+                    maximumFractionDigits: 2,
+                  }
+                )}
+              </div>
             </div>
             <div className="contenedor-row-products-total">
               <div className="contenedor-row2">Total</div>
-              <div className="contenedor-row2C2">$ {order.data.totalPrice}</div>
+              <div className="contenedor-row2C2">
+                ${" "}
+                {parseFloat(order.data.totalPrice, 2).toLocaleString(
+                  undefined,
+                  {
+                    maximumFractionDigits: 2,
+                  }
+                )}
+              </div>
             </div>
 
             {userInfo && userInfo && userInfo.data.user.roles[0] === "ADMIN" ? (

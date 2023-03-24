@@ -106,7 +106,9 @@ function PlaceOrderScreen() {
                 {cart.shippingAddress.postalCode}
               </div>
             </div>
-            <a href="shipping">Edit</a>
+            <a href="shipping" className="edit__shippinginfo">
+              Editar
+            </a>
           </div>
 
           <div className="panel-left-items">
@@ -146,12 +148,14 @@ function PlaceOrderScreen() {
                     <div className="name-item-order-price">
                       ${" "}
                       {item.product.discount > 0
-                        ? item.product.discount.toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
-                          })
-                        : item.product.price.toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
-                          })}{" "}
+                        ? parseFloat(item.product.discount, 2).toLocaleString(
+                            undefined,
+                            { maximumFractionDigits: 2 }
+                          )
+                        : parseFloat(item.product.price, 2).toLocaleString(
+                            undefined,
+                            { maximumFractionDigits: 2 }
+                          )}
                       <p className="preview__unit_price_label">
                         Precio Unitario
                       </p>

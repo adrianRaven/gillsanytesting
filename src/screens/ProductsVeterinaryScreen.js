@@ -49,10 +49,9 @@ export default function ProductsVeterinaryScreen() {
   return (
     <div className="products__main__container">
       <div className="products__banner">
-        {" "}
         <img
           alt="verification mail"
-          src={require(`../img/bannerproductos.jpg`)}
+          src={require(`../img/bannerproductosvet.jpg`)}
         />
       </div>
       {loading ? (

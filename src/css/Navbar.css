@@ -165,7 +165,15 @@ hr.division__menu {
 .show {
   display: block;
 }
-
+.btn-Salir {
+  color: white;
+}
+.dropbtn__salir {
+  color: var(--third);
+  font-weight: 500;
+  font-size: 1.2em;
+  margin-top: 0em;
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   .navbar-contenedor {
@@ -260,13 +268,18 @@ hr.division__menu {
   }
   .dropbtn {
     color: var(--third);
-    font-size: 0.8em;
     font-weight: 500;
     font-size: 1em;
-    margin-top: 0.2em;
+    margin-top: 0.3em;
     margin-right: 1.4em;
   }
 
+  .dropbtn__salir {
+    color: var(--third);
+    font-weight: 500;
+    font-size: 0.8em;
+    margin-top: 0.35em;
+  }
   .show {
     position: relative;
     display: block;
@@ -284,5 +297,9 @@ hr.division__menu {
     padding-top: 0.5em;
     font-size: 0.85em;
     min-width: 170px;
+  }
+
+  .container-submenu-admin {
+    font-size: 0.8em;
   }
 }

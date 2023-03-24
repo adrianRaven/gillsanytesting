@@ -61,6 +61,7 @@ function Footer() {
           </div>
         </div>
         <div className="icons-legend">
+          Número de contacto: 871-266-38-57
           <div className="text-legend">
             Copyright Todos los derechos reservados
           </div>

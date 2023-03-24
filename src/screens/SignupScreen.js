@@ -158,6 +158,7 @@ function SignupScreen() {
                 placeholder="Número de Telefono"
                 required
                 maxLength="10"
+                minLength="10"
                 focused={focused.toString()}
                 autoCapitalize="off"
                 spellCheck="false"
@@ -167,7 +168,8 @@ function SignupScreen() {
                 onBlur={handleFocus}
               />
               <span className="error__phone">
-                El número de telefono debe incluir el formato correcto.
+                El número de telefono debe incluir el formato correcto (10
+                digitos).
               </span>
             </div>
 
@@ -201,7 +203,7 @@ function SignupScreen() {
                 <span className="error__pass__one">
                   La contraseña debe incluir el formato y longitud correcta (Al
                   menos una mayúscula, un número y un caractér especial y al
-                  menos 8 caracteres de longitud).
+                  menos 8 caracteres de longitud) Ej: P$ass2023.
                 </span>
               </div>
             </div>

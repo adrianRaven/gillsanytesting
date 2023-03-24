@@ -93,6 +93,7 @@
     border-radius: 0em;
     background: rgb(255, 255, 255);
     display: inline-block;
+    width: 100%;
   }
 
   .panel-order-left {
@@ -106,13 +107,6 @@
 
   .panel-left-title {
     border-radius: 0.8em;
-  }
-
-  .panel-title-text {
-    width: 100%;
-    text-align: start;
-    padding-top: 1em;
-    margin-bottom: 1.5em;
   }
 
   .panel-left-shipping {
@@ -191,7 +185,7 @@
 
   .contenedor__order {
     height: auto;
-    width: 100%;
+
     margin: 0 auto;
     margin-top: 0em;
     margin-bottom: 0em;
@@ -202,7 +196,7 @@
   }
 
   .panel-left-section {
-    width: 90%;
+    width: 100%;
     padding-left: 0em;
     display: inline-block;
   }
@@ -212,18 +206,27 @@
   }
   .panel-left-title-txt {
     text-align: start;
-    padding-left: 0em;
-    font-weight: 700;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-weight: 600;
     font-size: 1.3em;
+    background: rgb(251, 251, 251);
+    color: rgb(53, 39, 101);
+    border-radius: 0.3em;
   }
   .panel-title-text {
     text-align: start;
     font-weight: 600;
-    color: rgb(23, 28, 73);
+    color: rgb(53, 39, 101);
     font-size: 1em;
-    padding-top: 1em;
+    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     margin-bottom: 1.5em;
-    margin-left: 0.8em;
+    margin-left: 0em;
+    border-radius: 0.3em;
+    width: max-content;
   }
 
   .panel-left-shipping {
@@ -235,21 +238,21 @@
     padding-left: 0em;
   }
   .panel-left-shipping-card {
-    width: 70%;
-    background: rgb(250, 248, 250);
+    width: 85%;
+    background: rgb(237, 235, 235);
     display: inline-block;
     min-height: 5em;
-    padding: 1.6em;
-    border: 2px solid rgb(25, 17, 17, 0.2);
+    padding: 1.2em;
+    border: 2px solid rgba(182, 182, 182, 0.2);
     border-radius: 0.4em;
-    margin-left: 1.4em;
+    margin-left: 0.4em;
   }
   .panel-left-shipping-title {
     color: rgb(66, 67, 68);
     font-weight: 600;
     margin-bottom: 1em;
-    margin-left: 1em;
-    font-size: 1em;
+    margin-left: 0.4em;
+    font-size: 0.8em;
   }
   .label__compra__recibida {
     display: flex;
@@ -362,6 +365,7 @@
     font-weight: 500;
     width: 40%;
     font-size: 1em;
+    padding-left: 1em;
   }
   .contenedor-row2C2 {
     text-align: end;
@@ -450,6 +454,11 @@
     color: rgb(0, 179, 80);
     margin-right: 0.5em;
   }
+}
+
+.almost__ready__order {
+  width: 100%;
+  height: auto;
 }
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
