@@ -1,7 +1,8 @@
 .titulo-lista-ordenes {
-  margin-left: 6.6em;
+  margin-left: 10em;
   margin-top: 0.8em;
   color: rgb(38, 13, 139);
+  font-size: 1em;
 }
 .table-component-orders {
   background: #fff;

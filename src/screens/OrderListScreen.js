@@ -73,7 +73,7 @@ export default function OrderListScreen() {
         <div>
           <div>
             <div>
-              <h1 className="titulo-lista-ordenes">Compras</h1>
+              <h1 className="titulo-lista-ordenes">Lista de Compras</h1>
             </div>
           </div>
           {loading ? (

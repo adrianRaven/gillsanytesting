@@ -3,9 +3,10 @@
 }
 
 .titulo-lista-productos {
-  font-size: 1.2em;
-  margin-left: 7em;
+  font-size: 1em;
+  margin-left: 10em;
   font-weight: 700;
+  color: rgb(57, 43, 86);
 }
 .update__category__container {
   background: rgb(255, 255, 255);
@@ -15,21 +16,37 @@
 }
 
 .contenedor__create__category {
-  padding-left: 8.6em;
+  padding-left: 10em;
 }
+
+/*Boton*/
 .button__create__category {
   border: none;
   margin-top: 1em;
-  background-color: rgb(84, 105, 212);
-  border-radius: 0.2em;
+  background-color: rgb(97, 67, 247);
+  border-radius: 0.6em;
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  width: 8em;
+  width: 12em;
   height: 2em;
+  font-size: 0.8em;
   margin-bottom: 2em;
 }
 
+.button__create__category:hover {
+  border: none;
+  margin-top: 1em;
+  background-color: rgb(55, 41, 126);
+  border-radius: 0.6em;
+  color: #fbefdb;
+  font-weight: 500;
+  cursor: pointer;
+  width: 12em;
+  height: 2em;
+  font-size: 0.8em;
+  margin-bottom: 2em;
+}
 .contenedor-tabla-lista-categorias {
   background: rgb(232, 230, 233);
   padding: 1.2em;

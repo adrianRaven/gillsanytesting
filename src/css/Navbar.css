@@ -182,8 +182,8 @@ hr.division__menu {
     justify-content: flex-start;
     background-color: var(--primary);
     color: var(--textColor);
-    padding-left: 18em;
-    padding-right: 18em;
+    padding-left: 4em;
+    padding-right: 4em;
     max-height: 4.2em;
   }
 

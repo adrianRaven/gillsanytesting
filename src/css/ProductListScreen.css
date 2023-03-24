@@ -1,7 +1,8 @@
 .titulo-lista-productos {
-  margin-left: 6.8em;
+  margin-left: 10em;
   margin-top: 0.8em;
-  color: rgb(38, 13, 139);
+  font-size: 1em;
+  color: rgb(74, 63, 120);
 }
 
 .table-component-products {
@@ -85,18 +86,19 @@
 .contenedor-botones-crear {
   margin-bottom: 1em;
   display: flex;
-  padding-left: 14em;
+  padding-left: 10em;
 }
 .button-createProd {
   border: none;
   margin-top: 1em;
-  background-color: rgb(84, 105, 212);
-  border-radius: 0.8em;
+  background-color: rgb(97, 67, 247);
+  border-radius: 0.6em;
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   width: 12em;
   height: 2em;
+  font-size: 0.8em;
 }
 .button-edit {
   border: none;

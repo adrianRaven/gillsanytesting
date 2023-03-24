@@ -275,6 +275,7 @@ function ProductScreen() {
             </div>
           </div>
         </div>
+
         <div className="info_product_descripcion">
           <div className="info_product_description_title">Descripción </div>
           <div className="info_product_descripcion_txt">

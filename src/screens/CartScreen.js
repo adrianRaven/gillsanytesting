@@ -136,9 +136,25 @@ function CartScreen() {
                       </div>
                       <div className="item-priceTotal">
                         {item.product.discount > 0 ? (
-                          <div className="">$ {item.product.discount}</div>
+                          <div className="">
+                            ${" "}
+                            {parseFloat(
+                              item.product.discount,
+                              2
+                            ).toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                            })}
+                          </div>
                         ) : (
-                          <div className="">$ {item.product.price} </div>
+                          <div className="">
+                            ${" "}
+                            {parseFloat(item.product.price, 2).toLocaleString(
+                              undefined,
+                              {
+                                maximumFractionDigits: 2,
+                              }
+                            )}{" "}
+                          </div>
                         )}
                       </div>
                     </div>

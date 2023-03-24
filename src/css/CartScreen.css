@@ -93,7 +93,7 @@
 .contenedor__item__carrito {
   display: flex;
   flex-wrap: wrap;
-  background: rgb(237, 237, 237);
+  background: rgb(255, 255, 255);
 }
 
 .contenedor-item-detalle-incarrito {
@@ -272,7 +272,7 @@
   }
   .contenedor__item__carrito {
     display: inline-block;
-    background: rgb(237, 237, 237);
+    background: rgb(255, 255, 255);
   }
 
   .contenedor-item-detalle-incarrito {
