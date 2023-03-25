@@ -49,60 +49,79 @@ export default function OrderHistoryScreen() {
   }, [userInfo]);
   return (
     <div className="oh__contenedor">
-      <div className="oh_title">Mi hsistorial de Compras</div>
+      <div className="oh_title">Mi historial de Compras</div>
       {loading ? (
         <div>Loading</div>
       ) : error ? (
         <div>{error} </div>
       ) : (
         <div className="my__history__container">
-          {orders.data.map((order) => (
-            <div className="item__order__history">
-              <div className="tabla-row-id-user">
-                Número de la compra: {order.id}
-              </div>
-              <div className="tabla-row-createdAt">
-                Fecha: {order.createdAt.substring(0, 10)}
-              </div>
-              <div className="tabla-row-totalPrice">
-                Total: ${order.totalPrice}
-              </div>
-              <div className="tabla-row-isPaid">
-                {order.isPaid ? (
-                  <div className="txt-pagado">
-                    {"Pagado el " + order.paidAt.substring(0, 10)}
+          {orders.data.length > 0 ? (
+            <div>
+              {" "}
+              {orders.data((order) => (
+                <div className="item__order__history">
+                  <div className="tabla-row-id-user">
+                    Número de la compra: {order.id}
                   </div>
-                ) : (
-                  <div className="txt-noPagado">No pagado</div>
-                )}
-              </div>
-              <div className="tabla-row-isDelivered">
-                {" "}
-                {order.isDelivered ? (
-                  <div className="txt-pagado">
-                    {order.deliveredAt.substring(0, 10)}
+                  <div className="tabla-row-createdAt">
+                    Fecha: {order.createdAt.substring(0, 10)}
                   </div>
-                ) : (
-                  <>
-                    Estatus de envío:
-                    <div className="box-status">Pendiente</div>
-                  </>
-                )}
-              </div>
-              <div className="tabla-row-order">
-                <button
-                  type="button"
-                  className="button-action-order"
-                  onClick={() => {
-                    navigate(`/order/${order.id}`);
-                    window.location.reload();
-                  }}
-                >
-                  Detalles
-                </button>
+                  <div className="tabla-row-totalPrice">
+                    Total: ${order.totalPrice}
+                  </div>
+                  <div className="tabla-row-isPaid">
+                    {order.isPaid ? (
+                      <div className="txt-pagado">
+                        {"Pagado el " + order.paidAt.substring(0, 10)}
+                      </div>
+                    ) : (
+                      <div className="txt-noPagado">No pagado</div>
+                    )}
+                  </div>
+                  <div className="tabla-row-isDelivered">
+                    {" "}
+                    {order.isDelivered ? (
+                      <div className="txt-pagado">
+                        {order.deliveredAt.substring(0, 10)}
+                      </div>
+                    ) : (
+                      <>
+                        Estatus de envío:
+                        <div className="box-status">Pendiente</div>
+                      </>
+                    )}
+                  </div>
+                  <div className="tabla-row-order">
+                    <button
+                      type="button"
+                      className="button-action-order"
+                      onClick={() => {
+                        navigate(`/order/${order.id}`);
+                        window.location.reload();
+                      }}
+                    >
+                      Detalles
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no__hsitory__content">
+              {" "}
+              <img src={require(`../img/nomyhistory.png`)}></img>
+              <div className="no__history__text__container">
+                <div className="title__no__history">
+                  Tu historial de compras esta vacío
+                </div>
+                <div className="txt__no__history">
+                  Explora y conoce algunos de nuestros productos y grandes
+                  ofertas
+                </div>
               </div>
             </div>
-          ))}
+          )}
         </div>
       )}
     </div>

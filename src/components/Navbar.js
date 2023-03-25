@@ -114,7 +114,7 @@ function Navbar() {
             </ul>
           </li>
           <li>
-            <a href="/">Ofertas</a>
+            <a href="/ofertas">Ofertas</a>
           </li>
           <li>
             <a href="/acercade">Nosotros</a>

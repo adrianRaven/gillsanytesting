@@ -19,7 +19,7 @@ const ProductsVeterinaryScreen = lazy(() =>
   import("./screens/ProductsVeterinaryScreen")
 );
 const ProfileScreen = lazy(() => import("./screens/ProfileScreen"));
-
+const OffersScreen = lazy(() => import("./screens/OffersScreen"));
 const OrderScreen = lazy(() => import("./screens/OrderScreen"));
 const OrderHistoryScreen = lazy(() => import("./screens/OrderHistoryScreen"));
 
@@ -95,6 +95,17 @@ function App() {
               </>
             }
           />
+
+          <Route
+            path="/ofertas"
+            element={
+              <>
+                {" "}
+                <Navbar /> <OffersScreen /> <Footer />{" "}
+              </>
+            }
+          />
+
           <Route
             path="/productos"
             element={

@@ -112,6 +112,24 @@
   font-weight: 500;
   font-size: 0.8em;
 }
+.no__hsitory__content {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.title__no__history {
+  color: rgb(70, 21, 144);
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.8em;
+}
+.txt__no__history {
+  color: rgb(103, 103, 103);
+}
+.no__history__text__container {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
   body {

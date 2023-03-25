@@ -110,6 +110,38 @@
   font-weight: 300;
   color: rgb(105, 105, 105);
 }
+
+.error__placeOrder__container {
+  text-align: center;
+  padding-bottom: 2em;
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.error__placeOrder__message {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  color: #391e77;
+}
+
+.error__placeOrder__txt {
+  color: #646464;
+  margin-bottom: 1.4em;
+}
+
+.error__placeOrder__signin {
+  font-size: 1.2em;
+  font-weight: 600;
+  background: rgb(36, 29, 113);
+  color: aliceblue;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  border-radius: 0.8em;
+}
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
@@ -171,6 +203,27 @@
     font-size: 0.8em;
     margin-left: 1em;
   }
+
+  .panel-order-left {
+    margin: 0em;
+    width: 100%;
+    background: white;
+    margin-top: 1em;
+    border-radius: 0.4em;
+    padding-bottom: 1em;
+  }
+
+  /*Panel derecha*/
+  .panel-order-right {
+    background: rgb(255, 255, 255);
+    width: 100%;
+    margin-left: 0em;
+    margin-right: 0em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 0.4em;
+  }
 }
 /*Large tablest & laptop styles*/
 @media screen and (min-width: 960px) {
@@ -182,6 +235,7 @@
     margin: 0 auto;
   }
   /* Panel izquierdo*/
+
   .panel-order-left {
     width: 75em;
     background: rgb(255, 255, 255);
@@ -333,5 +387,39 @@
     margin-bottom: 1em;
     font-weight: 600;
     color: #2b243c;
+  }
+
+  .error__placeOrder__container {
+    text-align: center;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 800px;
+    margin: 0 auto;
+  }
+  .error__placeOrder__message {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    color: #391e77;
+  }
+
+  .error__placeOrder__txt {
+    color: #646464;
+    margin-bottom: 1.4em;
+  }
+
+  .error__placeOrder__signin {
+    font-size: 1em;
+    font-weight: 600;
+    background: rgb(36, 29, 113);
+    color: aliceblue;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 0.8em;
   }
 }

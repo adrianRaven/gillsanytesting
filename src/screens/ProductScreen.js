@@ -183,6 +183,40 @@ function ProductScreen() {
                 </div>
               ))}
             </Carousel>
+
+            {product.images.length > 0 ? (
+              <Carousel
+                responsive={responsive}
+                className="carousel__component__mobile"
+              >
+                {product.images.map((p) => (
+                  <div className="small__images" key={product.id}>
+                    <Zoom>
+                      <img
+                        src={
+                          "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                          p.uri
+                        }
+                        alt={p.name}
+                        key={product.id}
+                        onClick={() =>
+                          showImage(
+                            "https://res.cloudinary.com/ds5t2rctu/image/upload/v1659968156/" +
+                              p.uri
+                          )
+                        }
+                      />
+                    </Zoom>{" "}
+                  </div>
+                ))}
+              </Carousel>
+            ) : (
+              <img
+                alt={product.name}
+                className="noimage__carousel"
+                src={require(`../img/noimage.png`)}
+              />
+            )}
           </div>
         </div>
         <div className="contenedor__product_right">
@@ -260,6 +294,15 @@ function ProductScreen() {
             </button>
           </div>
         </div>{" "}
+      </div>
+
+      <div className="info_product_descripcion">
+        <div className="info_product_description_title">Categorias </div>
+        <div className="info_product_categories">
+          {product.categories.map((p) => (
+            <div className="categories__item">{p.name}</div>
+          ))}
+        </div>
       </div>
 
       <div className="info__product__section">
