@@ -47,82 +47,99 @@ export default function OrderHistoryScreen() {
     };
     fetchData();
   }, [userInfo]);
+
   return (
     <div className="oh__contenedor">
       <div className="oh_title">Mi historial de Compras</div>
       {loading ? (
         <div>Loading</div>
       ) : error ? (
-        <div>{error} </div>
+        <div className="error__placeOrder__container">
+          {" "}
+          <img src={require(`../img/expired.png`)}></img>
+          <div className="error__placeOrder__message"> {error}</div>
+          <div className="error__placeOrder__txt">
+            Lo sentimos pero el tiempo de tu sesión expiró. Vuelve a iniciar
+            sesión para que continues disfrutando de nuestras grandes ofertas
+          </div>
+          <a href="/signin" className="error__placeOrder__signin">
+            Iniciar sesión
+          </a>{" "}
+        </div>
       ) : (
-        <div className="my__history__container">
-          {orders.data.length > 0 ? (
-            <div>
+        <>
+          {" "}
+          {orders?.data.length > 0 ? (
+            <>
               {" "}
-              {orders.data((order) => (
-                <div className="item__order__history">
-                  <div className="tabla-row-id-user">
-                    Número de la compra: {order.id}
+              <div className="my__history__container">
+                {orders.data.map((order) => (
+                  <div className="item__order__history">
+                    <div className="tabla-row-id-user">
+                      Número de la compra: {order.id}
+                    </div>
+                    <div className="tabla-row-createdAt">
+                      Fecha: {order.createdAt.substring(0, 10)}
+                    </div>
+                    <div className="tabla-row-totalPrice">
+                      Total: ${order.totalPrice}
+                    </div>
+                    <div className="tabla-row-isPaid">
+                      {order.isPaid ? (
+                        <div className="txt-pagado">
+                          {"Pagado el " + order.paidAt.substring(0, 10)}
+                        </div>
+                      ) : (
+                        <div className="txt-noPagado">No pagado</div>
+                      )}
+                    </div>
+                    <div className="tabla-row-isDelivered">
+                      {" "}
+                      {order.isDelivered ? (
+                        <div className="txt-pagado">
+                          {order.deliveredAt.substring(0, 10)}
+                        </div>
+                      ) : (
+                        <>
+                          Estatus de envío:
+                          <div className="box-status">Pendiente</div>
+                        </>
+                      )}
+                    </div>
+                    <div className="tabla-row-order">
+                      <button
+                        type="button"
+                        className="button-action-order"
+                        onClick={() => {
+                          navigate(`/order/${order.id}`);
+                          window.location.reload();
+                        }}
+                      >
+                        Detalles
+                      </button>
+                    </div>
                   </div>
-                  <div className="tabla-row-createdAt">
-                    Fecha: {order.createdAt.substring(0, 10)}
-                  </div>
-                  <div className="tabla-row-totalPrice">
-                    Total: ${order.totalPrice}
-                  </div>
-                  <div className="tabla-row-isPaid">
-                    {order.isPaid ? (
-                      <div className="txt-pagado">
-                        {"Pagado el " + order.paidAt.substring(0, 10)}
-                      </div>
-                    ) : (
-                      <div className="txt-noPagado">No pagado</div>
-                    )}
-                  </div>
-                  <div className="tabla-row-isDelivered">
-                    {" "}
-                    {order.isDelivered ? (
-                      <div className="txt-pagado">
-                        {order.deliveredAt.substring(0, 10)}
-                      </div>
-                    ) : (
-                      <>
-                        Estatus de envío:
-                        <div className="box-status">Pendiente</div>
-                      </>
-                    )}
-                  </div>
-                  <div className="tabla-row-order">
-                    <button
-                      type="button"
-                      className="button-action-order"
-                      onClick={() => {
-                        navigate(`/order/${order.id}`);
-                        window.location.reload();
-                      }}
-                    >
-                      Detalles
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </>
           ) : (
-            <div className="no__hsitory__content">
-              {" "}
-              <img src={require(`../img/nomyhistory.png`)}></img>
-              <div className="no__history__text__container">
-                <div className="title__no__history">
-                  Tu historial de compras esta vacío
-                </div>
-                <div className="txt__no__history">
-                  Explora y conoce algunos de nuestros productos y grandes
-                  ofertas
+            <>
+              <div className="no__hsitory__content">
+                {" "}
+                <img src={require(`../img/nomyhistory.png`)}></img>
+                <div className="no__history__text__container">
+                  <div className="title__no__history">
+                    Tu historial de compras esta vacío
+                  </div>
+                  <div className="txt__no__history">
+                    Explora y conoce algunos de nuestros productos y grandes
+                    ofertas
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
-        </div>
+        </>
       )}
     </div>
   );

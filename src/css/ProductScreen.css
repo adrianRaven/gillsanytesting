@@ -512,4 +512,8 @@
   .carousel__component__mobile {
     display: none;
   }
+
+  .noimage__carousel {
+    display: none;
+  }
 }

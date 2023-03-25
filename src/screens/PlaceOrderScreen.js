@@ -83,6 +83,7 @@ function PlaceOrderScreen() {
       dispatch({ type: "FETCH_SUCCESS", payload: data });
       localStorage.removeItem("cartItems");
       navigate(`/order/${data.result.id}`);
+      window.location.reload();
     } catch (error) {
       dispatch({ type: "CREATE_FAIL" });
       dispatch({
